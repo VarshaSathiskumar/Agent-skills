@@ -1,0 +1,45 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "b",
+      "rationale": "In a workflow, code written in advance fixes the steps and their order; in an agent, the model decides the next step as it runs. Calling the model several times (a), using tools (c) or model size (d) can be true of either design, so they do not separate them.",
+      "distractors": {"a": "M7", "c": "M7", "d": "M8"}
+    },
+    {
+      "id": "q2",
+      "answer": "c",
+      "rationale": "The code owns the control flow: the steps and their order are fixed in advance and the model only writes the message, so this is a workflow. Using tools (a) or a model (b) does not make a design an agent, and the number of model calls (d) is not what defines a workflow; the stated reason in d is also true only by coincidence of this example.",
+      "distractors": {"a": "M7", "b": "M7", "d": "M7"}
+    },
+    {
+      "id": "q3",
+      "answer": "a",
+      "rationale": "When the steps and order never vary, fixed code follows them reliably, needs fewer model calls (lower cost) and is easy to test, and an agent's flexibility adds nothing. b is wrong because skipping steps is the unpredictability a fixed rule forbids; c is false, since an agent can be told an order but is not guaranteed to follow it; d is wrong because a workflow can still call a model, and cost depends on the calls made.",
+      "distractors": {"b": "M9", "c": "M8", "d": "M9"}
+    },
+    {
+      "id": "q4",
+      "answer": "d",
+      "rationale": "An agent pays off when the number and order of steps cannot be known in advance because each result decides the next action, as in diagnosing a failing print. The reminder (a), the single lookup (b) and the fixed four checks (c) have predictable steps, so a fixed workflow does them more cheaply and reliably.",
+      "distractors": {"a": "M8", "b": "M8", "c": "M8"}
+    },
+    {
+      "id": "q5",
+      "answer": 400,
+      "tolerance": 0,
+      "rationale": "The workflow covers 1200 / 2 = 600 requests; the agent covers 1200 / 6 = 200 requests; the difference is 600 - 200 = 400. An answer of 600 or 200 gives only one of the two counts."
+    },
+    {
+      "id": "q6",
+      "answer": "Using a model and tools does not make it an agent; it is an agent only if the model decides the steps, and if the code fixes the steps and order it is a workflow.",
+      "accepted": [
+        "Whether it is an agent depends on who controls the flow: if the code fixes the steps it is a workflow, even with a model and tools.",
+        "Tools and a model can be in a workflow too; it is an agent only when the model chooses the next step.",
+        "An agent is defined by the model deciding the steps, not by using tools or a model."
+      ],
+      "rationale": "Full credit needs the point that the deciding factor is who owns the control flow (the model for an agent, the code for a workflow), and that having a model and tools is not enough. Only saying the flow is a workflow, with no reason, is partial. A response that defines an agent by tool use or model calls shows M7."
+    }
+  ]
+}

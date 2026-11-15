@@ -1,0 +1,68 @@
+{
+  "id": "0002",
+  "objective": "O4",
+  "title": "Workflows, agents and who owns the control flow",
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "Which question best separates a workflow from an agent?",
+      "options": [
+        {"id": "a", "text": "Does the system call the language model more than once per request?"},
+        {"id": "b", "text": "Does the code or the model choose each next step while it runs?"},
+        {"id": "c", "text": "Does the system use tools such as a calendar or manual search?"},
+        {"id": "d", "text": "Is the model large enough to plan several steps ahead on its own?"}
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "For every booking request, the makerspace program runs the same steps in code: look up the student's training record, check the calendar, create the booking, and then ask the model to write a confirmation message. The model chooses none of these steps. What is this design?",
+      "options": [
+        {"id": "a", "text": "An agent, because it books equipment by calling several tools"},
+        {"id": "b", "text": "An agent, because a language model is called as part of it"},
+        {"id": "c", "text": "A workflow, because the code decides the steps and their order"},
+        {"id": "d", "text": "A workflow, because it never calls the model more than once"}
+      ]
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "A rule says every booking must check training, check the calendar, book the slot and send a confirmation, in that order, with no exceptions. Why is a fixed workflow the better choice for this part of the assistant?",
+      "options": [
+        {"id": "a", "text": "The order never varies, so code gets it right every time, with fewer model calls and easier testing"},
+        {"id": "b", "text": "A workflow lets the model skip a step whenever it judges that the step is not needed"},
+        {"id": "c", "text": "An agent cannot call tools in a set order, so only a workflow can follow the rule"},
+        {"id": "d", "text": "A workflow needs no language model at all, so it always costs less than an agent"}
+      ]
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "Which of these makerspace tasks is the best candidate for an agent rather than a fixed workflow?",
+      "options": [
+        {"id": "a", "text": "Sending every student a reminder message 24 hours before their booked slot"},
+        {"id": "b", "text": "Answering \"what is the maximum material thickness?\" with one manual lookup"},
+        {"id": "c", "text": "Confirming a booking by running the same four checks in the same order"},
+        {"id": "d", "text": "Diagnosing \"my 3D print keeps failing\", where each result decides what to look up next"}
+      ]
+    },
+    {
+      "id": "q5",
+      "type": "numeric",
+      "objective": "O4",
+      "stem": "Your sponsor's budget covers 1,200 model calls. Assume every model call costs the same. A fixed workflow makes exactly 2 model calls per request. An agent averages 6 model calls per request. How many more requests can the budget cover with the workflow than with the agent?",
+      "unit": "requests"
+    },
+    {
+      "id": "q6",
+      "type": "short",
+      "objective": "O4",
+      "stem": "A teammate says, \"Our booking flow uses a language model and tools, so it is an agent.\" In one sentence, what is wrong with that reasoning?"
+    }
+  ]
+}

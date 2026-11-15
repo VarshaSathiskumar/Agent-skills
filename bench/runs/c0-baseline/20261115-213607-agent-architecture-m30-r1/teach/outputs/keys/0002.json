@@ -1,0 +1,41 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "b",
+      "rationale": "A model keeps nothing between sessions, and nothing was saved, so the new context holds only what the program builds: the system prompt, the tool definitions and the new question. Options a, c and d each assume the model stores earlier conversations itself, which is the misconception that memory is automatic.",
+      "distractors": {"a": "M3", "c": "M3", "d": "M3"}
+    },
+    {
+      "id": "q2",
+      "answer": 7950,
+      "tolerance": 0,
+      "rationale": "Call 1 reads 2,000 + 100 = 2,100. Call 2 adds the first request and result: 2,100 + 50 + 500 = 2,650. Call 3 adds the second request and result: 2,650 + 50 + 500 = 3,200. The total is 2,100 + 2,650 + 3,200 = 7,950. Answering 3,200 counts only the last call and misses that every step re-sends the earlier context; 3,650 (new content only) shows the same slip."
+    },
+    {
+      "id": "q3",
+      "answer": "c",
+      "rationale": "The program re-sends the whole message list on every call, so a large tool result is read, and paid for, again at every later step and also crowds the context. The model does not delete results itself (a), can read a result in every later call (b), and tools have no such rule that stops the program (d)."
+    },
+    {
+      "id": "q4",
+      "answer": "A saved note can become out of date (the student's status or the rules may change), while the tool returns the current, authoritative record each time.",
+      "accepted": [
+        "Because the note could be stale or wrong later, while the tool always gives the up-to-date record.",
+        "The training status can change, so a stored note may be outdated; looking it up gives the current answer.",
+        "Notes go stale; a live lookup is always current."
+      ],
+      "rationale": "Full credit needs the idea that stored facts can go stale or wrong while a live lookup is current. Saying only that notes use up context space, or that the tool is faster, is partial or wrong. This follows the rule: save what cannot be looked up, look up what can change."
+    },
+    {
+      "id": "q5",
+      "answer": "The program searches the manual (outside the model) for the chunks that best match the request, and puts those chunks into the model's context, usually as a tool result, for the next call.",
+      "accepted": [
+        "It runs a search over the manual and adds the best-matching passages to the context, for example as a tool result sent back to the model.",
+        "A search tool finds the relevant chunk and the program sends it to the model in its context."
+      ],
+      "rationale": "Full credit needs both parts: a program-side search that picks the relevant piece, and that the piece is placed into the context (typically as the tool result). Saying the model searches its own memory, or that the whole manual is loaded, is wrong. Naming only one part is partial."
+    }
+  ]
+}

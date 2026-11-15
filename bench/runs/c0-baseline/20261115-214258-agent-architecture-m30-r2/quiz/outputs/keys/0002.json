@@ -1,0 +1,42 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "b",
+      "rationale": "The dividing line is who owns the control flow: in a workflow, code written by the developer fixes the path; in an agent, the model decides the next step at run time. Option c reverses this, a wrongly ties the difference to tool use, and d wrongly ties it to the number of model calls."
+    },
+    {
+      "id": "q2",
+      "answer": "c",
+      "rationale": "The developer's code decides every step and its order, so this is a workflow, even though it uses tools and calls the model twice. Tool use (a) and the number of model calls (b, d) do not decide the category; control of the next step does."
+    },
+    {
+      "id": "q3",
+      "answer": "a",
+      "rationale": "Diagnosing a failed print is open-ended: what to look up and whether to check the printer depends on what the manuals say, so the model must choose the steps. The other three have a known, repeatable sequence (book and confirm, look up hours, loop over bookings and send reminders) and fit a fixed workflow."
+    },
+    {
+      "id": "q4",
+      "answer": "The steps are known in advance, so a workflow needs fewer model calls than an agent's loop, which costs less and behaves more predictably.",
+      "accepted": [
+        "It is cheaper because it uses fewer model calls.",
+        "It costs less because the model does not spend calls deciding the next step.",
+        "It is more predictable and easier to test because the order never changes.",
+        "The steps are fixed, so an agent's flexibility adds cost without benefit."
+      ],
+      "rationale": "Any one valid reason is enough: lower cost (fewer model calls, no calls spent choosing steps), predictability, or easier testing, all because the path is known. Saying only that an agent is 'worse' or 'less smart' without a reason is incomplete."
+    },
+    {
+      "id": "q5",
+      "answer": 300,
+      "tolerance": 0,
+      "rationale": "The agent makes 4 - 2 = 2 extra model calls per request, and 2 x 150 = 300. Equivalently, 150 x 4 = 600 minus 150 x 2 = 300 gives 300."
+    },
+    {
+      "id": "q6",
+      "answer": "d",
+      "rationale": "Using a tool does not make a system an agent. If code calls the calendar in a fixed order it is a workflow; it is an agent when the model chooses which tool to call and when to stop. Memory between sessions (c) and the number of tool calls (b) are not what defines an agent."
+    }
+  ]
+}

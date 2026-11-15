@@ -1,0 +1,41 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "d",
+      "rationale": "The model keeps nothing between calls; it sees only the messages the program sends, so a removed result is simply absent. Answer a shows M1, that the model remembers earlier calls itself.",
+      "distractors": {"a": "M1", "c": "M1"}
+    },
+    {
+      "id": "q2",
+      "answer": 4800,
+      "tolerance": 0,
+      "rationale": "Call 1 sends 1,000 + 100 = 1,100. Call 2 adds 500: 1,600. Call 3 adds 500: 2,100. Total 1,100 + 1,600 + 2,100 = 4,800. An answer of 1,700 or 2,100 counts the new tokens or the last call only, forgetting that the whole history is re-sent each call (M1)."
+    },
+    {
+      "id": "q3",
+      "answer": "b",
+      "rationale": "Information needed across sessions must be saved outside the window by the program and loaded back at the next session. A window lasts one run (a, c show M2). A shared manual library is for shared documents, not one student's status (d).",
+      "distractors": {"a": "M2", "c": "M2"}
+    },
+    {
+      "id": "q4",
+      "answer": "The model only sees the chunks the search returned, so it answered from the wrong page",
+      "accepted": [
+        "it only saw the wrong chunk",
+        "the search returned the wrong chunk so the model answered from it",
+        "the model only sees retrieved chunks, not the whole manual",
+        "retrieval returned the wrong page and the model used it",
+        "the retrieval step failed, so the model had the wrong text"
+      ],
+      "rationale": "The model has not read the whole manual; it answers from the chunks placed in its window, so a wrong chunk gives a wrong answer. An answer saying the model read the manual and misremembered it shows M3."
+    },
+    {
+      "id": "q5",
+      "answer": "c",
+      "rationale": "Compaction summarizes the conversation and starts a new window from the summary, keeping the important details. It does not save a file (a), shrink tokens (b), or simply drop old messages (d).",
+      "distractors": {"a": "M2"}
+    }
+  ]
+}

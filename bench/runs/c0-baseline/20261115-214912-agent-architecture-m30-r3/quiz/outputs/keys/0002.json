@@ -1,0 +1,43 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "c",
+      "rationale": "The difference is who owns the control flow: in a workflow, developer-written code fixes the path and the model fills in steps; in an agent, the model decides the next step and which tool to use. The number of model calls (a), the use of tools (b) and human approval (d) do not define the difference: workflows can call a model many times and use tools."
+    },
+    {
+      "id": "q2",
+      "answer": "a",
+      "rationale": "The program fixes the order of the steps and the model never picks the next one, so the code owns the control flow: a workflow. Calling a model (b) or using a tool (c) does not make a system an agent, and the number of model calls (d) is not the test."
+    },
+    {
+      "id": "q3",
+      "answer": "d",
+      "rationale": "When the steps are known in advance, code can run them with no model decisions, which is cheaper, faster and more predictable than letting an agent re-decide them on every request. An agent here (a, b) adds cost and risk for no gain, and a workflow can still call a model for a step, so (c) is false."
+    },
+    {
+      "id": "q4",
+      "answer": 200,
+      "tolerance": 0,
+      "rationale": "The agent makes 4 calls and the workflow 2, so 2 extra calls per question; over 100 questions that is 2 x 100 = 200 more calls. This is the cost of flexibility: an agent's call count varies with the request, while a workflow's is fixed."
+    },
+    {
+      "id": "q5",
+      "answer": "When the steps cannot be predicted in advance, because they depend on what earlier results show.",
+      "accepted": [
+        "The task is open-ended and the number or order of steps is unknown",
+        "When the path varies from request to request",
+        "When the model must decide which tools to use and in what order",
+        "When the steps can't be fixed ahead of time",
+        "A question whose answer needs a variable number of steps"
+      ],
+      "rationale": "An agent pays off when the path cannot be written in advance, such as an open-ended question that may need one manual page or several plus a calendar check. Full credit needs the idea of unpredictable or varying steps; answers like 'when it is more accurate' or 'when it is more important' without that idea are wrong, and a bare 'complex tasks' is at most partial."
+    },
+    {
+      "id": "q6",
+      "answer": "b",
+      "rationale": "Use a fixed workflow where the steps are known, which keeps cost and behavior predictable, and an agent only where the path varies. Booking is fixed, the manual questions are variable. One agent for everything (a) pays for flexibility that booking does not need; a workflow with a branch for every question (c) cannot cover the variety; and reversing the two (d) puts the flexibility where it is not needed."
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "id": "0002",
+  "objective": "O4",
+  "title": "Workflows and agents: who owns the control flow?",
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "A workflow is a system where the program's code decides the steps. Which description makes a system an agent instead of a workflow?",
+      "options": [
+        {"id": "a", "text": "It calls several different tools while handling one request"},
+        {"id": "b", "text": "It calls the model more than once while handling one request"},
+        {"id": "c", "text": "The model chooses the next step and decides when to stop"},
+        {"id": "d", "text": "It answers using text taken from the machine manuals"}
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "A makerspace assistant handles every question the same way. Step 1: code searches the manuals for the question. Step 2: the model writes an answer from the passages found. Step 3: code sends the answer to the student. The steps never change. What is this system?",
+      "options": [
+        {"id": "a", "text": "A workflow, because the code fixes the steps and their order"},
+        {"id": "b", "text": "An agent, because the model writes the final answer text"},
+        {"id": "c", "text": "An agent, because it searches the manuals before answering"},
+        {"id": "d", "text": "Neither, because a language model is used inside the system"}
+      ]
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "Which makerspace task is the best fit for a fixed workflow rather than an agent?",
+      "options": [
+        {"id": "a", "text": "Working out why a student's 3D prints keep failing from a vague description"},
+        {"id": "b", "text": "Answering open questions that may need several manuals and the calendar"},
+        {"id": "c", "text": "Planning a project that needs several machines in an unknown order"},
+        {"id": "d", "text": "Booking a machine slot using the same checks and steps every time"}
+      ]
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "objective": "O4",
+      "stem": "The team requires that the assistant must never write a booking before it has checked the calendar. Should the booking part be a fixed workflow or an agent, and why?"
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "Which situation is the strongest reason to choose an agent over a fixed workflow?",
+      "options": [
+        {"id": "a", "text": "The steps needed are the same for every request that arrives"},
+        {"id": "b", "text": "The next step depends on what each tool returns, so no list can be written in advance"},
+        {"id": "c", "text": "The sponsor gave the team a very small budget for model usage"},
+        {"id": "d", "text": "Students need an answer back in under one second"}
+      ]
+    },
+    {
+      "id": "q6",
+      "type": "short",
+      "objective": "O4",
+      "stem": "Give one reason a fixed workflow usually costs less per request than an agent doing the same job."
+    }
+  ]
+}

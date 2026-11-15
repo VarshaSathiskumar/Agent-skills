@@ -1,0 +1,56 @@
+{
+  "id": "0002",
+  "objective": "O3",
+  "title": "Context and memory in an agent",
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "objective": "O3",
+      "stem": "At step 3 of one request, the model uses a calendar result it received at step 1. What makes that result available to the model at step 3?",
+      "options": [
+        {"id": "a", "text": "The model stores the result internally and recalls it later"},
+        {"id": "b", "text": "The program includes the result in the input of that call"},
+        {"id": "c", "text": "The calendar tool re-sends the result to the model itself"},
+        {"id": "d", "text": "The training of the model already contains the result"}
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "numeric",
+      "objective": "O3",
+      "stem": "A request takes two model calls. The fixed part of the context (system prompt, tool descriptions and question) is 500 tokens. Call 1 outputs a 30-token tool request. The tool returns a 1,000-token result, and call 2 writes the final answer. What is the total number of input tokens across the two calls, if each call is sent the full transcript so far?",
+      "unit": "tokens"
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "objective": "O3",
+      "stem": "Your assistant must answer from a 400-page laser cutter manual, and most questions need only one or two pages. Which design keeps cost per request lowest while still finding the right page?",
+      "options": [
+        {"id": "a", "text": "Paste the whole manual into every request's context"},
+        {"id": "b", "text": "Give the model a one-paragraph summary of the manual"},
+        {"id": "c", "text": "Give the model a search tool that returns the best pages"},
+        {"id": "d", "text": "Give the model only the manual's table of contents"}
+      ]
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "objective": "O3",
+      "stem": "A student passes laser cutter training on Monday and returns on Thursday in a new chat. In one sentence, what must the assistant's program do so that the assistant knows about the training?"
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "objective": "O3",
+      "stem": "A long chat nears the context limit. The program asks the model to summarize it and continues in a fresh context holding only that summary. What is the main risk of this approach?",
+      "options": [
+        {"id": "a", "text": "The summary may leave out a detail needed later"},
+        {"id": "b", "text": "The model permanently loses its ability to use tools"},
+        {"id": "c", "text": "The discarded text is billed again on every later call"},
+        {"id": "d", "text": "The context window is smaller in every later session"}
+      ]
+    }
+  ]
+}

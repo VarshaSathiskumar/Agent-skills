@@ -1,0 +1,120 @@
+{
+  "duration_api_ms": 15922,
+  "stop_reason": "end_turn",
+  "session_id": "7c8db77f-0390-4961-86ff-6e30b9804525",
+  "total_cost_usd": 0.11626790000000001,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 23150,
+    "cache_read_input_tokens": 64559,
+    "output_tokens": 1720,
+    "output_tokens_details": {
+      "thinking_tokens": 102
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 23150,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 502,
+        "cache_read_input_tokens": 32822,
+        "cache_creation_input_tokens": 892,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 892
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 1720,
+      "cacheReadInputTokens": 64559,
+      "cacheCreationInputTokens": 23150,
+      "webSearchRequests": 0,
+      "costUSD": 0.11626790000000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 102,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 23150,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 9,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "No, that's not right, and it's worth fixing now because it affects your design. A language model doesn't remember earlier conversations on its own. Your assistant won't remember what a student told it last week unless you build that in.\n\n**Example.** Priya tells the assistant on Monday, \"I finished the laser cutter safety training.\" On Friday she opens a new chat and asks, \"Can I book the laser cutter?\" The model receives only the text sent in that one call. It has never seen Monday's message, so it can't know about her training.\n\n**The general idea.** The model keeps nothing between calls. It only \"knows\" what is in its input right now, plus what it learned in training. Chatbots seem to remember because the app sends the earlier messages back in with each new one. That only lasts as long as the conversation, and it stops when the session ends.\n\n**What this means for your assistant.** Your code has to do the remembering:\n1. Save what matters, such as each student's training status, in a database or file.\n2. At the start of a session, look up that student's record.\n3. Put the relevant parts into the model's input.\n\nThis is the same idea as the agent loop you already know: the model only sees what you hand it. It also connects to your budget. Everything you put in the input costs tokens, so you'll want to load a short summary of the student's record, not their whole history.\n\nThis is the context and memory topic we planned to do next. I can write a lesson on it if you'd like. You can ask for a length in minutes.\n\nQuick check: in your own words, where would Priya's training status live between Monday and Friday, and what would your code do when she opens the chat on Friday?",
+  "ttft_ms": 1726,
+  "type": "result",
+  "duration_ms": 16187,
+  "uuid": "aa508888-a060-46dc-953d-3a41d9c0e210",
+  "ttft_stream_ms": 1289,
+  "time_to_request_ms": 216,
+  "first_content_frame_ms": 1289,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 1720,
+      "cacheReadInputTokens": 64559,
+      "cacheCreationInputTokens": 23150,
+      "webSearchRequests": 0,
+      "costUSD": 0.11626790000000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 102,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 23150,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-11-28T00:53:14.173Z"
+}

@@ -1,0 +1,56 @@
+{
+  "id": "0002",
+  "objective": "O3",
+  "title": "Context and memory in an agent",
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "objective": "O3",
+      "stem": "A student chats with your makerspace assistant on Monday and returns for a new chat on Friday. The assistant does not recall Monday. Which is the correct explanation?",
+      "options": [
+        {"id": "a", "text": "The model has a small window that already overflowed by Friday"},
+        {"id": "b", "text": "Monday's chat was not placed into Friday's context by the program"},
+        {"id": "c", "text": "The model forgets old chats after a fixed number of days"},
+        {"id": "d", "text": "The student must switch on the model's memory feature first"}
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "numeric",
+      "objective": "O3",
+      "stem": "An assistant run has a system prompt and tool definitions of 1,000 tokens, and the student's question is 200 tokens. The model is called three times: it makes two tool requests of 100 tokens each, whose results are 400 tokens each, then writes its final answer. Each call is given the full context so far. What is the total number of input tokens sent across the three calls?",
+      "unit": "tokens"
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "objective": "O3",
+      "stem": "Your sponsor suggests pasting all 40 machine manuals into every request, since the model's window is large enough. What is the best objection?",
+      "options": [
+        {"id": "a", "text": "The model can only read the first manual and ignores the rest"},
+        {"id": "b", "text": "Every step re-sends them, costing more, and recall gets worse"},
+        {"id": "c", "text": "Manuals pasted into a request are saved and shown to other users"},
+        {"id": "d", "text": "A large window works only if the manuals are first split up"}
+      ]
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "objective": "O3",
+      "stem": "Students often search for exact strings like \"error E-4012\" or \"part LC-4417\". Which retrieval approach is best suited to find these?",
+      "options": [
+        {"id": "a", "text": "Embedding search, since it matches the meaning of the question"},
+        {"id": "b", "text": "Keyword search such as BM25, since it matches exact strings"},
+        {"id": "c", "text": "Compaction, since it shortens the manuals before searching them"},
+        {"id": "d", "text": "A sub-agent, since it has a clean context for each search"}
+      ]
+    },
+    {
+      "id": "q5",
+      "type": "short",
+      "objective": "O3",
+      "stem": "A long agent run is nearing the context window limit. In one sentence, what does compaction do?"
+    }
+  ]
+}

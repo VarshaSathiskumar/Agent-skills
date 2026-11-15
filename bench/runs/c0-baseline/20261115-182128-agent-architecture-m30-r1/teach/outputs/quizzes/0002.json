@@ -1,0 +1,56 @@
+{
+  "id": "0002",
+  "objective": "O3",
+  "title": "Context and memory in an agent",
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "objective": "O3",
+      "stem": "In one run of your makerspace assistant, the program deletes an old calendar result from the message list before the next model call. The model had seen that result on an earlier call. What happens on the next call?",
+      "options": [
+        {"id": "a", "text": "The model still uses the result, because it kept it from the earlier call"},
+        {"id": "b", "text": "The model reports an error, because the history it expected is incomplete"},
+        {"id": "c", "text": "The model rebuilds the result, since it can infer what the calendar said"},
+        {"id": "d", "text": "The model cannot use the result, because it sees only what is sent"}
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "numeric",
+      "objective": "O3",
+      "stem": "An assistant's instructions and tool descriptions take 1,000 tokens, and the student's question takes 100 tokens. The model requests a tool twice, and then answers, so it is called three times. Each tool request adds 50 tokens to the history and each tool result adds 450 tokens. The full history is sent on every call. How many input tokens are sent in total across the three calls?",
+      "unit": "tokens"
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "objective": "O3",
+      "stem": "Priya finishes laser cutter training today, and the assistant must know that when she returns next month in a new chat. Which design does that?",
+      "options": [
+        {"id": "a", "text": "Keep the training chat open in the window so that it stays for next month"},
+        {"id": "b", "text": "Save a short record that the program reads into the window at the next session"},
+        {"id": "c", "text": "Pick a model with a larger window so that the fact fits in memory"},
+        {"id": "d", "text": "Add Priya's training date to the manual library so that it is searched"}
+      ]
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "objective": "O3",
+      "stem": "A manual says the vinyl cutter's maximum width is 24 inches, but the assistant tells a student it is 36 inches, and the search tool had returned a chunk about a different machine. In one sentence, why did the assistant give a wrong answer even though the manual is correct?"
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "objective": "O3",
+      "stem": "A long chat with the assistant is close to the window limit. The program applies compaction. What does compaction do?",
+      "options": [
+        {"id": "a", "text": "It stores the whole chat in a notes file that the model always sees"},
+        {"id": "b", "text": "It squeezes every token so that the same chat takes less space"},
+        {"id": "c", "text": "It summarizes the chat and starts a fresh window from that summary"},
+        {"id": "d", "text": "It deletes the oldest half of the chat and keeps the newest half"}
+      ]
+    }
+  ]
+}

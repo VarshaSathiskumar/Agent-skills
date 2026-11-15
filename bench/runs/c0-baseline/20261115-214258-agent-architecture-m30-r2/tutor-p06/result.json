@@ -1,0 +1,120 @@
+{
+  "duration_api_ms": 18012,
+  "stop_reason": "end_turn",
+  "session_id": "26e0ca46-ce1b-47f9-bc04-1cb9af66de49",
+  "total_cost_usd": 0.1198623,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 23118,
+    "cache_read_input_tokens": 64483,
+    "output_tokens": 2093,
+    "output_tokens_details": {
+      "thinking_tokens": 562
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 23118,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 724,
+        "cache_read_input_tokens": 32784,
+        "cache_creation_input_tokens": 898,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 898
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 2093,
+      "cacheReadInputTokens": 64483,
+      "cacheCreationInputTokens": 23118,
+      "webSearchRequests": 0,
+      "costUSD": 0.1198623,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 562,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 23118,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 8,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "Picture a clerk locked in a windowless office. They're smart and they read fast, but they can't leave the room or touch anything outside it. The only link to the world is a slot in the door, where notes go in and out.\n\nTaped inside the door is a **menu of services** that an errand runner outside offers. Each entry has a name, a plain-English description and the details the runner needs. For example:\n\n- \"Check the booking calendar: tell me which machine and which day.\"\n- \"Book a slot: tell me the machine, the day, the time and the student.\"\n\nA student slides in a note: \"Can I use the laser cutter Thursday afternoon?\"\n\nThe clerk can't check the calendar themselves. So they write a request note: \"Check the booking calendar. Machine: laser cutter. Day: Thursday.\" They slide it out and then wait.\n\nThe runner reads the note, goes to the real calendar, does the lookup and slides back a result note: \"Thursday 2–4 pm is free.\" The clerk reads it and either answers the student or writes another request, such as \"Book a slot…\". This continues until they have what they need.\n\n**Tool calling is the clerk writing that request note.** The model never does the action. It writes a structured request that names a service and fills in the details. Your program is the runner. It does the real work and returns the result as text the model can read. That back-and-forth is the agent loop you already know.\n\nThe analogy gives you two practical points:\n\n- **The clerk only knows what's on the menu.** The descriptions are the model's only way to choose the right service. A vague entry like \"calendar stuff\" leads to wrong requests. This is why writing a clear tool description is on your mission list.\n- **The runner can fail.** The clerk might ask for a day that doesn't exist, or the calendar might be down. The runner reports that back, and the clerk has to react.\n\nWhere the analogy breaks down: a human clerk knows what they're doing. A model only writes the most likely note, so it can pick the wrong service or invent a detail. Your program should check each request before acting on it.\n\nQuick check, in your own words: in the makerspace assistant, which part is the clerk, which is the runner, and who actually changes the booking calendar?\n\nIf the analogy still feels fuzzy, I can write a short lesson that walks one full booking request through the loop.",
+  "ttft_ms": 1422,
+  "type": "result",
+  "duration_ms": 18194,
+  "uuid": "45ce5c9e-fb16-4956-8c85-d68348ebd1d8",
+  "ttft_stream_ms": 951,
+  "time_to_request_ms": 142,
+  "first_content_frame_ms": 951,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 2093,
+      "cacheReadInputTokens": 64483,
+      "cacheCreationInputTokens": 23118,
+      "webSearchRequests": 0,
+      "costUSD": 0.1198623,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 562,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 23118,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-11-28T00:53:14.173Z"
+}

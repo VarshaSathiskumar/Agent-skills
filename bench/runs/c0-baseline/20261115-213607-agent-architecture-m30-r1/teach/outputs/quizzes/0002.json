@@ -1,0 +1,50 @@
+{
+  "id": "0002",
+  "objective": "O3",
+  "title": "Context and memory in an agent",
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "objective": "O3",
+      "stem": "A student chats with your makerspace assistant on Monday. The program stores nothing when the session ends. On Tuesday the same student starts a new session. What does the context of the first model call on Tuesday hold?",
+      "options": [
+        {"id": "a", "text": "A summary of Monday that the model wrote and kept itself"},
+        {"id": "b", "text": "The system prompt, the tools and the new question only"},
+        {"id": "c", "text": "Monday's messages, which the model keeps for about a day"},
+        {"id": "d", "text": "The student's last ten messages, held by the model itself"}
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "numeric",
+      "objective": "O3",
+      "stem": "In one request, the system prompt and tool definitions take 2,000 tokens and the student's question takes 100 tokens. The model is called three times: it requests a tool, then requests a second tool, then writes the final answer. Each tool request is 50 tokens and each tool result is 500 tokens, and every call re-sends the full earlier context. Counting only the input of the three calls (not the final answer), how many tokens does the model read in total?",
+      "unit": "tokens"
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "objective": "O3",
+      "stem": "Your check_calendar tool returns a machine's whole year of bookings, about 20,000 tokens, when the model needs only tomorrow's free slots. In an agent that makes several model calls per request, why is this a bigger problem than in a single model call?",
+      "options": [
+        {"id": "a", "text": "The model deletes older results by itself, so facts get lost"},
+        {"id": "b", "text": "A tool result can be read by the model only one time"},
+        {"id": "c", "text": "Every later call re-sends the result, so you pay for it again"},
+        {"id": "d", "text": "Long results make the program stop, since tools have size limits"}
+      ]
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "objective": "O3",
+      "stem": "Your team could save \"student passed the laser cutter course\" as a note after a session, or the assistant could ask a training-record tool each time. In one or two sentences, why is asking the tool the safer design for this fact?"
+    },
+    {
+      "id": "q5",
+      "type": "short",
+      "objective": "O3",
+      "stem": "A student asks about replacing the laser cutter's lens, and the assistant retrieves a page from a 120-page manual. In one or two sentences, what does the program do to retrieve it, and where does the page end up so that the model can use it?"
+    }
+  ]
+}

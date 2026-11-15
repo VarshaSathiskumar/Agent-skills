@@ -1,0 +1,46 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "c",
+      "rationale": "What separates an agent from a workflow is who owns the control flow: in an agent the model chooses the next step and when to stop; in a workflow the code decides. Using many tools (a), calling the model several times (b) or using manual text (d) can all happen in a workflow, so none of them makes a system an agent."
+    },
+    {
+      "id": "q2",
+      "answer": "a",
+      "rationale": "The code fixes the three steps and their order, and the model only writes text inside one step, so this is a workflow. Writing the answer (b), searching (c) or using a model (d) does not give the model control over the flow. Choosing an agent here confuses 'a model is involved' with 'the model owns the control flow'."
+    },
+    {
+      "id": "q3",
+      "answer": "d",
+      "rationale": "A task with the same known steps every time is where a fixed workflow is best: it is predictable, cheaper and easy to test. The other tasks are open-ended, with steps that depend on what is found along the way, which is where an agent helps."
+    },
+    {
+      "id": "q4",
+      "answer": "A fixed workflow, because the code fixes the order, so the calendar check always runs before the booking and the model cannot skip it.",
+      "accepted": [
+        "Workflow: the code enforces the order, so the check always happens first.",
+        "A fixed workflow, because an agent's model chooses its own steps and might skip the check, while code guarantees the order.",
+        "Workflow, since the sequence is hard-coded and the model cannot skip or reorder the calendar check."
+      ],
+      "rationale": "Full credit needs the choice (fixed workflow) and the reason: code owns the order, so the rule holds every time. Choosing workflow with no reason, or a reason that only says it is cheaper, is partial. Choosing an agent, or saying the model can be trusted to follow the rule if told, is wrong, because an instruction in a prompt is not a guarantee."
+    },
+    {
+      "id": "q5",
+      "answer": "b",
+      "rationale": "An agent pays off when the path cannot be written ahead of time because each step depends on what the previous tool returned. Identical steps (a) favor a workflow; a small budget (c) and a need for speed (d) also push toward the cheaper, faster, more predictable workflow."
+    },
+    {
+      "id": "q6",
+      "answer": "A workflow makes a known, fixed number of model calls, while an agent loops an unknown number of times, and each call re-reads the growing context.",
+      "accepted": [
+        "A workflow has a predictable, bounded number of model calls; an agent may loop many times.",
+        "An agent makes extra model calls to decide each step, while a workflow's steps are set in code and cost nothing to decide.",
+        "A workflow uses fewer model calls because code, not the model, decides the steps.",
+        "The agent's loop can run many steps and each step costs tokens, so cost is higher and less predictable."
+      ],
+      "rationale": "Any one of these is enough: fewer or bounded model calls because code decides the steps, or an agent's open-ended loop spending more tokens as its context grows. Saying only that agents are 'slower' or 'more complicated' is partial, since it does not reach cost."
+    }
+  ]
+}

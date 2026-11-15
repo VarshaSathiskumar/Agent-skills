@@ -1,0 +1,120 @@
+{
+  "duration_api_ms": 17837,
+  "stop_reason": "end_turn",
+  "session_id": "6ba8e840-8d57-4df6-b573-34e686165489",
+  "total_cost_usd": 0.11753179999999999,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 23000,
+    "cache_read_input_tokens": 64498,
+    "output_tokens": 1907,
+    "output_tokens_details": {
+      "thinking_tokens": 421
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 23000,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 662,
+        "cache_read_input_tokens": 32794,
+        "cache_creation_input_tokens": 770,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 770
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 1907,
+      "cacheReadInputTokens": 64498,
+      "cacheCreationInputTokens": 23000,
+      "webSearchRequests": 0,
+      "costUSD": 0.11753179999999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 421,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 23000,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 8,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "Picture a new helper working at the makerspace front desk, but with a strange rule: they sit in a closed room and can only **pass written notes through a slot in the door**. They can't open the door, touch the booking calendar, or walk to the laser cutter.\n\nOutside the door is a runner. Taped to the door is a **menu of request forms**, for example:\n\n- \"Look up in a manual: [machine], [question]\"\n- \"Check the calendar: [machine], [date]\"\n- \"Book a slot: [machine], [date], [time]\"\n\nEach form has a short description of what it does. A student asks, \"Can I use the laser cutter Friday afternoon?\" Here is what happens:\n\n1. The helper reads the question and the menu. They can't answer yet, so they fill out the calendar form and slide it through the slot.\n2. The runner, who is the program you write, takes the form to the calendar and does the real lookup.\n3. The runner slides back a note: \"Friday 2–4 pm is free.\"\n4. The helper reads it and replies to the student, or fills out another form if they need more.\n\n**Tool calling is the helper filling out a form.** The model never touches the calendar. It writes out which tool it wants and what goes in the blanks, and your program does the work and reports back.\n\nThree things follow from this:\n\n- **The descriptions on the menu are the helper's only knowledge of the tools.** A vague form like \"Do stuff with calendar\" gets used wrongly. This is why writing tool descriptions is in your mission.\n- **The helper can fill out a form badly.** They might leave out the date or pick the wrong form. Your program still has to check the form before acting.\n- **Every trip through the slot costs money.** That ties to your budget.\n\nThe analogy breaks in one place. A real helper remembers the room. The model only knows what's on the notes it is handed each time.\n\nQuick check, in your own words: who actually books the laser cutter, the helper or the runner? And what does the helper do after the runner's note comes back?\n\nIf this helps, I can build a short lesson on writing one of your tools' descriptions next.",
+  "ttft_ms": 1475,
+  "type": "result",
+  "duration_ms": 18039,
+  "uuid": "7ef69a8a-f438-43fd-9a9b-ece4cbf45dd0",
+  "ttft_stream_ms": 1033,
+  "time_to_request_ms": 166,
+  "first_content_frame_ms": 1034,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 1907,
+      "cacheReadInputTokens": 64498,
+      "cacheCreationInputTokens": 23000,
+      "webSearchRequests": 0,
+      "costUSD": 0.11753179999999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 421,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 23000,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-11-28T00:53:14.173Z"
+}

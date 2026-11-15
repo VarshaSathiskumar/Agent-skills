@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cheat sheet: context and memory in an agent</title>
+  <style>
+    body { max-width: 44rem; margin: 0 auto; padding: 1.5rem 1rem; font-family: Charter, Georgia, serif; line-height: 1.5; color: #1f1d1a; background: #fffdf8; }
+    h1 { font-size: 1.5rem; } h2 { font-size: 1.1rem; margin-top: 1.5rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+    th, td { text-align: left; vertical-align: top; padding: 0.4rem 0.5rem; border-bottom: 1px solid #e4dfd4; }
+    th { font-family: system-ui, sans-serif; font-size: 0.75rem; text-transform: uppercase; color: #6b665e; }
+    @media (prefers-color-scheme: dark) { body { background: #171614; color: #e9e5dc; } th { color: #a49e93; } td, th { border-color: #36332e; } }
+  </style>
+</head>
+<body>
+  <h1>Context and memory in an agent</h1>
+  <p>From <a href="../lessons/0001-context-and-memory-in-an-agent.html">Lesson 1</a>.</p>
+  <h2>Where information lives</h2>
+  <table>
+    <thead><tr><th>Place</th><th>Use it for</th><th>Makerspace example</th></tr></thead>
+    <tbody>
+      <tr><td>Context, every step (system prompt, tool definitions)</td><td>Rules and tools needed on every call</td><td>"Never book without training"</td></tr>
+      <tr><td>Retrieved on demand</td><td>Large material needed only sometimes</td><td>Two chunks of the laser cutter manual</td></tr>
+      <tr><td>Live tool lookup</td><td>Facts that change</td><td>Calendar availability, training record</td></tr>
+      <tr><td>Saved notes (between sessions)</td><td>Facts that cannot be looked up</td><td>"Prefers afternoons"</td></tr>
+    </tbody>
+  </table>
+  <h2>Rules to remember</h2>
+  <ul>
+    <li>The model sees only its context; whatever is not in it, it cannot use.</li>
+    <li>The program re-sends the whole message list on every call, so cost grows with each step.</li>
+    <li>More context is not better (context rot): keep tool results small.</li>
+    <li>Too big: clear old tool results, compact (summarize), or use a sub-agent.</li>
+    <li>Nothing is kept between sessions unless the program saves it and loads it again.</li>
+    <li>Save what cannot be looked up; look up what can change.</li>
+    <li>Retrieval is a program-side search, started by a tool call, that puts relevant chunks into the context.</li>
+  </ul>
+</body>
+</html>

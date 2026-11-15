@@ -1,0 +1,32 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "b",
+      "rationale": "The model keeps nothing between calls; the program re-sends the transcript, including earlier tool results, as the context of each call. Option a shows the belief that the model remembers within a request."
+    },
+    {
+      "id": "q2",
+      "answer": 2030,
+      "tolerance": 0,
+      "rationale": "Call 1 input is 500. Call 2 input is 500 + 30 + 1,000 = 1,530. Total 500 + 1,530 = 2,030. An answer of 1,530 forgets that call 1 was also billed for its input."
+    },
+    {
+      "id": "q3",
+      "answer": "c",
+      "rationale": "Search returns only the few relevant pages, so the context stays small and the right page is still found. A summary or table of contents cannot hold the needed detail, and pasting everything is costly and suffers context rot."
+    },
+    {
+      "id": "q4",
+      "answer": "Save the training status in storage outside the model (a note or database) and load it into the context when the student returns.",
+      "accepted": ["save a note and load it into the context in the next session", "store it in a database and load it when the student returns", "save it to storage and read it back at the start of the next chat", "write the training status to a note and load it next time", "save it outside the context and load it back into the context"],
+      "rationale": "A new chat starts with an empty context and the model has no memory of Monday. The program must save the fact outside the context and load it into the next session. An answer that says the model remembers it shows the belief that the model keeps memory between sessions."
+    },
+    {
+      "id": "q5",
+      "answer": "a",
+      "rationale": "Compaction trades detail for space, so the summary may drop something that matters later. The model keeps its tool ability, discarded text is no longer sent, and the window size is fixed by the model."
+    }
+  ]
+}

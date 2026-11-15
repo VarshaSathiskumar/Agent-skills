@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cheat sheet: context and memory in an agent</title>
+  <style>
+    body { max-width: 40rem; margin: 0 auto; padding: 2rem 1.25rem; font-family: Charter, Georgia, serif; line-height: 1.5; background: #fffdf8; color: #1f1d1a; }
+    h1 { font-size: 1.6rem; } h2 { font-size: 1.1rem; margin-top: 1.5rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+    th, td { text-align: left; padding: 0.4rem 0.5rem; border-bottom: 1px solid #e4dfd4; vertical-align: top; }
+    code { background: #f3efe6; padding: 0.1em 0.3em; border-radius: 4px; }
+    @media (prefers-color-scheme: dark) { body { background: #171614; color: #e9e5dc; } th, td { border-color: #36332e; } code { background: #23211e; } }
+  </style>
+</head>
+<body>
+  <h1>Context and memory in an agent</h1>
+  <p>From <a href="../lessons/0001-context-and-memory-in-an-agent.html">lesson 1</a>.</p>
+  <h2>Where information lives</h2>
+  <table>
+    <thead><tr><th>Place</th><th>Lasts</th><th>Use for</th></tr></thead>
+    <tbody>
+      <tr><td>Context window</td><td>One call</td><td>System prompt, tool descriptions, transcript, tool results</td></tr>
+      <tr><td>Notes store</td><td>Across sessions</td><td>Per-student facts, such as training status; load at session start</td></tr>
+      <tr><td>Searchable index</td><td>Permanent</td><td>Manuals; retrieve a few chunks on demand</td></tr>
+    </tbody>
+  </table>
+  <h2>Rules of thumb</h2>
+  <ul>
+    <li>The model remembers nothing; the program re-sends the transcript on every call.</li>
+    <li>Input tokens of call n = fixed part + all earlier requests and results. Total cost = sum over all calls.</li>
+    <li>A big tool result is paid for again on every later call: keep results small.</li>
+    <li>A fuller window costs more and recalls worse (context rot).</li>
+    <li>When it grows: clear old tool results, compact (summarize), or save notes.</li>
+    <li>Retrieval puts a few chunks in the window; it does not teach the model the manual. Debug it by checking what was in the context.</li>
+  </ul>
+  <p>Source: <a href="https://anthropic.com/engineering/effective-context-engineering-for-ai-agents">Anthropic, Effective context engineering for AI agents</a>.</p>
+</body>
+</html>

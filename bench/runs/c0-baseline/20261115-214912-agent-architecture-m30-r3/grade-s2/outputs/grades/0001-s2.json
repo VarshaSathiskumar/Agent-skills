@@ -1,0 +1,43 @@
+{
+  "quiz": "0001",
+  "submission": "s2",
+  "items": [
+    {
+      "id": "q1",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. What makes a system an agent is the loop: the model picks an action, the program runs it, and the result comes back. A longer prompt or a bigger model only changes what one call can do."
+    },
+    {
+      "id": "q2",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. The model only writes a structured request that names the tool and gives its arguments. The program around it does the actual call. Keep this in mind for q4."
+    },
+    {
+      "id": "q3",
+      "verdict": "wrong",
+      "misconception": "M6",
+      "feedback": "You picked 'No change; left to run longer, it will eventually fix the bug'. That's tempting, because more steps sound like more chances. But the agent is repeating the same edit and getting the same failure, so more steps add nothing. An agent needs a stopping condition, such as a step limit, that ends the loop and reports back to a person. A bigger context window wouldn't help either, since all 40 steps already fit. For your assistant, this is what stops a confused booking request from burning your model budget."
+    },
+    {
+      "id": "q4",
+      "verdict": "partial",
+      "misconception": "M4",
+      "feedback": "4 is the right count: three tool requests plus the final answer. But your reason says the model 'runs' each tool. It doesn't. In each call the model only writes a request, and the program runs the tool and feeds the result back in. So the 4 calls are 3 requests plus 1 final answer, with the tool runs happening outside the model. Your q2 answer shows you know this, so use the same wording here."
+    },
+    {
+      "id": "q5",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right, and you gave both parts: the result goes back in as the model's next input, and the model uses it to decide its next step. The group-chat comparison works. The reply only helps because the model sees it before it writes its next turn."
+    },
+    {
+      "id": "q6",
+      "verdict": "partial",
+      "misconception": null,
+      "feedback": "The name is part of it, but it isn't enough. The model reads the whole tool description: the name, what the tool does, and the parameters it takes. A name alone can mislead. For example, 'check_calendar' doesn't say whether it needs a machine, a date or both. For your own tools, write a clear one-line purpose and describe each parameter."
+    }
+  ],
+  "summary": "You have the loop down: q1, q2 and q5 are right, and you explained what happens to a tool result well. Two things to work on. First, keep 'the model requests, the program runs' consistent. You had it in q2 but slipped back to 'the model runs the tool' in q4. Second, an agent loop needs a stopping condition (q3), because a stuck agent just keeps spending. Next step: revisit the tool-description and stopping-condition parts of the agent-loop lesson. Then try writing a full description, with a purpose and parameters, for your check_calendar tool. Context and memory is the next topic after that."
+}

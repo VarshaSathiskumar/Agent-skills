@@ -1,0 +1,43 @@
+{
+  "quiz": "0001",
+  "submission": "s1",
+  "items": [
+    {
+      "id": "q1",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. What makes a system an agent is the loop: the model picks an action, the program runs it, and the result comes back. A longer prompt or a bigger model changes what one call can do, but it doesn't change that structure."
+    },
+    {
+      "id": "q2",
+      "verdict": "wrong",
+      "misconception": "M4",
+      "feedback": "You picked 'the calendar entries, read by opening the booking system on its own'. That treats the model as if it can reach into your systems. It can't: it only writes text. Here it writes a request naming check_calendar with the laser cutter and tomorrow's date as arguments (option c). Your Python program then runs the function and sends the entries back."
+    },
+    {
+      "id": "q3",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. The agent is repeating itself with the same failing result, so more steps won't help. A step limit that stops the loop and reports back is the safeguard. A larger context window wouldn't help either, since all 40 steps already fit."
+    },
+    {
+      "id": "q4",
+      "verdict": "wrong",
+      "misconception": "M4",
+      "feedback": "The answer is 4, not 1. You wrote that the model 'runs the 3 tools itself' inside one call, which is the same belief as in q2. Each model call ends with exactly one tool request or the final answer. The program runs each tool, then calls the model again. So there are three calls that end in a tool request, plus a fourth that writes the answer: 3 + 1 = 4. Another way to count: the model is called once for the question and once for each of the 3 tool results."
+    },
+    {
+      "id": "q5",
+      "verdict": "partial",
+      "misconception": null,
+      "feedback": "'It sends it back to the model' is the right half: the result goes into the model's next input and the model is called again. The question also asked why. The reason is that the model can't see the result any other way, and it needs it to choose its next step or write the final answer. Next time, give both: what happens, and what the model then does with it."
+    },
+    {
+      "id": "q6",
+      "verdict": "partial",
+      "misconception": "M3",
+      "feedback": "The first half is right: the model is sent a list of tools, each with a name and a short description, and it picks the one that fits the request. That is how it chooses without ever seeing the code. The second half is wrong. The model doesn't remember on its own which tool it picked in earlier sessions. It keeps nothing between calls unless the program puts that information back into its input. That matters for your assistant, because remembering a student's training status will have to be built on purpose."
+    }
+  ],
+  "summary": "You have the shape of the loop (q1, q3) and you know the model chooses tools from their descriptions (q6). Two things to fix. First, the model only writes a request; your program runs the tool and then calls the model again, so one request with 3 tools is 4 model calls, not 1. That mix-up cost you q2 and q4. Second, the model has no memory of its own between sessions, so anything it should 'remember' has to be saved and fed back in by the program. That second point leads straight into context and memory, the next topic. Next step: redraw your laser-cutter trace with two columns, 'model writes' and 'program does', and count the model calls. Then in q5-style answers, say why as well as what."
+}

@@ -1,0 +1,120 @@
+{
+  "duration_api_ms": 13400,
+  "stop_reason": "end_turn",
+  "session_id": "854d8f16-d20b-4a0a-8c4f-94e0114750d8",
+  "total_cost_usd": 0.1143558,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 22811,
+    "cache_read_input_tokens": 64498,
+    "output_tokens": 1665,
+    "output_tokens_details": {
+      "thinking_tokens": 229
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 22811,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 609,
+        "cache_read_input_tokens": 32794,
+        "cache_creation_input_tokens": 581,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 581
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 1665,
+      "cacheReadInputTokens": 64498,
+      "cacheCreationInputTokens": 22811,
+      "webSearchRequests": 0,
+      "costUSD": 0.1143558,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 229,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 22811,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 8,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "Here's tool calling as a restaurant order. It uses no code.\n\n**The picture.** You're at a restaurant table with a menu, and you want a drink. You can't walk into the kitchen. You write \"1 lemonade\" on an order slip and hand it to the waiter. The waiter carries the slip to the bar, the bar makes the lemonade, and the waiter brings it back. You look at it and decide what's next: another order, or \"that's all, thanks.\"\n\n**The mapping.**\n- **You are the language model.** All you can do is read and write text. You can't pour a drink yourself.\n- **The menu is the list of tools.** Each item has a name and a short description, such as \"check the booking calendar: give me a date and a machine.\" You can only order what's on the menu.\n- **The order slip is the tool call.** It's just text naming an item and the details. Writing it doesn't make anything happen.\n- **The waiter and kitchen are your program.** They read the slip, do the work, and return the result.\n- **The delivered drink is the tool result.** It goes back to you as more text, and you decide the next step.\n\nIn the makerspace assistant, a student asks, \"Is the laser cutter free Thursday?\" The model writes a slip: *check_calendar, laser cutter, Thursday*. Your program looks up the calendar and returns \"free 2–4pm.\" The model then writes the answer to the student.\n\n**The key point:** the model never touches the calendar. It only requests. Your program decides whether to do it. That's also why the menu descriptions matter, because they're the only thing you know about each dish.\n\n**Where the analogy breaks:** a real waiter can improvise. Your program only carries out slips that match a menu item exactly.\n\nQuick check: in the Thursday example, who actually looks at the calendar, the model or your program?\n\nIf it would help, I can turn this into a short lesson on writing a good menu entry for one of your tools.",
+  "ttft_ms": 1585,
+  "type": "result",
+  "duration_ms": 13653,
+  "uuid": "694d61d0-86ee-4b2d-86ab-0f643f321796",
+  "ttft_stream_ms": 1120,
+  "time_to_request_ms": 207,
+  "first_content_frame_ms": 1120,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 1665,
+      "cacheReadInputTokens": 64498,
+      "cacheCreationInputTokens": 22811,
+      "webSearchRequests": 0,
+      "costUSD": 0.1143558,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 229,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 22811,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-11-28T00:53:14.173Z"
+}

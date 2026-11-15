@@ -1,0 +1,43 @@
+{
+  "quiz": "0001",
+  "submission": "s2",
+  "items": [
+    {
+      "id": "q1",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. What makes a system an agent is the loop: the model picks an action, the program runs it, and the result comes back. A longer prompt or a bigger model changes what one call can do, but it doesn't change the structure."
+    },
+    {
+      "id": "q2",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. The model only outputs a request that names check_calendar and gives its arguments. The program around it does the actual calendar lookup."
+    },
+    {
+      "id": "q3",
+      "verdict": "wrong",
+      "misconception": "M6",
+      "feedback": "You picked 'no change; left to run longer, it will eventually fix the bug'. That is tempting, but the agent is getting the same failing result every step, so more steps add nothing new for it to learn from. An agent needs a stopping condition, such as a step limit that ends the loop and reports what happened. Then a person can step in instead of the budget draining on a loop that goes nowhere. This matters for your sponsor's small model budget."
+    },
+    {
+      "id": "q4",
+      "verdict": "partial",
+      "misconception": "M4",
+      "feedback": "Your count of 4 is right: three tool requests plus the final answer. Your reason is off, though. You wrote that the model 'runs' each tool itself. It doesn't. Each call, the model only outputs a request, and the program runs the tool and sends the result back. That is why there are four separate model calls: one for each input the model receives (the question and three tool results). Next time, check who does the running."
+    },
+    {
+      "id": "q5",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right on both parts. The result goes back in as the next input, and the model then uses it to decide its next step. The group-chat comparison works: the model can't see the result until it's added to the conversation and the model is called again."
+    },
+    {
+      "id": "q6",
+      "verdict": "partial",
+      "misconception": null,
+      "feedback": "You're right that the model doesn't see the code and that the name is part of what it goes on. But the name alone is not enough. The model relies on the whole tool description the program gives it: the name, what the tool does, and the parameters it takes. A vague name like check_data would fail with only the name to go on. For your makerspace tools, writing a clear description is what makes the model pick the right tool."
+    }
+  ],
+  "summary": "You have the loop down: q1, q2 and q5 were correct, and your count of 4 model calls in q4 was right. Two things to work on. First, who runs the tool: in q4 you said the model runs it, but the program does and the model only requests it. Second, how the model chooses a tool: it reads the full description, not just the name. Also q3: an agent needs a stopping condition such as a step limit, because more steps don't help when the same failure repeats. Next step: for one of your makerspace tools, such as check_calendar, write the name, description and parameters, then trace who does what in one request. After that we move on to context and memory."
+}
