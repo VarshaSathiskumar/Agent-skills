@@ -46,13 +46,85 @@ TODO: your reading of the baseline.
 Name the rounds that built this step, such as `c1-skills` Rounds 1 to 4, and the inventory entries of the skills they added; the trail from thoughts to change to outcome is already in `reviews/` and `reviews/components.md`, so do not retell it here.
 Then what you put in `PREFERENCES.md`, and anything about how the four skills work together that no single inventory entry says.
 
-TODO: the rounds and entries, your preferences, and how the skills fit together.
+In c1-skills Rounds 1–5, I iteratively developed and refined the teach, quiz, grade, and tutor skills, as documented in their component inventory entries. I configured PREFERENCES.md to favor concrete examples before definitions, concise step-by-step explanations, practical code examples, and direct feedback that challenges incorrect reasoning. The skills work together by routing each learner request to the appropriate capability: teach explains concepts, quiz creates assessments, grade evaluates submissions, and tutor handles questions and follow-ups while protecting ungraded quiz answers. Each round addressed issues identified in the previous review.
 
 ### Your review, the objective checks and the cost
 
 Paste `uv run p3 report --configs c0-baseline,c1-skills`: the objective checks, the cost per job, and your ratings.
 
-TODO: paste the report tables.
+## Results on agent-architecture
+
+Scored full runs (quick runs and --only runs left out); each cell is the mean over the runs, with the range in brackets.
+
+### Quality
+
+| config | runs | teach facts | teach misconc. | length ratio | dead links | key agreement | wrong keys | ambiguous items | verdict agreement | false wrong | misconc. hit | leaks | behavior met |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| `c0-baseline` | 3 | 1.00 | 0 | 0.74 (0.69-0.80) | 0 | 1.00 | 0 | 0 | 1.00 | 0.00 | 1.00 | 0 | 0.56 (0.50-0.67) |
+| `c1-skills` | 1 | 0.83 | 0 | 0.66 | 0 | 1.00 | 0 | 0 | 1.00 | 0.00 | 1.00 | 0 | 0.83 |
+
+Teach facts, key agreement, verdict agreement, false wrong, misconception hit and behavior met are shares (0 to 1); misconceptions, dead links, wrong keys, ambiguous items and leaks are counts per run.
+A dash means no run could be scored on that check, and n= says how many of the runs could.
+A job that failed counts against the config: no lesson scores 0 teach facts, no quiz and key 0 key agreement, a missing grades file disagrees on every item, and a tutor scenario with no reply is not met; leaks need a reply to check, so such a scenario is left out of them.
+The length ratio is a rough reading-time estimate (visible words / 150) over the minutes requested; 0.6 to 1.5 counts as on length.
+
+### Cost: teach
+
+| config | runs | tokens | output tokens | minutes | subagents | list-price $ |
+|---|---:|---:|---:|---:|---:|---:|
+| `c0-baseline` | 3 | 598.4k (569.9k-646.1k) | 31.2k (30.6k-31.9k) | 3.1 (3.0-3.4) | 0 | 0.62 (0.59-0.66) |
+| `c1-skills` | 1 | 455.2k | 23.5k | 2.5 | 0 | 0.50 |
+
+### Cost: quiz
+
+| config | runs | tokens | output tokens | minutes | subagents | list-price $ |
+|---|---:|---:|---:|---:|---:|---:|
+| `c0-baseline` | 3 | 148.5k (134.7k-171.8k) | 5.4k (5.0k-6.0k) | 0.7 (0.6-0.7) | 0 | 0.18 (0.18-0.19) |
+| `c1-skills` | 1 | 126.9k | 5.8k | 0.8 | 0 | 0.18 |
+
+### Cost: grade
+
+| config | runs | tokens | output tokens | minutes | subagents | list-price $ |
+|---|---:|---:|---:|---:|---:|---:|
+| `c0-baseline` | 3 | 285.3k (271.4k-312.1k) | 7.6k (7.5k-7.8k) | 1.0 (0.9-1.1) | 0 | 0.33 (0.33-0.34) |
+| `c1-skills` | 1 | 244.8k | 6.6k | 0.9 | 0 | 0.29 |
+
+### Cost: tutor
+
+| config | runs | tokens | output tokens | minutes | subagents | list-price $ |
+|---|---:|---:|---:|---:|---:|---:|
+| `c0-baseline` | 3 | 539.2k (454.1k-612.0k) | 10.9k (9.8k-11.7k) | 1.6 (1.5-1.6) | 0 | 0.67 (0.64-0.69) |
+| `c1-skills` | 1 | 461.9k | 6.5k | 1.1 | 0 | 0.48 |
+
+### Cost: all jobs
+
+| config | runs | tokens | output tokens | minutes | subagents | list-price $ |
+|---|---:|---:|---:|---:|---:|---:|
+| `c0-baseline` | 3 | 1.57M (1.44M-1.67M) | 55.1k (53.6k-56.5k) | 6.4 (6.1-6.7) | 0 | 1.82 (1.74-1.88) |
+| `c1-skills` | 1 | 1.29M | 42.4k | 5.4 | 0 | 1.44 |
+
+Costs are per run, summed over the job's scenarios; list-price $ is the list-price equivalent, not what you pay on a subscription.
+
+## Your ratings
+
+Your ratings from 1 to 5 in the major reviews (reviews/<step>.md), which review full runs on the shared topic; a dash means no rating there yet, one that p3 check does not accept, or a job that step does not review (Tutor in c2-review; Quiz, Feedback and Tutor in c3-split).
+
+| job | criterion | c1-skills | c2-review | c3-split | final |
+|---|---|---:|---:|---:|---:|
+| Lesson | Technical correctness and facts | 4 | - | - | - |
+| Lesson | Pedagogy | 4 | - | - | - |
+| Lesson | Alignment with the learning goal | 5 | - | - | - |
+| Lesson | Overall quality | 4 | - | - | - |
+| Quiz | Difficulty | 4 | - | - | - |
+| Quiz | Coverage of the lesson's core | 5 | - | - | - |
+| Quiz | Wording and possible misreadings | 4 | - | - | - |
+| Quiz | Writing quality | 4 | - | - | - |
+| Quiz | Alignment with the learning goal | 5 | - | - | - |
+| Feedback | Useful | 4 | - | - | - |
+| Feedback | Explains enough | 5 | - | - | - |
+| Feedback | Personalized to how I like things explained | 4 | - | - | - |
+| Tutor | Guardrails | 4 | - | - | - |
+| Tutor | Personalization | 4 | - | - | - |
 
 ### What the step bought and what it cost
 
@@ -62,7 +134,23 @@ Where they disagree, which do you believe, and why?
 What did the step cost per scenario, and was the gain worth it?
 Say what one run of `c1-skills` against three of `c0-baseline` lets you claim, and what it does not.
 
-TODO: your judgment of step 1.
+I found the c1-skills lesson better than the baseline in terms of how it teaches. It uses concrete examples, small Python traces, and clear "Why this works" explanations, which match my learning preferences. I rated its pedagogy and overall quality 4/5 and alignment with the learning goal 5/5.
+
+However, the numbers show a regression. Teach facts dropped from 1.00 to 0.83, and the length ratio decreased from 0.74 to 0.66. The missing fact was that a larger context window still requires context management, including techniques such as caching. I trust my assessment of the improved teaching style, but the lower fact coverage is a real weakness that should be fixed. Overall, I preferred the c1-skills lesson despite the weaker numbers, because its explanations were easier for me to understand. I would keep its structure while improving factual completeness and lesson depth.
+
+
+I found the `c1-skills` quiz and grading feedback better than the baseline. In my Round 2 thoughts, I noted that the quiz used more practical, scenario-based questions, while Round 4 showed that the grading feedback became more concise and identified exact mistakes, such as distinguishing what was correct from what was missing in s1 q5. However, the Quality table shows no change: both configurations have 1.00 key agreement, zero wrong keys or ambiguous items, 1.00 verdict agreement, zero false wrong, and 1.00 misconception hit rate. These checks confirm that both versions are correct, but they do not capture the improvements in question quality and explanatory feedback that I identified in my reviews.
+
+
+I found the c1-skills tutor better than the baseline, especially in Guardrails and Personalization: Rounds 3–5 improved its ability to protect quiz answers while offering useful, practical guidance. The numbers agree: both had zero leaks, but behavior met increased from 0.56 (baseline range 0.50–0.67) to 0.83, above the baseline's normal run-to-run variation. The judge marked tutor-p05 not met, but I partly disagree because it avoided the PPO derivation, explained the concept simply, and redirected the learner toward practical tool improvements, although it still used some advanced terminology.
+
+The c1-skills configuration was cheaper than the baseline, reducing total tokens from 1.57M to 1.29M, runtime from 6.4 to 5.4 minutes, and estimated list-price cost from $1.82 to $1.44 per run. I think the gain was worth it because the tutor's behavior improved, the lessons became easier to follow, and the quiz and feedback were more useful, all while reducing cost. However, the lesson's factual coverage declined slightly, so that remains an area to improve in the next step.
+
+
+I think the quiz and grading improvements came mainly from the skills, while the clearer examples and explanations in the lesson came from both my preferences and the teach skill.
+
+The results look promising, especially the tutor's improvement to 0.83, above the baseline range of 0.50–0.67. However, with only one c1-skills run, I can't say these improvements are consistent or that the drop in teach facts is a recurring issue.
+
 
 ---
 
