@@ -1,0 +1,120 @@
+{
+  "duration_api_ms": 12446,
+  "stop_reason": "end_turn",
+  "session_id": "e588d406-0b91-4440-91f5-132b768c0c37",
+  "total_cost_usd": 0.08244950000000001,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 15114,
+    "cache_read_input_tokens": 80175,
+    "output_tokens": 1396,
+    "output_tokens_details": {
+      "thinking_tokens": 362
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 15114,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 341,
+        "cache_read_input_tokens": 25038,
+        "cache_creation_input_tokens": 640,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 640
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 1396,
+      "cacheReadInputTokens": 80175,
+      "cacheCreationInputTokens": 15114,
+      "webSearchRequests": 0,
+      "costUSD": 0.08244950000000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 362,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 15114,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 7,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "**Tool calling is like a manager who can only pass written notes to a clerk.**\n\nPicture a makerspace manager in a sealed office. They can't touch the booking calendar. They get a student's question, and a card listing what the clerk can do: \"check calendar\" and \"book machine\".\n\nThe manager writes on a slip: \"check calendar, laser cutter, Friday.\" The clerk reads the slip, walks to the calendar and does it. Then the clerk slides the result back under the door: \"Free 2–4pm.\" The manager reads it and either writes another slip or gives the student an answer.\n\n**Why this works:** The model only writes the request, and your program does the actual work. The model never touches the calendar itself. That's why the card (the tool descriptions) matters so much. It's the only thing the manager knows about what the clerk can do.\n\n**Where it breaks down:** A real manager remembers the earlier slips. The model only knows what's on its desk each time it's handed the pile of notes again.\n\nIn the \"Friday\" example, who decides that the booking happens, and who actually makes it happen?",
+  "ttft_ms": 1435,
+  "type": "result",
+  "duration_ms": 12673,
+  "uuid": "0be7461b-95ae-4b43-b45c-2e2ccd002bca",
+  "ttft_stream_ms": 992,
+  "time_to_request_ms": 163,
+  "first_content_frame_ms": 993,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 1396,
+      "cacheReadInputTokens": 80175,
+      "cacheCreationInputTokens": 15114,
+      "webSearchRequests": 0,
+      "costUSD": 0.08244950000000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 362,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 15114,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-11-28T00:53:14.173Z"
+}

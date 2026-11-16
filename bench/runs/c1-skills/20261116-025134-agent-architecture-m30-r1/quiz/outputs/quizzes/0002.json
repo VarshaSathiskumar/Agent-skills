@@ -1,0 +1,68 @@
+{
+  "id": "0002",
+  "objective": "O4",
+  "title": "Workflows or agents: who owns the control flow?",
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "A booking handler in your makerspace backend runs these steps in this order, written in Python: (1) call the model to pull the machine and time out of the student's message; (2) call check_calendar with them; (3) if the slot is free, call book_slot; (4) call the model to write a confirmation message. Which description fits it best?",
+      "options": [
+        {"id": "a", "text": "An agent, because the program uses tools such as check_calendar and book_slot"},
+        {"id": "b", "text": "An agent, because the model reads free-form text and decides what it means"},
+        {"id": "c", "text": "A workflow, because the code fixes the order and the model fills in only two steps"},
+        {"id": "d", "text": "An agent, because the model is called more than once for each request"}
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "numeric",
+      "objective": "O4",
+      "stem": "Booking requests all follow the same path. As a fixed workflow they take 2 model calls each; handled by an agent that chooses its own steps, they average 5 model calls each. Assume every call costs $0.004 and you get 1,000 booking requests a day. How many more dollars per day does the agent design cost than the workflow?",
+      "unit": "dollars per day"
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "A function asks the model for a booking as JSON and runs json.loads on the reply. If that raises an error, the function sends the error text back to the model and asks again, up to 3 tries, and then gives up. After a valid reply, the code goes on to the calendar check. Which description fits the retry part best?",
+      "options": [
+        {"id": "a", "text": "An agent, because it loops and feeds results back to the model"},
+        {"id": "b", "text": "A workflow, because the code decides when to repeat and when to stop"},
+        {"id": "c", "text": "An agent, because the model can see its own earlier mistakes"},
+        {"id": "d", "text": "A workflow, because a loop of model calls can never be an agent"}
+      ]
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "Your sponsor's model budget is small. Which part of the makerspace assistant is the best candidate to be a fixed workflow, rather than left to an agent?",
+      "options": [
+        {"id": "a", "text": "After a booking is saved: write the row, then email the student a receipt"},
+        {"id": "b", "text": "Answering a question that may need several manuals and the calendar"},
+        {"id": "c", "text": "Helping a student work out why a print failed and what to change"},
+        {"id": "d", "text": "Handling one message that mixes training, booking and machine rules"}
+      ]
+    },
+    {
+      "id": "q5",
+      "type": "short",
+      "objective": "O4",
+      "stem": "A student writes: \"My PETG print keeps stringing. Find the right settings in the manuals, and if they need a different nozzle, book the printer with it.\" Which steps come next depends on what each manual search returns. Should this request be handled by a fixed workflow or by an agent?"
+    },
+    {
+      "id": "q6",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "Your agent once booked a laser cutter without calling check_calendar first and double-booked it. The team's rule is that a booking must never happen without a calendar check, with no exceptions. Which change best guarantees the rule?",
+      "options": [
+        {"id": "a", "text": "Add a stronger line to the system prompt: always check the calendar first"},
+        {"id": "b", "text": "Switch to a larger model that follows instructions more reliably"},
+        {"id": "c", "text": "Give the agent a second calendar tool so it has more ways to check"},
+        {"id": "d", "text": "Make the check a coded step that must pass before book_slot can run"}
+      ]
+    }
+  ]
+}

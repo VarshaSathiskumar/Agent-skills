@@ -1,0 +1,37 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "c",
+      "rationale": "It is a workflow: the Python code fixes the order of the four steps, and the model only does the two language steps inside it. Using tools (a), reading free text (b) or calling the model more than once (d) does not make a system an agent; what matters is who decides the next step, and here it is the code."
+    },
+    {
+      "id": "q2",
+      "answer": 12,
+      "tolerance": 0.01,
+      "rationale": "Workflow: 2 x $0.004 x 1,000 = $8 a day. Agent: 5 x $0.004 x 1,000 = $20 a day. The difference is $12 a day, which is what you pay for flexibility the booking path does not need."
+    },
+    {
+      "id": "q3",
+      "answer": "b",
+      "rationale": "The retry is a workflow pattern: the code decides whether to loop, how many times and when to stop, and the model only writes JSON each time. A loop, or feedback going back to the model, does not make an agent (a, c); the test is whether the model chooses the next action. Option d is also wrong, because a model-driven loop is exactly what an agent is."
+    },
+    {
+      "id": "q4",
+      "answer": "a",
+      "rationale": "The receipt step is the same two actions in the same order every time, so code can own it, and it costs little and behaves predictably. The other parts depend on what the student asks or what each search returns, so their steps cannot be listed in advance; they need the model to choose the path."
+    },
+    {
+      "id": "q5",
+      "answer": "an agent",
+      "accepted": ["agent", "agent loop", "an agent loop", "use an agent", "the agent", "agentic"],
+      "rationale": "The next step depends on what each search finds, and whether a booking is needed at all is unknown in advance, so the steps cannot be fixed in code and the model has to choose them. A fixed workflow suits a path you can write down beforehand."
+    },
+    {
+      "id": "q6",
+      "answer": "d",
+      "rationale": "A rule with no exceptions should be enforced by code that owns the control flow, so the booking step cannot run until the check has passed. A prompt line (a), a stronger model (b) or more tools (c) only make the model more likely to follow the rule; the model still owns the order and can skip the step."
+    }
+  ]
+}

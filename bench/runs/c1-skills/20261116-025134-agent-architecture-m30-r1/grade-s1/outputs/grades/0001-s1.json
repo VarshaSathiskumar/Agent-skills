@@ -1,0 +1,43 @@
+{
+  "quiz": "0001",
+  "submission": "s1",
+  "items": [
+    {
+      "id": "q1",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. What makes it an agent is the loop: the model picks an action, the program runs it, and the result comes back for the next step."
+    },
+    {
+      "id": "q2",
+      "verdict": "wrong",
+      "misconception": "M4",
+      "feedback": "Not right: you chose that the model outputs the calendar entries after opening the booking system itself. That is tempting because the final answer looks like the model did everything, but a model only produces text. Here that text is a request naming check_calendar with the laser cutter and tomorrow's date, and the program runs the tool."
+    },
+    {
+      "id": "q3",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. The agent repeats itself, so more context or more steps add nothing; a step limit ends the loop and reports back."
+    },
+    {
+      "id": "q4",
+      "verdict": "wrong",
+      "misconception": "M4",
+      "feedback": "Not right: you answered 1, with the model running the 3 tools itself. This is the same mistake as q2: the program runs the tools, not the model. Each model call ends with one tool request or the final answer, so 3 tool requests plus 1 final answer is 4 calls."
+    },
+    {
+      "id": "q5",
+      "verdict": "partial",
+      "misconception": null,
+      "feedback": "You have the what: the result goes back to the model. Missing is the why, and that it goes in as the model's next input with the model called again. The model can only use the result to choose its next step or write the final answer if it receives it."
+    },
+    {
+      "id": "q6",
+      "verdict": "partial",
+      "misconception": "M3",
+      "feedback": "Your first part is right: the model gets a list of tools, each with a name and description, and picks the one that fits. The added claim is false: the model does not remember earlier sessions on its own. Each call starts fresh with only the text it is given, so the descriptions alone guide the choice."
+    }
+  ],
+  "summary": "You have the loop itself (q1) and know when to stop it (q3), and you got the idea that tools are chosen from descriptions (q6). The belief to change is that the model runs the tools itself (q2, q4): it only writes a request, and the program runs the tool and calls the model again. Next step: take the laser cutter request from q4 and write out, for each of the 4 model calls, what goes in and what comes out, marking which steps are the program's work."
+}

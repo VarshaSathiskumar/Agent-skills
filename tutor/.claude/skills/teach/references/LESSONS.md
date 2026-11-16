@@ -26,11 +26,12 @@ When no length is asked for, use the one `PREFERENCES.md` implies, or 15 minutes
   | Part | Words |
   |---|---|
   | Opening: the win, why it matters for the mission, a warm-up recall question | 300 |
-  | Four to six sections, each one idea: explanation, example, practice check | 600 to 800 each |
+  | Four to six sections, each one concept: example, name, why it works, practice check | 600 to 800 each |
   | A worked example, then a practice task the learner does with the steps faded | 600 |
   | Summary, a prompt to explain it in their own words, where to go next | 300 |
 
-- Write each section to its budget; you cannot count words exactly, so the plan is how you hit the length.
+- Write each section to its budget; you cannot count words exactly, and there is no shell to count them with, so the plan is how you hit the length. Do not try to run a command to count.
+- Lessons tend to come out well short of the budget. When a section is under its budget, lengthen its traced example or add a second practice question; never add a second concept.
 - If the objective is too big for the time, teach its core well and say what the next lesson will cover.
   If it is too small, add worked examples and practice, never padding.
 - A long lesson keeps the short-section discipline: working memory is small at every length.
@@ -39,12 +40,29 @@ When no length is asked for, use the one `PREFERENCES.md` implies, or 15 minutes
 
 1. **Opening:** the title, the time, the win in one sentence ("By the end of this lesson you can ..."), and one or two sentences tying it to the mission.
 2. **Warm-up:** one or two recall questions on earlier material from the learning records, for spacing, with the answers revealed on demand.
-3. **Sections, one idea each,** in a steady rhythm: explain only the knowledge the skill needs, in plain words; show a concrete example, drawn from the examples `PREFERENCES.md` says the learner relates to; then check with a practice question that gives immediate feedback.
+3. **Sections, one concept each,** every one in the four beats described under "One concept, four beats" below: a concrete example first, then the name, then why it works, then a practice check.
 4. **Misconceptions where they bite:** name the common wrong ideas about this objective (from `NOTES.md`, the learning records, the keys' distractors and your sources), say why each is tempting, and show with an example why it is wrong.
 5. **Worked example, then practice:** a worked example step by step, then a similar task for the learner with the steps faded, and the solution on demand.
 6. **Summary:** the key ideas in three to five lines, and a prompt to explain the main idea in their own words before moving on.
 7. **Go further:** the primary source, the single most high-quality, high-trust resource you found, to read or watch next; two to four other sources you cited; and a community where they can test the skill (see Wisdom below).
-8. **Closing:** a reminder that they can ask you follow-up questions in the chat about anything unclear, and that a short quiz on this lesson is ready when they are.
+8. **Closing:** a reminder that they can ask you follow-up questions in the chat about anything unclear, and that they can ask for a quiz on this lesson when they are ready.
+
+## One concept, four beats
+
+Every section between the warm-up and the worked example teaches exactly one concept, in the same four beats, in this order:
+
+1. **The example.** Open with a small, concrete case from the kind of example `PREFERENCES.md` says the learner relates to, tied to the mission when it fits: a request, a few lines of code, a table of numbers. Trace it step by step, showing what happens at each step, before the concept has a name. No definition and no new term comes before this.
+2. **The name.** Say that what the example just showed has a name, and define the term in one or two plain sentences that point back at the example, with the source cited.
+3. **Why this works.** A box labelled "Why this works", in the template's `box why` style, with two or three sentences giving the reason behind what the example showed. Every concept section has one, with no exceptions.
+4. **The check.** One practice question on this concept, in a new case, with immediate feedback.
+
+Rules that keep it to one concept at a time:
+
+- **One new term a section**, two at the very most when one cannot be said without the other. A term the section does not need is left out, not mentioned in passing.
+- **Alternatives are taught one by one.** When the topic has several techniques, methods or options, each one the lesson teaches gets its own section with its own walked-through example. Never introduce two of them in one paragraph or one list.
+- **Compare only what has been shown.** A comparison table or a "which to use when" paragraph comes after every row in it has had its own example, never as the way the alternatives are introduced.
+- **Too many for the time?** Teach the one or two that matter most for the mission in full, and name the others in a single closing line as what a later lesson covers. Three things shown properly beat six things listed.
+- **Keep each beat short.** A section is still short paragraphs; the example and the practice carry the length, not extra explanation.
 
 ## Knowledge and skills
 
@@ -52,7 +70,7 @@ When no length is asked for, use the one `PREFERENCES.md` implies, or 15 minutes
 - Then make the skill stick with effortful practice: recall, worked examples followed by faded ones, and applying the idea to a new case.
 - Every practice question gets feedback at once: why the right answer is right, and why each tempting wrong answer is wrong.
 - For a multiple-choice question, give every option the same number of words (and characters, if possible), vary which position holds the right one, and never give it away by formatting or order.
-- The lesson's practice questions are never the quiz items: the quiz checks what the practice built, so it needs fresh questions.
+- Never reuse an item from a quiz in `quizzes/` as a practice question, and never give away a quiz answer: a quiz checks what the practice built.
 - For a skill done away from the screen, such as a yoga pose, a recipe or a lab procedure, guide the learner through the real steps and tell them how to tell whether they did each one right.
 
 ## Design
@@ -106,5 +124,6 @@ Check the lesson once against this list, and fix anything that fails:
 - No stylesheet, script, font or image comes from the web.
 - The length is near the budget, judging by your section plan.
 - Every external link came from this session's search results or fetched pages.
-- The practice questions are not the quiz items, and the lesson gives away no quiz answer.
+- No practice question repeats an item from `quizzes/`, and the lesson gives away no quiz answer.
+- Every concept section opens with its example, names one concept, and has its "Why this works" box.
 - The lesson opens with the win and closes with the primary source and the reminder to ask you questions.

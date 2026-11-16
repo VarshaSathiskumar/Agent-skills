@@ -75,6 +75,8 @@
     .misconception { background: var(--warn-soft); border-left: 4px solid var(--warn); }
     .misconception .label { color: var(--warn); }
     .worked { border: 1px solid var(--rule); }
+    .why { border-left: 4px solid var(--accent); background: var(--accent-soft); }
+    .why .label { color: var(--accent); }
     .worked ol { padding-left: 1.3rem; }
     .summary { border: 1px solid var(--rule); }
     figure { margin: 2rem 0; }
@@ -163,10 +165,17 @@
     </div>
   </section>
 
-  <!-- One section per idea: explain, show an example, check with immediate feedback. Repeat as needed. -->
+  <!-- One section per concept, always in this order: a small concrete example first, then the name and definition
+       it leads to, then a short "Why this works" box, then a check with immediate feedback. Repeat as needed. -->
   <section id="s1">
     <h2>{{SECTION TITLE}} <span class="section-time">{{N}} min</span></h2>
-    <p>{{EXPLANATION, WITH A NEW TERM DEFINED AT FIRST USE:}} <dfn>{{TERM}}</dfn> {{IS ...}} (<a href="{{SOURCE URL FROM THIS SESSION}}">{{SOURCE NAME}}</a>).</p>
+    <p>{{A SMALL CONCRETE EXAMPLE FROM THE LEARNER'S WORLD, TRACED STEP BY STEP, BEFORE ANY TERM IS NAMED}}</p>
+    <p>{{WHAT THE EXAMPLE JUST SHOWED HAS A NAME:}} <dfn>{{TERM}}</dfn> {{IS ...}} (<a href="{{SOURCE URL FROM THIS SESSION}}">{{SOURCE NAME}}</a>).</p>
+
+    <div class="box why">
+      <span class="label">Why this works</span>
+      <p>{{TWO OR THREE SENTENCES: THE REASON BEHIND WHAT THE EXAMPLE SHOWED}}</p>
+    </div>
 
     <aside class="note">{{A SIDE REMARK THAT WOULD INTERRUPT THE MAIN LINE}}</aside>
 
@@ -203,7 +212,7 @@
     </div>
 
     <!-- A practice check with immediate feedback. Options: the same number of words, the right one in a varied position.
-         Each button's data-why explains that choice. Never reuse a quiz item here. -->
+         Each button's data-why explains that choice. Never reuse an item from a quiz in quizzes/ here. -->
     <div class="check" data-check>
       <span class="label">Check yourself</span>
       <p>{{PRACTICE QUESTION}}</p>
@@ -266,7 +275,7 @@
 
   <footer class="closing">
     <p>Anything unclear? Ask me in the chat; I can explain any part again, another way, or go deeper.</p>
-    <p>A short quiz on this lesson is ready (quiz {{QUIZ NUMBER}}): ask me for it when you want to check what stuck.</p>
+    <p>Ask me for a quiz on this lesson when you want to check what stuck.</p>
   </footer>
 
 </main>

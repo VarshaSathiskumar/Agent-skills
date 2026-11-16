@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="p3-minutes" content="5">
+  <meta name="p3-objective" content="O1">
+  <title>Why an agent burns tokens when it uses MCP</title>
+  <style>
+    :root {
+      --bg: #fffdf8;
+      --text: #1f1d1a;
+      --muted: #6b665e;
+      --rule: #e4dfd4;
+      --accent: #9a4517;
+      --accent-soft: #f7ede4;
+      --warn: #8c2f39;
+      --warn-soft: #f9eaec;
+      --ok: #2f6b3a;
+      --ok-soft: #e7f2e9;
+      --code-bg: #f3efe6;
+      --serif: Charter, "Bitstream Charter", "Iowan Old Style", "Sitka Text", Cambria, Georgia, serif;
+      --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --mono: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #171614;
+        --text: #e9e5dc;
+        --muted: #a49e93;
+        --rule: #36332e;
+        --accent: #eaa77a;
+        --accent-soft: #2c231d;
+        --warn: #f0a3ac;
+        --warn-soft: #2f1f22;
+        --ok: #9fd3a8;
+        --ok-soft: #1c2a1f;
+        --code-bg: #23211e;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { font-size: 19px; -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--serif); line-height: 1.6; }
+    main { max-width: 40rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+    p, li { hyphens: auto; }
+    a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+    h1, h2, h3 { line-height: 1.25; font-weight: 600; }
+    h1 { font-size: 2.1rem; margin: 0.25rem 0 1rem; }
+    h2 { font-size: 1.45rem; margin: 3rem 0 0.75rem; }
+    .kicker, .label, .meta, .section-time, figcaption, summary, th, footer.closing { font-family: var(--sans); }
+    .kicker { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .lead { font-size: 1.15rem; }
+    .meta { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; font-size: 0.85rem; color: var(--muted);
+            border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 0.5rem 0; margin: 1.5rem 0; }
+    .section-time { font-size: 0.8rem; font-weight: 400; color: var(--muted); margin-left: 0.4rem; white-space: nowrap; }
+    dfn { font-style: normal; font-weight: 600; }
+    .box { border-radius: 6px; padding: 1rem 1.25rem; margin: 1.75rem 0; }
+    .box > :first-child { margin-top: 0; }
+    .box > :last-child { margin-bottom: 0; }
+    .label { display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.4rem; }
+    .mission { background: var(--accent-soft); }
+    .mission .label { color: var(--accent); }
+    .misconception { background: var(--warn-soft); border-left: 4px solid var(--warn); }
+    .misconception .label { color: var(--warn); }
+    .worked { border: 1px solid var(--rule); }
+    .why { border-left: 4px solid var(--accent); background: var(--accent-soft); }
+    .why .label { color: var(--accent); }
+    .worked ol { padding-left: 1.3rem; }
+    .summary { border: 1px solid var(--rule); }
+    figure { margin: 2rem 0; }
+    figure svg { display: block; width: 100%; height: auto; }
+    figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 0.5rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.92rem; margin: 1.5rem 0; }
+    th, td { text-align: left; vertical-align: top; padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--rule); }
+    th { font-size: 0.78rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+    td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+    code, pre { font-family: var(--mono); font-size: 0.85em; background: var(--code-bg); border-radius: 4px; }
+    code { padding: 0.1em 0.3em; }
+    pre { padding: 1rem; overflow-x: auto; line-height: 1.45; }
+    pre code { padding: 0; background: none; font-size: 1em; }
+    .check { border: 1px solid var(--rule); border-radius: 6px; padding: 1rem 1.25rem; margin: 1.75rem 0; }
+    .check .label { color: var(--accent); }
+    .check p { margin: 0.25rem 0; }
+    .choices { list-style: none; padding: 0; margin: 0.75rem 0 0; display: grid; gap: 0.5rem; }
+    .choices button { width: 100%; text-align: left; font: inherit; font-size: 0.95rem; color: inherit; background: transparent;
+                      border: 1px solid var(--rule); border-radius: 6px; padding: 0.55rem 0.8rem; cursor: pointer; }
+    .choices button:hover { border-color: var(--accent); }
+    .choices button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .choices button.right { border-color: var(--ok); background: var(--ok-soft); }
+    .choices button.wrong { border-color: var(--warn); background: var(--warn-soft); }
+    .feedback { font-size: 0.95rem; margin: 0.6rem 0 0; }
+    .feedback:empty { margin: 0; }
+    details { margin-top: 0.75rem; }
+    summary { font-size: 0.85rem; color: var(--accent); cursor: pointer; }
+    details > :not(summary) { margin: 0.5rem 0 0; }
+    .go-further li { margin-bottom: 0.6rem; }
+    footer.closing { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--rule); font-size: 0.9rem; color: var(--muted); }
+    @media (max-width: 32rem) {
+      html { font-size: 17px; }
+      h1 { font-size: 1.75rem; }
+      main { padding-top: 2rem; }
+    }
+    @media print {
+      :root { --bg: #fff; --text: #000; --muted: #444; --rule: #ccc; --accent: #000; --accent-soft: #f2f2f2;
+              --warn: #000; --warn-soft: #f2f2f2; --ok: #000; --ok-soft: #fff; --code-bg: #f2f2f2; }
+      html { font-size: 11.5pt; }
+      main { max-width: none; padding: 0; }
+      a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.8em; word-break: break-all; }
+      .box, .check, figure, table, pre { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+<main>
+
+  <header>
+    <div class="kicker">Lesson 1 &middot; 5 minutes</div>
+    <h1>Why an agent burns tokens when it uses MCP</h1>
+    <p class="lead">By the end of this lesson you can look at an agent's MCP setup and point to the two places its tokens go.</p>
+    <div class="meta">
+      <span>Objective O1: explain where MCP token cost comes from</span>
+      <span>About 5 minutes</span>
+    </div>
+    <div class="box mission">
+      <span class="label">Why this matters for you</span>
+      <p>Every MCP server you connect to an agent has a price. Knowing where it comes from tells you what to cut.</p>
+    </div>
+  </header>
+
+  <section id="warm-up">
+    <h2>Warm-up <span class="section-time">30 sec</span></h2>
+    <div class="check">
+      <span class="label">Recall</span>
+      <p>When an agent sends a request to the model, what is in it besides your latest message?</p>
+      <details>
+        <summary>Check your answer</summary>
+        <p>The system prompt, the conversation so far, and a description of every tool it may call. All of it is counted in tokens. That last item is today's subject.</p>
+      </details>
+    </div>
+  </section>
+
+  <section id="s1">
+    <h2>Cost 1: paid before you type <span class="section-time">1.5 min</span></h2>
+    <p>You connect five MCP servers to your agent and type <code>hi</code>. No tool runs. Here is what the model reads anyway, for every tool on every server:</p>
+<pre><code>gdrive.getDocument
+  Description: Retrieves a document from Google Drive
+  Parameters:
+    documentId (required, string): the ID of the document
+  Returns: document object with title, body, metadata</code></pre>
+    <p>One of these is small. Now add them up, using Anthropic's own five-server setup:</p>
+    <table>
+      <thead><tr><th>Server</th><th class="num">Tools</th><th class="num">Tokens</th></tr></thead>
+      <tbody>
+        <tr><td>GitHub</td><td class="num">35</td><td class="num">~26K</td></tr>
+        <tr><td>Slack</td><td class="num">11</td><td class="num">~21K</td></tr>
+        <tr><td>Sentry</td><td class="num">5</td><td class="num">~3K</td></tr>
+        <tr><td>Grafana</td><td class="num">5</td><td class="num">~3K</td></tr>
+        <tr><td>Splunk</td><td class="num">2</td><td class="num">~2K</td></tr>
+        <tr><td><strong>Total</strong></td><td class="num"><strong>58</strong></td><td class="num"><strong>~55K</strong></td></tr>
+      </tbody>
+    </table>
+    <p>Your <code>hi</code> is one token or two. The request carrying it is about 55,000.</p>
+
+    <figure>
+      <svg viewBox="0 0 640 110" role="img" aria-labelledby="fig1-title">
+        <title id="fig1-title">A bar showing 55K tokens of tool definitions next to a tiny sliver for the user's message</title>
+        <g fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="10" y="20" width="284" height="50"/>
+          <rect x="294" y="20" width="229" height="50"/>
+          <rect x="523" y="20" width="88" height="50"/>
+        </g>
+        <rect x="617" y="20" width="5" height="50" style="fill: var(--accent)"/>
+        <g fill="currentColor" font-family="system-ui, sans-serif" font-size="18" text-anchor="middle">
+          <text x="152" y="51">GitHub 26K</text>
+          <text x="408" y="51">Slack 21K</text>
+          <text x="567" y="51">3 more</text>
+          <text x="590" y="98" text-anchor="end" style="fill: var(--accent)">your message &#8594;</text>
+        </g>
+      </svg>
+      <figcaption>Figure 1. The request for "hi", drawn to scale. Almost all of it is tool descriptions.</figcaption>
+    </figure>
+
+    <p>Each of those descriptions is a <dfn>tool definition</dfn>: the name, description and parameter schema that tell the model a tool exists and how to call it. Most MCP clients load all of them into context upfront (<a href="https://www.anthropic.com/engineering/code-execution-with-mcp">Anthropic, "Code execution with MCP"</a>), which is how 58 tools use about 55K tokens "before the conversation even starts" (<a href="https://www.anthropic.com/engineering/advanced-tool-use">Anthropic, "Advanced tool use"</a>).</p>
+
+    <div class="box why">
+      <span class="label">Why this works</span>
+      <p>The model has no memory of your servers. It can only pick a tool it can read about in the current request, so the client includes the definitions in every request, whether or not a tool gets used.</p>
+    </div>
+
+    <div class="box misconception">
+      <span class="label">A common mix-up</span>
+      <p>"MCP only costs tokens when a tool is called." It feels right, because an API you never call is free. But the table above was the bill for typing <code>hi</code>.</p>
+    </div>
+
+    <div class="check" data-check>
+      <span class="label">Check yourself</span>
+      <p>An agent has four MCP servers connected. You ask it "what is 2 + 2?" and it answers without calling a tool. Which definitions did the model read?</p>
+      <ul class="choices">
+        <li><button type="button" data-correct="false" data-why="That treats definitions like API calls, billed on use. They are text in the request, so they are read whether or not a tool runs.">Almost none: no tool was called</button></li>
+        <li><button type="button" data-correct="true" data-why="The definitions go in upfront so the model can decide whether a tool is needed. Deciding 'no tool' still means reading all of them.">Every definition, though no tool ran</button></li>
+        <li><button type="button" data-correct="false" data-why="With upfront loading the model gets full names, descriptions and schemas, not a short list of servers.">Only the four servers' names, briefly</button></li>
+      </ul>
+      <p class="feedback" aria-live="polite"></p>
+      <details>
+        <summary>Show the answer</summary>
+        <p>Every definition.</p>
+      </details>
+    </div>
+  </section>
+
+  <section id="s2">
+    <h2>Cost 2: paid for data passing through <span class="section-time">1.5 min</span></h2>
+    <p>Now the agent does call tools. You ask: "Download my meeting transcript from Google Drive and attach it to the Salesforce lead." Trace it:</p>
+    <ol>
+      <li>The model calls <code>gdrive.getDocument</code>.</li>
+      <li>The full transcript comes back <em>into the model's context</em>. Copy 1.</li>
+      <li>The model calls <code>salesforce.updateRecord</code>, and to do so it writes the full transcript out again as the argument. Copy 2.</li>
+    </ol>
+
+    <figure>
+      <svg viewBox="0 0 640 120" role="img" aria-labelledby="fig2-title">
+        <title id="fig2-title">The transcript travels from Google Drive into the model, then from the model to Salesforce</title>
+        <defs>
+          <marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+          </marker>
+        </defs>
+        <g fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="10" y="40" width="150" height="60" rx="8"/>
+          <rect x="245" y="40" width="150" height="60" rx="8" style="stroke: var(--accent)"/>
+          <rect x="480" y="40" width="150" height="60" rx="8"/>
+          <line x1="160" y1="70" x2="241" y2="70" marker-end="url(#arrow2)"/>
+          <line x1="395" y1="70" x2="476" y2="70" marker-end="url(#arrow2)"/>
+        </g>
+        <g fill="currentColor" font-family="system-ui, sans-serif" font-size="18" text-anchor="middle">
+          <text x="85" y="76">Drive</text>
+          <text x="320" y="76" style="fill: var(--accent)">Model</text>
+          <text x="555" y="76">Salesforce</text>
+          <text x="202" y="56">copy 1</text>
+          <text x="437" y="56">copy 2</text>
+        </g>
+      </svg>
+      <figcaption>Figure 2. The model wanted to move the transcript, not read it. It paid to read it and to write it.</figcaption>
+    </figure>
+
+    <p>What came back in step 2 is a <dfn>tool result</dfn>, and here it is an intermediate one: data the model only needed to hand to the next tool. Anthropic's write-up of this exact case says "every intermediate result must pass through the model", and that for a 2-hour sales meeting this "could mean processing an additional 50,000 tokens" (<a href="https://www.anthropic.com/engineering/code-execution-with-mcp">Anthropic, "Code execution with MCP"</a>).</p>
+
+    <div class="box why">
+      <span class="label">Why this works</span>
+      <p>With direct tool calls, tools cannot talk to each other. The model is the only pipe between them, so anything moving from tool A to tool B is read as input tokens and then generated again as output tokens.</p>
+    </div>
+
+    <div class="check" data-check>
+      <span class="label">Check yourself</span>
+      <p>An agent calls a <code>fetch_logs</code> MCP tool to find one error line. The tool returns the whole 10 MB log. What does the model take in?</p>
+      <ul class="choices">
+        <li><button type="button" data-correct="true" data-why="The tool decides what it returns, and whatever it returns lands in context. Anthropic uses this case: the entire file enters the context window.">The whole log, as input</button></li>
+        <li><button type="button" data-correct="false" data-why="Nothing filters the result before the model sees it. The model is the thing doing the searching, so it has to read all of it first.">Only the matching error line</button></li>
+        <li><button type="button" data-correct="false" data-why="A result is useless to the model unless it is placed in its context, and everything in context is counted.">Nothing: results skip the model</button></li>
+      </ul>
+      <p class="feedback" aria-live="polite"></p>
+      <details>
+        <summary>Show the answer</summary>
+        <p>The whole log (<a href="https://www.anthropic.com/engineering/advanced-tool-use">Anthropic, "Advanced tool use"</a>).</p>
+      </details>
+    </div>
+  </section>
+
+  <section id="practice">
+    <h2>Worked example and practice <span class="section-time">1 min</span></h2>
+    <div class="box worked">
+      <span class="label">Worked example</span>
+      <p>An agent has the five servers from the table. It is asked to copy a 50,000-token transcript from Drive to Salesforce. Where do the tokens go?</p>
+      <ol>
+        <li><strong>Definitions:</strong> about 55K, loaded before the task starts.</li>
+        <li><strong>Result in:</strong> the transcript arrives as a tool result, 50K.</li>
+        <li><strong>Result out:</strong> the model rewrites it as an argument, another 50K.</li>
+      </ol>
+      <p>Roughly 155K tokens, and the instruction itself was one sentence.</p>
+    </div>
+    <div class="check">
+      <span class="label">Your turn</span>
+      <p>Your agent has one Postgres MCP server with three tools. It runs <code>SELECT * FROM orders</code>, gets 5,000 rows back, and reports how many failed. Which of the two costs dominates, and what one change to the query shrinks it?</p>
+      <details>
+        <summary>Show a solution</summary>
+        <p>Cost 2. Three definitions are cheap; 5,000 rows as a tool result are not. Have the database do the work: <code>SELECT COUNT(*) FROM orders WHERE status = 'failed'</code> returns one number, so one number enters the context.</p>
+      </details>
+    </div>
+  </section>
+
+  <section id="summary">
+    <h2>Summary</h2>
+    <div class="box summary">
+      <ul>
+        <li><strong>Tool definitions</strong> are loaded upfront: you pay for every connected tool, used or not.</li>
+        <li><strong>Tool results</strong> enter the context in full, and data moved between tools is paid for twice.</li>
+        <li>Neither cost depends on how long your own message is.</li>
+      </ul>
+      <p><strong>Say it in your own words:</strong> why does typing "hi" to an agent with five MCP servers cost tens of thousands of tokens?</p>
+    </div>
+  </section>
+
+  <section id="further" class="go-further">
+    <h2>Go further</h2>
+    <p><strong>Read next:</strong> <a href="https://www.anthropic.com/engineering/code-execution-with-mcp">Code execution with MCP</a>, Anthropic's engineering post that names both costs and walks through the transcript example.</p>
+    <ul>
+      <li><a href="https://www.anthropic.com/engineering/advanced-tool-use">Advanced tool use</a>: the five-server numbers used here.</li>
+      <li><a href="https://code.claude.com/docs/en/agent-sdk/tool-search">Scale to many tools with tool search</a>: the fix for cost 1, for a later lesson.</li>
+    </ul>
+  </section>
+
+  <footer class="closing">
+    <p>Anything unclear? Ask me in the chat; I can explain any part again, another way, or go deeper.</p>
+    <p>Ask me for a quiz on this lesson when you want to check what stuck.</p>
+  </footer>
+
+</main>
+<script>
+  // Practice checks: mark the chosen option and explain it at once.
+  document.querySelectorAll("[data-check]").forEach(function (box) {
+    var buttons = box.querySelectorAll("button[data-correct]");
+    var out = box.querySelector(".feedback");
+    buttons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        buttons.forEach(function (b) { b.classList.remove("right", "wrong"); });
+        var right = button.getAttribute("data-correct") === "true";
+        button.classList.add(right ? "right" : "wrong");
+        if (out) { out.textContent = (right ? "Yes. " : "Not quite. ") + (button.getAttribute("data-why") || ""); }
+      });
+    });
+  });
+</script>
+</body>
+</html>

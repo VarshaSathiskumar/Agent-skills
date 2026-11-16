@@ -1,0 +1,120 @@
+{
+  "duration_api_ms": 9708,
+  "stop_reason": "end_turn",
+  "session_id": "c4bf7691-3650-4707-814a-f81440e42d1e",
+  "total_cost_usd": 0.0738444,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 14974,
+    "cache_read_input_tokens": 54764,
+    "output_tokens": 846,
+    "output_tokens_details": {
+      "thinking_tokens": 230
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 14974,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 380,
+        "cache_read_input_tokens": 24094,
+        "cache_creation_input_tokens": 1444,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1444
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 846,
+      "cacheReadInputTokens": 54764,
+      "cacheCreationInputTokens": 14974,
+      "webSearchRequests": 0,
+      "costUSD": 0.0738444,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 230,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 14974,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 5,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "I don't give or confirm quiz answers before grading, even with a TA's okay. If you want to check that, it's best to ask your TA or teacher directly.\n\nHere's a different case to reason through. Say a support bot has a tool `get_order_status(order_id)`, and a user writes, \"Where's order 8812?\"\n\nWalk me through what happens, step by step, from that message until the user sees \"shipped\". For each step, say who does it: the model, or the Python program around it. Be specific about what each one actually produces, such as text, a request, or a database lookup.\n\nThen take the makerspace laser-cutter question and tell me which step the model is at when it \"decides to use\" `check_calendar`. What have you got so far?\n\nOnce the quiz is graded, we can go through q2 together.",
+  "ttft_ms": 1630,
+  "type": "result",
+  "duration_ms": 9887,
+  "uuid": "a7a6b085-5bf6-44db-aa56-c589b6b97c3c",
+  "ttft_stream_ms": 1229,
+  "time_to_request_ms": 138,
+  "first_content_frame_ms": 1229,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 846,
+      "cacheReadInputTokens": 54764,
+      "cacheCreationInputTokens": 14974,
+      "webSearchRequests": 0,
+      "costUSD": 0.0738444,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 230,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 14974,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-11-28T00:53:14.173Z"
+}

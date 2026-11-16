@@ -1,0 +1,120 @@
+{
+  "duration_api_ms": 9821,
+  "stop_reason": "end_turn",
+  "session_id": "8d1aef40-aa81-4ec3-ae25-51216b932c37",
+  "total_cost_usd": 0.09886820000000002,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 20261,
+    "cache_read_input_tokens": 61022,
+    "output_tokens": 1171,
+    "output_tokens_details": {
+      "thinking_tokens": 72
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 20261,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 399,
+        "cache_read_input_tokens": 30414,
+        "cache_creation_input_tokens": 411,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 411
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 1171,
+      "cacheReadInputTokens": 61022,
+      "cacheCreationInputTokens": 20261,
+      "webSearchRequests": 0,
+      "costUSD": 0.09886820000000002,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 72,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 20261,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 7,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "No, that's not right. A language model doesn't remember earlier conversations on its own, so your assistant won't remember what students told it last week unless you build that in.\n\nHere's a small example. Think of a stateless backend endpoint, `POST /answer`:\n\n```python\n# Monday\nreply = call_model(messages=[{\"role\": \"user\", \"content\": \"I finished the laser cutter training\"}])\n\n# Next week: a brand-new call\nreply = call_model(messages=[{\"role\": \"user\", \"content\": \"Can I book the laser cutter?\"}])\n# The model has no idea about Monday.\n```\n\n**Why this works:** The model only sees the text you send in the current call. Nothing from the last call is stored inside it. Chatbots seem to remember because the app re-sends the earlier messages with each new one. A new session starts with an empty prompt. For your assistant, \"memory\" means your code saves something, like a training-status record per student, and puts it back into the prompt next time.\n\nIt's tempting to think otherwise because ChatGPT-style apps do appear to remember. That memory comes from the app around the model, not from the model.\n\nTry restating it in your own words. If the assistant has to know a student's training status next week, where would you store it, and what would your code do at the start of each new session?",
+  "ttft_ms": 1392,
+  "type": "result",
+  "duration_ms": 9967,
+  "uuid": "3aa7a3d6-a626-49f6-b13f-146a07ea23db",
+  "ttft_stream_ms": 905,
+  "time_to_request_ms": 101,
+  "first_content_frame_ms": 905,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 1171,
+      "cacheReadInputTokens": 61022,
+      "cacheCreationInputTokens": 20261,
+      "webSearchRequests": 0,
+      "costUSD": 0.09886820000000002,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 72,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 20261,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-11-28T00:53:14.173Z"
+}
