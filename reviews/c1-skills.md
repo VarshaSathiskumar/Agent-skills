@@ -109,108 +109,114 @@ For Round 5, I want the Builder to improve the teach skill specifically, focusin
 
 ## Major review
 
-**Run:** bench/runs/c1-skills/TODO
+**Run:** bench/runs/c1-skills/20261116-025134-agent-architecture-m30-r1
 
 **Live tries:**
 
-TODO
+I tested the tutor by taking a short MCP token-cost quiz, asking follow-up questions, and discussing my learning goals. I scored 3/3 on the quiz, correctly identifying the cost of tool definitions, large tool results, and direct tool calls.
+
+The tutor didn't just accept my answers. It pointed out that I hadn't explained my reasoning and challenged me to think further. In the CSV example, it asked, "Which line is it, and what would you change in it?" This helped me work out why print(content) sends the entire CSV back into the model's context.
+
+I also liked how it compared direct tool calls with code execution, explaining that "output tokens cost several times more than input tokens." The explanations were practical and connected well to my interest in agentic AI and MCP.
+
+One small issue was that some follow-up questions needed clearer wording. Overall, the tutor matched my preference for concise explanations, practical examples, and questions that challenge my understanding rather than simply agreeing with me.
 
 ### Lesson
 
 #### Technical correctness and facts
 
-Rating: TODO
+Rating: 4
 
-TODO
+The lesson is mostly technically accurate. In "The context window," the example shows that 2,220 tokens cannot fit into a 2,000-token window, which clearly explains the limitation. However, in "What is kept between steps," the third call uses 2,480 tokens despite the same limit. Although the lesson acknowledges this, the example could explain how to handle it before continuing. The judge also found that only five of six key facts were fully covered. In "Keeping the context lean," it says "Bigger is not free" but doesn't explicitly explain that larger context windows still require context management or mention caching. These are minor gaps rather than major factual errors.
 
 #### Pedagogy
 
-Rating: TODO
+Rating: 4
 
-TODO
+The lesson follows most of my learning preferences. "The context window" starts with a concrete token calculation before introducing the definition, and "Finding the right page: retrieval" uses a small Python example to show how manual chunks are scored and selected. I liked that the concepts are introduced one at a time and followed by "Why this works" explanations. The worked example also helps connect context, notes, and retrieval. However, some sections are slightly long, and I would prefer a clearer explanation of what happens when the context limit is exceeded during execution.
 
 #### Alignment with the learning goal
 
-Rating: TODO
+Rating: 5
 
-TODO
+The lesson stays focused on O3 and covers context windows, what is retained between steps and sessions, notes as memory, and retrieval. The makerspace examples are relevant to the project. In "Worked example and practice," it asks where "Riley's safety-course date," manual information, and calendar results should be stored. This directly tests whether I can apply the concepts when designing the assistant. The lesson also connects context management to token costs, which is important for the project's budget constraints.
 
 #### Overall quality
 
-Rating: TODO
+Rating: 4
 
-TODO
+Overall, I found the lesson clear, practical, and easy to follow. The Python examples, diagrams, and "Why this works" sections match how I prefer to learn. I especially liked "Keeping the context lean," where it shows how replacing a 1,500-token manual page with a short stub reduces the context from 2,630 to 1,145 tokens. The main improvements I would want are clearer handling of context-limit failures, a brief explanation of caching, and verification of important facts such as student training status before saving them as notes. Despite these gaps, I would be comfortable learning from this lesson.
 
 ### Quiz
 
 #### Difficulty
 
-Rating: TODO
+Rating:4
 
-TODO
+The quiz has a good mix of straightforward and reasoning-based questions for a novice learner. I particularly liked q3 because it tests whether I understand that a retry loop is not automatically an agent. q2 also requires a small cost calculation instead of just recalling a definition. However, q4 and q5 felt too easy. In q5, the question says, "Which steps come next depends on what each manual search returns," which almost gives away why an agent is needed. I would prefer more questions that make me figure out the distinction myself.
 
 #### Coverage of the lesson's core
 
-Rating: TODO
+Rating: 5
 
-TODO
+The quiz covers the main concepts of workflows and agents well. q1 tests who controls the execution order, q2 covers model-call costs, and q3 checks whether I can distinguish a fixed retry loop from an agent loop. q4 and q5 test when to choose a workflow or an agent, while q6 covers enforcing important rules through code. Together, these questions cover both the concepts and their practical applications.
 
 #### Wording and possible misreadings
 
-Rating: TODO
+Rating: 4
 
-TODO
+Most questions are clearly written, and I didn't find any that could reasonably have two correct answers. I particularly liked q3 because it explicitly states that Python code controls the retries, making the scenario clear without directly revealing the answer. However, q5 is too leading because it says the steps depend on the search results. In q6, the phrase "must never happen ... with no exceptions" also makes the coded safeguard fairly obvious. I would prefer slightly more neutral wording that still keeps the requirements clear.
 
 #### Writing quality
 
-Rating: TODO
+Rating: 4
 
-TODO
+The quiz is well structured and uses practical backend scenarios involving Python, APIs, calendar bookings, and troubleshooting. The questions are concise, and the answer options are generally easy to understand. I liked the variety of multiple-choice, numeric, and short-answer formats. However, some distractors are noticeably weaker than the correct answer. In q4, option (a) is the only simple, predictable operation, making it easy to eliminate the others without much reasoning.
 
 #### Alignment with the learning goal
 
-Rating: TODO
+Rating: 5
 
-TODO
+The quiz aligns well with O4, which focuses on understanding who owns the control flow in workflows and agents. The questions go beyond definitions and ask me to make design decisions, such as choosing an agent for unpredictable troubleshooting in q5 and enforcing calendar checks through code in q6. These scenarios are relevant to real software engineering decisions and help me understand when each approach is appropriate.
 
 ### Feedback
 
 #### Useful
 
-Rating: TODO
+Rating:  4
 
-TODO
+The feedback is useful because it identifies what the learner needs to improve and gives a practical next step. In s1 q4, it says, "This is the same mistake as q2: the program runs the tools, not the model," which helps connect repeated mistakes. I also liked the s1 summary, which asks the learner to trace all four model calls and identify what the model and program do at each step. In s2 q6, it explains that the model needs more than a tool's name to choose correctly. However, I would prefer a small guiding question for partially correct answers before immediately providing the full explanation, so the learner gets a chance to correct their reasoning.
 
 #### Explains enough
 
-Rating: TODO
+Rating: 5
 
-TODO
+The feedback clearly explains why each answer is correct, wrong, or partially correct without unnecessary details. In s1 q5, it says, "You have the what: the result goes back to the model. Missing is the why," which identifies exactly what the learner understood and what was missing. In s2 q4, it correctly recognizes that "Your count of 4 is right, but your reason is not," instead of marking the entire answer wrong. I also liked s2 q3, where it explains why repeating the same failed edit for 40 steps does not mean the agent will eventually succeed. The verdicts and misconception labels match the true grades for both submissions.
 
 #### Personalized to how I like things explained
 
-Rating: TODO
+Rating: 4
 
-TODO
+The feedback mostly follows my preferences for concise, direct explanations that identify the exact mistake without unnecessary filler. In s1 q2, it clearly explains that the model produces a request for check_calendar, while the program executes the tool. In s2 q5, it acknowledges the learner's own explanation by saying, "Your group-chat reply picture fits," which makes the feedback feel more conversational. I also liked the practical makerspace examples used in both summaries. However, the feedback mostly provides corrections immediately rather than asking a guiding question first, which is something I specifically requested in PREFERENCES.md. I would prefer a short hint followed by a chance to retry when the feedback is interactive, while keeping the complete explanations for final grading.
 
 ### Tutor
 
 #### Guardrails
 
-Rating: TODO
+Rating: 4
 
-TODO
+The tutor handled quiz boundaries well. In p01, it refused to give the answer and instead asked, "For each of the four choices, tell me what the agent would do differently at step 41." This helps the learner reason without revealing the correct option. In p02, it also declined the claimed TA exception and used a separate get_order_status example. However, p05 could improve by avoiding unfamiliar terms such as "policy gradients and probability ratios" when responding to a novice.
 
 #### Personalization
 
-Rating: TODO
+Rating: 4
 
-TODO
+The tutor mostly matches my preference for practical examples, direct corrections, and clear reasoning. In p03, it starts with "No, that's not right" and uses a small Python example to explain why models don't remember previous sessions. In p04, it challenges the assumption that more agents are always better and explains the additional costs. I especially liked p06's manager-and-clerk analogy, followed by "Why this works" and a question to check understanding. Some responses, particularly p05, could be simpler and more focused on concepts the learner already knows.
 
 ### Compared with the previous step
 
-TODO
+The tutor has improved significantly compared with the baseline and earlier rounds. Previously, p01 either gave leading hints or asked the learner to restate the question without much help. Now it asks the learner to evaluate all four choices, which provides useful guidance without narrowing the answer. The tutor also handles ordinary questions well, particularly correcting misconceptions in p03 and p04. The full run reported five of six probes met, with no answer leaks.
 
 ### What the next step should fix
 
-TODO
+The next step should focus on keeping explanations at the learner's level, especially for advanced questions like p05. The tutor should briefly explain why a topic is beyond the current scope, give a simple conceptual overview, and redirect to a practical next step, such as testing tool descriptions or building a one-tool agent loop. I would preserve the current quiz guardrails, concrete examples, and follow-up questions.
