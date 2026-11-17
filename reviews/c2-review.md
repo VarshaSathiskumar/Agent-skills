@@ -120,94 +120,98 @@ For the final round, I want an Alignment Reviewer to check whether every section
 
 ## Major review
 
-**Run:** bench/runs/c2-review/TODO
+ **Run:** bench/runs/c2-review/20261117-003217-agent-architecture-m30-r1
 
 **Live tries:**
 
-TODO
+I asked for a 10-minute lesson on how an agent decides when it is done. The lesson, "How an agent decides when it is done," clearly explained the two exits: the model finishes with end_turn, or the program stops the loop using a turn cap. I liked the Python trace, diagrams, and "Why this works" explanations. However, the order-tracking example could have been connected more closely to the makerspace project.
+
+I then took a two-question quiz on the same objective. q1 tested whether I could identify why a run failed even though the model produced answer text, while q2 asked me to calculate a turn cap within a token budget. Both questions required applying what the lesson taught rather than just recalling definitions.
+
+I scored 2/2, and the grading was accurate and specific. For q2, it explained, "7 calls read 84,000 tokens, while 8 would read 96,000." I also liked that the tutor challenged me with follow-up questions about max_tokens and an incomplete send_email request. Instead of immediately giving the answer, it asked me to reason through the problem first, which matched my learning preferences.
 
 ### Lesson
 
 #### Technical correctness and facts
 
-Rating: TODO
+Rating: 4
 
-TODO
+The lesson is technically accurate overall, and the facts score improved from 0.83 in c1-skills to 1.00. In "The context window: all the model sees," it now explains the window limit and the "prompt is too long" error, addressing the missing fact from my earlier review. "What is kept between steps" also explains repeated token costs and caching. I liked that "Between sessions: notes" distinguishes verified training records from model-written notes. However, the clearing section still introduces several technical cautions together, and the lesson could explain them more simply. These are minor issues rather than major factual errors.
 
 #### Pedagogy
 
-Rating: TODO
+Rating: 4
 
-TODO
+The lesson teaches the concepts clearly, starting with practical makerspace examples before introducing definitions. I liked how "What is kept between steps" uses a Python trace and token calculations, followed by a "Why this works" explanation. The earlier c1-skills problem of introducing several concepts at once has mostly been resolved, with separate sections for context growth, clearing, notes, and retrieval. The practice questions also help reinforce each concept. However, "Long manuals: retrieval" still introduces chunking, search scoring, memory comparison, and token costs in one section, making it slightly dense for a beginner. Overall, the teaching is much better structured, with a few areas that could be simplified.
 
 #### Alignment with the learning goal
 
-Rating: TODO
+Rating: 4
 
-TODO
+The lesson stays focused on O3 and connects the concepts to the learner's makerspace project through examples involving machine manuals, training records, and bookings. I liked how "Worked example and practice" asks learners to decide where information belongs, which directly supports the learning objective. The earlier mismatch between three and four storage choices is mostly resolved. The practice now uses three boxes: context, saved records, and manual chunks. However, some information, such as Saturday's calendar results, can exist both in external storage and in the context after a tool call, so this distinction could be explained more clearly. Overall, the alignment reviewer improved the consistency, with only minor ambiguity remaining.
 
 #### Overall quality
 
-Rating: TODO
+Rating: 4
 
-TODO
+I would want to learn from this lesson because it is well organized, visually clear, and supported by useful references. The diagrams in "What is kept between steps" and "Long manuals: retrieval" make it easier to understand how context grows and how information moves between storage and the model. The length ratio improved from 0.66 to 0.80, and the extra content feels useful rather than just longer, especially the worked examples and misconception boxes. However, some explanations are still repetitive, and "When the context fills up: clearing" feels slightly dense. Overall, the quality reviewer improved the presentation and readability, though the lesson could still be tightened.
 
 ### Quiz
 
 #### Difficulty
 
-Rating: TODO
+Rating: 4
 
-TODO
+The quiz is more challenging than the c1-skills version because it uses practical scenarios that require reasoning rather than simply recalling definitions. The earlier q1 problem is mostly fixed, as the new q1 requires understanding whether the model controls the next step. I liked q3 because it applies the concept to a real cost calculation, while q5 requires choosing between a workflow and an agent based on the task. However, q2 is still too straightforward, and q4 and q5 give strong clues to the correct answers. The reviewer improved the difficulty without making the quiz too hard, but a few questions still need more thought-provoking distractors.
 
 #### Coverage of the lesson's core
 
-Rating: TODO
+Rating: 4
 
-TODO
+The quiz covers the main parts of O4 well, especially identifying who controls the next step and deciding when a fixed workflow is better. q1 and q2 test the difference between workflows and agents, while q4 and q5 apply that understanding to practical design decisions. q3 also connects the choice to the learner's goal of keeping model costs low. However, q6 is slightly ambiguous because searching manuals does not always require an agent. Overall, the quiz stays focused on the objective without drifting into unnecessary details.
 
 #### Wording and possible misreadings
 
-Rating: TODO
+Rating: 3
 
-TODO
+The quiz reviewer caught several wording problems, but some remain after two passes. Like q5 in my c1-skills review, the new q5 still gives clues through the phrase "each chosen from the last result," which points toward an agent for log searches. q4 also hints at option d by emphasizing that the calendar must be checked before every booking. More importantly, q6 can be read two ways because searching manuals could use either an agent or a fixed retrieval workflow. The key assumes adaptive searching, but the stem does not clearly require it. I agree with the intended answer, but the ambiguity should have been fixed.
 
 #### Writing quality
 
-Rating: TODO
+Rating: 4
 
-TODO
+The questions are mostly clear and concise, and the answer key provides useful explanations rather than just repeating the correct answer. I liked how q1 explains why using model outputs does not automatically make a system an agent, and q3 shows the calculation step by step. The rationale for q5 also explains why the other designs are less suitable. However, q6's rationale assumes the search steps depend on previous results, which the question itself does not clearly state. Overall, the rationales are helpful, but a few items need clearer wording.
 
 #### Alignment with the learning goal
 
-Rating: TODO
+Rating: 4
 
-TODO
+The quiz aligns well with O4 by testing whether learners can distinguish workflows from agents based on who controls the next step. q1 and q2 test this distinction directly, while q4 and q5 ask learners to choose an appropriate design for practical situations. q3 also supports the learner's goal of building cost-efficient agents. However, q6 could better explain why adaptive control flow is necessary instead of assuming that searching multiple manuals requires an agent. Overall, the quiz stays focused on the learning objective with only minor gaps.
 
 ### Feedback
 
 #### Useful
 
-Rating: TODO
+Rating: 4
 
-TODO
+The feedback is useful because it identifies the learner's mistakes and explains what to improve next. In s1 q4, it connects the mistake to q2, saying, "This is the same mistake as q2: the program runs the tools, not the model," which helps identify a repeated misconception. In s2 q3, it explains why repeating the same failed attempt will not help and recommends a stopping condition. However, the "Try first:" questions in s2 q4 and q6 are immediately followed by the complete answers, leaving no chance for the learner to think independently. Overall, the feedback is specific and actionable, but the hint-first approach needs improvement.
 
 #### Explains enough
 
-Rating: TODO
+Rating: 5
 
-TODO
+The grade reviewer maintained the standard I rated 5 in c1-skills. The feedback clearly explains why answers are correct, wrong, or partial without being too lengthy. In s1 q5, it acknowledges what the learner understood and explains the missing reasoning: how the model uses the tool result to decide its next step. In s2 q4, it explains why the answer of 4 calls is correct but the reasoning about the model running tools is wrong. The "Try first:" questions add useful prompts for reflection, but the complete answers immediately follow them, reducing their effectiveness. Overall, the explanations are accurate, concise, and sufficient to correct misunderstandings.
 
 #### Personalized to how I like things explained
 
-Rating: TODO
+Rating: 3
 
-TODO
+The feedback mostly matches my preferences for concise, direct explanations that identify what went wrong and why. In s1 q4, it connects the mistake to q2, helping the learner recognize a repeated misconception. However, s2 q6 asks, "What else would the model need to tell them apart?" and immediately reveals the answer. My PREFERENCES.md asks for hints that let me think before seeing the correction. In my live try, the tutor gave me that opportunity, so this grading feedback still needs improvement.
 
 ### Compared with the previous step
 
-TODO
+The grade reviewer maintained the accurate, personalized explanations from c1-skills and improved the summary in s2 by focusing on one misconception. However, the main issue remained: the "Try first:" questions still reveal the full answer immediately. The reviewer identified this problem but declined the findings, so the improvement was limited.
 
 ### What the next step should fix
 
-TODO
+The next step should make the hint-first approach genuinely interactive by letting learners respond to a guiding question before showing the complete explanation. It should also make the grade reviewer check whether feedback follows PREFERENCES.md, rather than accepting a "Try first:" question simply because it is present.
