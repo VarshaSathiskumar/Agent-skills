@@ -1,0 +1,41 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "b",
+      "rationale": "The code decides the order of the steps, so this is a workflow; the model is only used inside two of them. Using a model, reading free text or touching an API does not make a system an agent (a, c: M7), and the number of model calls is not the test either (d: M14).",
+      "distractors": {"a": "M7", "c": "M7", "d": "M14"}
+    },
+    {
+      "id": "q2",
+      "answer": "agent",
+      "accepted": ["an agent", "agent", "it is an agent", "the agent"],
+      "rationale": "The model decides, at every pass, whether to call a tool, which one, and when to stop, so the model owns the control flow. Your code only supplies the loop mechanics. Answering workflow because you wrote the while and break shows M10, that whoever writes the code owns the control flow."
+    },
+    {
+      "id": "q3",
+      "answer": 9.6,
+      "tolerance": 0.05,
+      "rationale": "The agent makes 6 - 2 = 4 extra calls per question: 4 x $0.003 = $0.012, and 800 questions make $9.60 per day more. 4.8 is the workflow's own daily cost (2 calls) and 14.4 is the agent's own (6 calls); neither is the difference."
+    },
+    {
+      "id": "q4",
+      "answer": "d",
+      "rationale": "When code calls insert only after the check passes, the order holds for every request by construction. A prompt (a) or a model choosing whether to check (b) leaves the order to the model, so it is likely but not guaranteed (M8); inserting first (c) breaks the rule itself, since the booking exists before the check.",
+      "distractors": {"a": "M8", "b": "M8"}
+    },
+    {
+      "id": "q5",
+      "answer": "c",
+      "rationale": "The first two steps are the same every time, so fixed code does them cheaply and predictably; only the log digging has a path that cannot be known in advance, so the agent loop is used only there. One agent for everything pays for flexibility the first steps do not need (a, M12), and a coordinator with sub-agents adds more calls and hand-offs (d, M12). A fixed repeat cannot cover digging whose number of steps varies (b, M11).",
+      "distractors": {"a": "M12", "b": "M11", "d": "M12"}
+    },
+    {
+      "id": "q6",
+      "answer": "a",
+      "rationale": "In the failing test, what to read or edit next depends on what the last run showed, so the model must choose the steps. The other three follow a path known in advance; looping over items (b, c) or calling a model (d) does not make the path unpredictable, so a fixed workflow does them more cheaply. Picking b, c or d shows M13, that a task with a loop or a model call needs an agent.",
+      "distractors": {"b": "M13", "c": "M13", "d": "M13"}
+    }
+  ]
+}

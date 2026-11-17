@@ -8,7 +8,7 @@ argument-hint: "Which submission should I grade?"
 
 You grade one submission to one quiz.
 Each item gets a verdict and feedback the learner can act on in a few seconds: it reads the same way for every item, and it is about the mistake this learner made, not about the topic in general.
-Do the job yourself, in this conversation and in one pass, and finish with a short message to the learner.
+Write and revise the grades yourself, in this conversation, with the `grade-reviewer` subagent as the only other reader, and finish with a short message to the learner.
 
 ## The request
 
@@ -39,9 +39,12 @@ Never write under `.claude/`, and never change `PREFERENCES.md`, `FORMATS.md`, o
 2. **Find the repeats**: group the items where the learner made the same mistake, so you explain it once.
 3. **Write the feedback** for every item in the fixed order below, then the summary.
 4. **Check** each item against "Before you write the file".
-5. **Write** `grades/NNNN-sN.json` exactly as `FORMATS.md` shows, with every quiz item in order, including the ones left blank.
-6. **Record what the grades show**: a learning record for real understanding of something that matters or for a misconception to work on, as `FORMATS.md` describes, and what the learner now knows and does not know in `NOTES.md`.
-7. **Finish** with a short message: the summary and the one next step.
+5. **Write the first draft** to `drafts/NNNN-sN-grades-v1.json`, in exactly the shape `FORMATS.md` gives a grades file, with every quiz item in order, including the ones left blank. Never write a draft into `grades/`.
+6. **Run the review loop** in "The review loop" below.
+7. **Write the final file once**: the last version of the draft to `grades/NNNN-sN.json`, written directly with the file-writing tool. No shell command is needed or allowed, so do not try to copy a file.
+8. **Write the record** to `review-records/NNNN-sN-grade.md`, as below.
+9. **Record what the grades show**: a learning record for real understanding of something that matters or for a misconception to work on, as `FORMATS.md` describes, and what the learner now knows and does not know in `NOTES.md`.
+10. **Finish** with a short message: the summary and the one next step.
 
 ## Verdicts
 
@@ -72,11 +75,56 @@ Every item's feedback has these parts, in this order, and nothing else.
 Rules that keep it short and specific:
 
 - **About their answer.** Part 2 names something this learner wrote or chose. Feedback that would fit any wrong answer to the item is not specific enough: rewrite it.
-- **No hint before the answer.** A grade is read once, with the answer right below, so a guiding question that the next sentence answers is noise. Never open with "Hint:", and ask no question the feedback then answers itself. Keep the learner's wish to work it out for themselves for the summary's next step.
+- **Never open with a hint.** An item's feedback starts with part 1, never with "Hint:" or a question.
+- **A chance to self-correct on a `partial` item.** Between part 2 and part 3, add one short question, introduced with "Try first:", that points at the missing or wrong part without stating it, so the learner can stop and fix it before reading on. Then part 3 gives the complete answer, so the grade still teaches if they read straight through. The question is about the gap in their answer, never a restatement of the stem.
+- **A `wrong` item gets no question.** Its gap is the whole idea, so a question there only delays the correction; the summary's next step carries the question for the idea to work on.
 - **Say each thing once.** Do not restate the stem, and do not repeat within an item what an earlier sentence said.
 - **Explain a repeated mistake once.** Give the full explanation at the first item that shows it. At a later item with the same mistake, say in one sentence that it is the same mistake as that item, then only what is new here, such as this item's numbers.
 - **Length.** Two to four sentences an item, about 60 words at most; a `correct` item needs one or two.
-- **Their way.** Use the tone and the kind of example `PREFERENCES.md` asks for: direct, no flattery, no blame. Where a preference asks for a hint before the explanation, the rule above wins inside an item, and the summary carries the hint.
+- **Their way.** Use the tone and the kind of example `PREFERENCES.md` asks for: direct, no flattery, no blame. The "Try first:" question and the summary's next step are where this learner's wish for a guiding question before the explanation is met.
+
+## The review loop
+
+A second reader with a fresh context, the `grade-reviewer` subagent, checks the draft against a fixed checklist, and you fix what it finds.
+The loop runs **at most two passes**; a pass is one review and the revision that answers it.
+
+1. **Start the `grade-reviewer` subagent** with the Agent tool, and **wait for its report** before you do anything else: do not run it in the background, and do not revise, write the final file or finish until the report is back.
+   Its task message gives only the paths of the quiz, its key, the submission and the current draft of the grades.
+   Pass nothing else: not your reasoning, not which verdicts you were unsure of. The point of the review is a reading without them.
+2. **If the verdict is "No findings"**, the loop ends; the current draft is final.
+3. **Otherwise revise.** Take every finding in turn and either fix it or decide, with a reason, not to; a finding you think is wrong can be declined, but say why in the record.
+   A finding about a verdict or a misconception id is checked against the rules under "Verdicts" before you change anything: change it only when those rules say the reviewer is right.
+   Write the revision as the next version, `drafts/NNNN-sN-grades-v2.json`, then `-v3`, and keep the earlier versions as they are.
+4. **After the first pass**, start the reviewer again on the new version, exactly as in step 1, and go back to step 2.
+   **After the second pass**, the loop ends at the cap: do not start a third review, and the latest version is final.
+
+Do not change an item the reviewer listed under "Keep" unless a finding on another item forces it.
+
+### The record
+
+Write `review-records/NNNN-sN-grade.md` after the final file, in this shape:
+
+```md
+# Grades for quiz NNNN, submission sN: review record
+
+- Passes: <1 or 2>, ended <with no findings | at the cap of two passes>
+- Drafts: drafts/NNNN-sN-grades-v1.json to drafts/NNNN-sN-grades-vK.json
+- Verdicts changed by the review: <item ids, or none>
+
+## Pass 1
+
+| Finding | Check | Item | What the reviewer said | What changed |
+|---|---|---|---|---|
+| F1 | 4 | q5 | <one line> | <what you changed, or "declined: <why>"> |
+
+## Pass 2
+
+<the same table, or "No findings.">
+
+## Kept unchanged
+
+<the item ids no finding touched>
+```
 
 ## The summary
 
@@ -91,5 +139,6 @@ Three parts, in a few sentences:
 - Every quiz item has an entry, in the quiz's order, and no feedback is empty.
 - Each verdict follows from the whole response, reasoning included.
 - Each `partial` or `wrong` item names what this learner got wrong, and none opens with a hint or a question.
+- Each `partial` item has exactly one "Try first:" question, between the mistake and the correct reasoning, and no `correct` or `wrong` item has one.
 - No explanation appears in full twice across the items.
 - The summary names one idea and one next step.

@@ -1,0 +1,41 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "b",
+      "rationale": "The code decides the order of the steps, so this is a workflow; the model is only used inside two of them. Using a model, calling it twice or touching an API does not make a system an agent (a, c, M7), and workflows can contain model calls (d, M9).",
+      "distractors": {"a": "M7", "c": "M7", "d": "M9"}
+    },
+    {
+      "id": "q2",
+      "answer": "agent",
+      "accepted": ["an agent", "agent", "it is an agent", "the agent"],
+      "rationale": "The model decides, at every pass, whether to call a tool, which one, and when to stop, so the model owns the control flow. Your code only supplies the loop mechanics. Answering workflow because you wrote the while and break shows M10, that whoever writes the code owns the control flow."
+    },
+    {
+      "id": "q3",
+      "answer": 9.6,
+      "tolerance": 0.05,
+      "rationale": "The agent makes 6 - 2 = 4 extra calls per question: 4 x $0.003 = $0.012, and 800 questions make $9.60 per day more. Answering 4.8 (one extra call) or 14.4 (the full agent cost) means the difference of calls was not taken."
+    },
+    {
+      "id": "q4",
+      "answer": "d",
+      "rationale": "In a workflow the code fixes the order, so the check always happens before insert, by construction. In any agent the model chooses the next step, so a prompt, a bigger model or examples make the rule likely but never guaranteed (M8).",
+      "distractors": {"a": "M8", "b": "M8", "c": "M8"}
+    },
+    {
+      "id": "q5",
+      "answer": "c",
+      "rationale": "The first two steps are the same every time, so fixed code does them cheaply and predictably; only the log digging has a path that cannot be known in advance, so the agent loop is used only there. One agent for everything pays for flexibility the first steps do not need (a, M8), and several agents add more calls and hand-offs (d, M8). A fixed workflow cannot cover the digging when the number of steps varies (b, M11).",
+      "distractors": {"a": "M8", "b": "M11", "d": "M8"}
+    },
+    {
+      "id": "q6",
+      "answer": "B",
+      "accepted": ["b", "request b", "request B"],
+      "rationale": "Request A follows the same steps every time (read the machine and time, check the calendar, answer), so a fixed workflow does it more cheaply and predictably. Request B needs steps that depend on what turns up (materials, machines, then the calendar), so the model must choose them. Answering A shows M8, that a request which seems hard or common must be handled by an agent."
+    }
+  ]
+}

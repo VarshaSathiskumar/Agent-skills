@@ -1,0 +1,62 @@
+{
+  "id": "0002",
+  "objective": "O4",
+  "title": "Workflows and agents: who owns the control flow",
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "A student types \"book the laser cutter tomorrow 3 pm\". Your Python handler always runs the same three steps in this order: (1) one model call turns the text into a machine and a time, (2) plain code calls the calendar API and inserts the booking, (3) one model call writes the confirmation message. Which description is right?",
+      "options": [
+        {"id": "a", "text": "An agent, because a model is called and the calendar API is used like a tool"},
+        {"id": "b", "text": "A workflow, because the code fixes the order and the model only fills in two steps"},
+        {"id": "c", "text": "An agent, because the model is called twice to handle a single request"},
+        {"id": "d", "text": "A workflow, because no language model takes part in the booking itself"}
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "short",
+      "objective": "O4",
+      "stem": "Your code is: `while True: reply = call_model(messages); if reply.has_no_tool_request: break; result = run_tool(reply.tool, reply.args); messages.append(result)`. You wrote the `while` and the `break` yourself. Is this system a workflow or an agent? Answer with one word."
+    },
+    {
+      "id": "q3",
+      "type": "numeric",
+      "objective": "O4",
+      "stem": "A fixed workflow answers each availability question with exactly 2 model calls. An agent version of the same assistant averages 6 model calls per question (5 tool requests, then the final answer). Assume every model call costs $0.003 and there are 800 questions per day. How much more does the agent version cost per day, in dollars?",
+      "unit": "dollars per day"
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "A design-review rule says the assistant must never insert a booking before it has checked the calendar for a conflict. Which design guarantees this rule for every request?",
+      "options": [
+        {"id": "a", "text": "An agent whose system prompt states the rule in capital letters"},
+        {"id": "b", "text": "An agent on a larger model that follows instructions more reliably"},
+        {"id": "c", "text": "An agent shown ten worked examples that each check first"},
+        {"id": "d", "text": "A workflow where code runs the conflict check before it can call insert"}
+      ]
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "For an API's support tickets, every ticket first needs the same two steps: classify its urgency, then look up the customer's plan in the database. Only \"unknown error\" tickets then need open-ended digging through logs, where the number of steps varies a lot. Which design is best for a small model budget?",
+      "options": [
+        {"id": "a", "text": "One agent loop for the whole ticket, so every step stays flexible"},
+        {"id": "b", "text": "A fixed workflow throughout, with the log digging as five preset queries"},
+        {"id": "c", "text": "Code runs the two fixed steps; an agent loop handles only the log digging"},
+        {"id": "d", "text": "Three agents in turn, one per step, each passing the ticket to the next"}
+      ]
+    },
+    {
+      "id": "q6",
+      "type": "short",
+      "objective": "O4",
+      "stem": "Two requests reach the makerspace assistant. A: \"Is the laser cutter free tomorrow at 3 pm?\" B: \"I need a 20 cm gear for a robot arm; what material and machine should I use, and when can I get time on it this week?\" Which request needs an agent, A or B?"
+    }
+  ]
+}

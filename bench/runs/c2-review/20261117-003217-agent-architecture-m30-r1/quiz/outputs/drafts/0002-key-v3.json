@@ -1,0 +1,41 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "b",
+      "rationale": "Your code fixes the order and nothing the model returns changes which step runs next, so this is a workflow. The model's output only supplies values (a), and making model or API calls does not make a system an agent (a, c: M7); the number of calls is not the test either (d: M14).",
+      "distractors": {"a": "M7", "c": "M7", "d": "M14"}
+    },
+    {
+      "id": "q2",
+      "answer": "agent",
+      "accepted": ["an agent", "agent", "it is an agent", "the agent"],
+      "rationale": "The model decides, at every pass, whether to call a tool, which one, and when to stop, so the model owns the control flow. Your code only supplies the loop mechanics. Answering workflow because you wrote the while and break shows M10, that whoever writes the code owns the control flow."
+    },
+    {
+      "id": "q3",
+      "answer": 9.6,
+      "tolerance": 0.05,
+      "rationale": "The agent makes 6 - 2 = 4 extra calls per question: 4 x $0.003 = $0.012, and 800 questions make $9.60 per day more. 4.8 is the workflow's own daily cost (2 calls) and 14.4 is the agent's own (6 calls); neither is the difference."
+    },
+    {
+      "id": "q4",
+      "answer": "d",
+      "rationale": "When code calls insert only after the check shows no conflict, the order holds for every request by construction. A prompt (a), a retry rule (b) or a model deciding whether to insert after the check (c) leaves a decision to the model, so the rule is likely to hold but not guaranteed (M8).",
+      "distractors": {"a": "M8", "b": "M8", "c": "M8"}
+    },
+    {
+      "id": "q5",
+      "answer": "c",
+      "rationale": "The label and lookup are the same for every ticket, so fixed code does them cheaply and predictably; only the log search has a path that depends on each result, so the agent loop is used only there. One agent for everything pays for flexibility the first steps do not need (a, M12), and the reverse split puts the agent where the path is fixed (d, M12). A cap of three tries cannot cover searches that need up to 14 (b, M11).",
+      "distractors": {"a": "M12", "b": "M11", "d": "M12"}
+    },
+    {
+      "id": "q6",
+      "answer": "a",
+      "rationale": "In the manual search, which page to open or what to search next depends on what the last result showed, so the model must choose the steps. Confirming a booking has a known sequence even though it has four steps (b), and looping over items with a model (c) or labelling with one call (d) follow a path known in advance, so a fixed workflow does them more cheaply. Picking b, c or d shows M13, that a task that sounds long or uses a model needs an agent.",
+      "distractors": {"b": "M13", "c": "M13", "d": "M13"}
+    }
+  ]
+}

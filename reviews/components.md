@@ -22,7 +22,7 @@ An example of a finished entry:
 
 - Kind: skill
 - Step added: c1-skills
-- Purpose: The quiz skill creates practical, scenario-based questions instead of the mostly straightforward questions from Round 1 that tested basic recall. It is a skill because quiz generation is part of the tutor's normal workflow and doesn't need a separate agent or context.
+- Purpose: The quiz skill creates practical, scenario-based questions that test understanding and reasoning rather than simple recall. It is a skill because quiz generation is a repeatable part of the tutor's normal workflow and does not require an independent agent or fresh context.
 - With and without: reviews/c1-skills.md, Round 1 (without) and Round 2 (with)
 - Review: In Round 1, q1 was a straightforward recall question, while Round 2 introduced more practical scenario-based, numeric, and short-answer questions. However, one question was still too easy, and the quiz cost stayed about the same in both configurations.
 - Kept in final: TODO
@@ -52,4 +52,58 @@ An example of a finished entry:
 - Purpose: The rewritten teach skill creates clearer, step-by-step lessons with practical examples instead of introducing too many concepts at once. It works as a skill because the tutor can teach directly in the main conversation without needing a separate context.
 - With and without: reviews/c1-skills.md, Round 5 (without) and the major review's full run of c1-skills (with)
 - Review: The rewritten teach skill made lessons easier to follow with practical examples, one concept at a time, and clearer "Why this works" explanations. However, teach facts dropped from 1.00 to 0.83 and the length ratio from 0.74 to 0.66, so the teaching style improved but factual coverage and lesson depth got worse.
+- Kept in final: TODO
+
+### quiz-reviewer
+
+- Kind: subagent
+- Step added: c2-review
+- Purpose: The quiz reviewer checks for obvious answers, weak distractors, and questions that reveal the correct response. As a separate subagent, it reviews the draft with fresh context, making it more likely to catch problems the quiz writer overlooked.
+- With and without: reviews/c2-review.md, Round 1 (without) and Round 2 (with)
+- Review: TODO
+- Kept in final: TODO
+
+### grade-reviewer
+
+- Kind: subagent
+- Step added: c2-review
+- Purpose: TODO
+- With and without: reviews/c2-review.md, Round 2 (without) and Round 3 (with)
+- Review: TODO
+- Kept in final: TODO
+
+### lesson-facts-reviewer
+
+- Kind: subagent
+- Step added: c2-review
+- Purpose: TODO
+- With and without: reviews/c2-review.md, Round 3 (without) and Round 4 (with)
+- Review: TODO
+- Kept in final: TODO
+
+### lesson-pedagogy-reviewer
+
+- Kind: subagent
+- Step added: c2-review
+- Purpose: TODO
+- With and without: reviews/c2-review.md, Round 4 (without) and Round 5 (with)
+- Review: TODO
+- Kept in final: TODO
+
+### lesson-quality-reviewer
+
+- Kind: subagent
+- Step added: c2-review
+- Purpose: TODO
+- With and without: reviews/c2-review.md, Round 5 (without) and Round 6 (with)
+- Review: TODO
+- Kept in final: TODO
+
+### lesson-alignment-reviewer
+
+- Kind: subagent
+- Step added: c2-review
+- Purpose: TODO
+- With and without: reviews/c2-review.md, Round 6 (without) and the major review's full run of c2-review (with)
+- Review: TODO
 - Kept in final: TODO

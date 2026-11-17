@@ -8,7 +8,7 @@ argument-hint: "What would you like to learn, and for how many minutes?"
 
 You write one lesson for this learner: a single HTML page that teaches one tightly scoped thing, tied to why they are learning it, at the length they asked for.
 Every concept in it is met the same way: a small concrete example first, then the name for what the example showed, then why it works.
-Do the job yourself, in this conversation and in one pass, and finish with a short message to the learner.
+Write and revise the lesson yourself, in this conversation, with the lesson reviewers listed under "The review loop" as the only other readers, and finish with a short message to the learner.
 
 Lessons are all this skill does.
 A question in the chat belongs to the tutor skill, a quiz to the quiz skill, and grading to the grade skill.
@@ -51,10 +51,14 @@ Never write under `.claude/`, never change `PREFERENCES.md` or `FORMATS.md`, and
    When the topic has several techniques or alternatives, pick the one or two that matter most for the mission to teach in full, and leave the others for a single line at the end.
 4. **Pick each concept's example before writing anything:** one small, concrete case for each, of the kind `PREFERENCES.md` asks for, that can be traced step by step. A concept with no example yet is not ready to be written.
 5. **Plan to the minutes:** give each section a word budget, as `references/LESSONS.md` explains, so the whole lesson fills the requested length. Lessons tend to come out short, so plan to the full budget.
-6. **Write the lesson** to `lessons/NNNN-<slug>.html`, following `FORMATS.md` and the template, with every concept section in the four beats below.
+6. **Write the first draft** to `drafts/NNNN-<slug>.html`, where `NNNN` is the number the lesson will take in `lessons/`, following `FORMATS.md` and the template, with every concept section in the four beats below.
+   Never write a draft into `lessons/`: the lesson goes there once, at the end.
 7. **Check it** against the list below and the one at the end of `references/LESSONS.md`, and fix what fails.
-8. **Keep the workspace current:** a cheat sheet in `cheatsheets/` when the lesson holds something worth looking up later, and `NOTES.md` for anything you learned about the learner.
-9. **Finish** with a short message: the lesson's path, the concepts it covers, that they can ask for a quiz on it when ready, and that they can ask you anything about it.
+8. **Run the review loop** in "The review loop" below.
+9. **Write the final lesson once** to `lessons/NNNN-<slug>.html`: the whole revised draft, written directly with the file-writing tool. No shell command is needed or allowed, so do not try to copy a file.
+10. **Write the record** to `review-records/NNNN-lesson.md`, as below.
+11. **Keep the workspace current:** a cheat sheet in `cheatsheets/` when the lesson holds something worth looking up later, and `NOTES.md` for anything you learned about the learner.
+12. **Finish** with a short message: the lesson's path, the concepts it covers, that they can ask for a quiz on it when ready, and that they can ask you anything about it.
 
 ## One concept, four beats
 
@@ -73,6 +77,77 @@ Keep to one concept at a time:
 - Keep explanations short and let the traced examples and the practice carry the length. When a section is under its budget, lengthen its example or add a practice question, never a second concept.
 
 `references/LESSONS.md` has the full rules, with the lesson's overall shape, its design, figures, practice, sources and cheat sheets.
+
+## The review loop
+
+Reviewers with a fresh context read the draft against their own checklists, and you fix what they find.
+The loop runs **at most two passes**; a pass is one round of reviews and the revision that answers it.
+
+The reviewers, each a subagent with its own concern:
+
+| Reviewer | What it checks |
+|---|---|
+| `lesson-facts-reviewer` | technical correctness and facts, against sources it finds with web search |
+| `lesson-pedagogy-reviewer` | how well it teaches: example first, one concept per section, a real reason in each "Why this works", useful practice, a density this learner can take in |
+| `lesson-alignment-reviewer` | fit to the request: every part of the objective taught, every section serving it, the scope promised at the top matching what is taught, the learner's level, examples tied to the mission, and no habit that would hurt the learner's project |
+| `lesson-quality-reviewer` | the finished page: layout and consistency with the template, length against the request, the clarity of every figure, and the usefulness of the references; it ranks its findings high, medium or low |
+
+1. **Start every reviewer in the table** with the Agent tool, all at once, and **wait for every report** before you do anything else: do not run them in the background, and do not revise, write the final lesson or finish until every report is back.
+   Each task message gives only the draft's path, the objective's id and text, and the requested minutes.
+   Pass nothing else: not your reasoning, your sources or your worries. The point of a review is a reading without them.
+2. **If every verdict is "No findings"**, the loop ends; the draft is final.
+3. **Otherwise revise the draft in place** with the Edit tool, finding by finding, rather than writing the whole lesson again. Fix each finding or decide, with a reason, not to; a finding you think is wrong can be declined, but say why in the record.
+   A correction of fact goes in only with the source the reviewer named, cited in the lesson next to the claim, and only when that source says what the reviewer says it does.
+   Keep the lesson's length near its plan: replace, do not pile on.
+   **Fix what matters most first.** Three reviewers can return many findings, and every revision can bring new problems, so in each pass fix, in this order: anything that is wrong or would mislead the learner, including a habit that would hurt their project; a part of the objective that is missing or a promise the lesson does not keep; anything that breaks a section's one concept; a `high` finding from the quality reviewer; then the rest as far as they go without rewriting sections that passed. In the second pass, decline a `low` finding unless it is a one-line change, and say so in the record.
+   **When two reviewers pull different ways**, keep every correct fact and fix the teaching around it: a correction the facts reviewer asked for stays in the lesson, and an overload the pedagogy reviewer found is fixed by splitting the section, moving the detail into an aside, the worked example or the summary, never by deleting the correction.
+   A fix for one reviewer must not break another's check: a correction added in a pass goes in as its own short step with its own example, not as extra sentences in a section that already teaches a concept.
+4. **After the first pass**, start the reviewers again on the revised draft, exactly as in step 1, and go back to step 2.
+   **After the second pass**, the loop ends at the cap: do not start a third round of reviews.
+
+### The record
+
+Write `review-records/NNNN-lesson.md` after the final lesson, in this shape:
+
+```md
+# Lesson NNNN: review record
+
+- Objective: <id>, <text>
+- Passes: <1 or 2>, ended <with no findings | at the cap of two passes>
+- Draft: drafts/NNNN-<slug>.html
+
+## Pass 1
+
+### lesson-facts-reviewer
+
+| Finding | Check | Section | What the reviewer said | Source | What changed |
+|---|---|---|---|---|---|
+| F1 | 3 | <heading> | <one line> | <URL> | <before -> after, in a few words, or "declined: <why>"> |
+
+### lesson-pedagogy-reviewer
+
+| Finding | Check | Section | What the reviewer said | What changed |
+|---|---|---|---|---|
+| F1 | 2 | <heading> | <one line> | <before -> after, in a few words, or "declined: <why>"> |
+
+### lesson-alignment-reviewer
+
+| Finding | Check | Section | What the reviewer said | What changed |
+|---|---|---|---|---|
+| F1 | 3 | <heading> | <one line> | <before -> after, in a few words, or "declined: <why>"> |
+
+### lesson-quality-reviewer
+
+| Finding | Severity | Check | Place | What the reviewer said | What changed |
+|---|---|---|---|---|---|
+| F1 | high | 1 | Figure 2 | <one line> | <before -> after, in a few words, or "declined: <why>"> |
+
+## Pass 2
+
+<the same, or "No findings.">
+```
+
+Because the draft is revised in place, the "What changed" column is the only record of what the first draft said: write the before and after for every change.
 
 ## Before you finish
 

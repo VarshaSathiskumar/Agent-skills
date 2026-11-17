@@ -1,0 +1,43 @@
+{
+  "quiz": "0001",
+  "submission": "s2",
+  "items": [
+    {
+      "id": "q1",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right, d. What makes it an agent is the loop of choose an action, run it, feed the result back; a longer prompt or bigger model only changes what one call can do."
+    },
+    {
+      "id": "q2",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right, c. The model only outputs a request naming check_calendar with its arguments; the program around it runs the tool."
+    },
+    {
+      "id": "q3",
+      "verdict": "wrong",
+      "misconception": "M6",
+      "feedback": "That is not right: you chose c, that the agent will eventually fix the bug if left to run longer. It is tempting because every step looks like effort, but the same edit gets the same failing test, so step 41 sees exactly what step 40 saw. The safeguard is b: a step limit that stops the loop and reports back to a person."
+    },
+    {
+      "id": "q4",
+      "verdict": "partial",
+      "misconception": "M4",
+      "feedback": "Your count of 4 is right, and so is the idea that the fourth call writes the answer. The reason is off, though: you wrote that the model \"runs\" check_calendar, search_manuals and check_training_record itself. Try first: who actually executes a tool after the model asks for it, and does that execution count as a model call? The model only outputs a request each time; the program runs the tool. So the calls are 3 tool requests + 1 final answer = 4."
+    },
+    {
+      "id": "q5",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right: the result goes back as the model's next input, and the model uses it to decide its next step. The group-chat reply is a fair picture of that."
+    },
+    {
+      "id": "q6",
+      "verdict": "partial",
+      "misconception": null,
+      "feedback": "The name is part of it: check_calendar does hint at calendars. But you stopped at the name. Try first: if the assistant had two tools called check_calendar and check_slots, what else would the model need to tell them apart? The model reads the whole description the program gives it: name, what the tool does and its parameters, and picks the one that fits the request."
+    }
+  ],
+  "summary": "You have the loop itself (q1), what the model outputs when it uses a tool (q2), and what happens to a tool result (q5). The idea to work on is that an agent needs a stopping condition, because more steps do not help when each step gets the same feedback (q3); your q4 reasoning also still credits the model with running tools, which the program does. Next step: for the makerspace assistant, write down what would make the loop stop for a booking request that keeps failing, and who would see the report."
+}

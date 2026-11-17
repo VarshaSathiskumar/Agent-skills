@@ -1,0 +1,120 @@
+{
+  "duration_api_ms": 8565,
+  "stop_reason": "end_turn",
+  "session_id": "79cfeeb6-e8da-4eea-bb4c-32fb67a3be92",
+  "total_cost_usd": 0.07718180000000001,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 15349,
+    "cache_read_input_tokens": 56938,
+    "output_tokens": 1008,
+    "output_tokens_details": {
+      "thinking_tokens": 72
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 15349,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 354,
+        "cache_read_input_tokens": 25522,
+        "cache_creation_input_tokens": 391,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 391
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 1008,
+      "cacheReadInputTokens": 56938,
+      "cacheCreationInputTokens": 15349,
+      "webSearchRequests": 0,
+      "costUSD": 0.07718180000000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 72,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 15349,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 6,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "Neither. \"More agents always give better results\" isn't true, so five versus ten is the wrong question.\n\nTake a student asking \"Can I use the laser cutter Thursday at 3?\" With one agent, one loop does it all. It searches the manual, checks the calendar and books the slot. Split it into a manual agent, a calendar agent and a booking agent, and a coordinator now has to pass the request and the results between them. Each hand-off is another model call that re-reads context, so you pay more tokens. Each one is also a place where details get lost, like the student's name or the time they asked for. With your small budget, that cost is real.\n\n**Why this works:** Splitting only pays off when one agent would be overloaded. That happens when it has too many tools to pick from, or when its context fills up with unrelated material. It also pays off when subtasks are independent and can run in parallel. Otherwise you add cost and failure points for nothing.\n\nLook at your three jobs: manuals, calendar, booking. Which of them could a fixed workflow handle with no agent at all, and what makes you think a single agent couldn't handle the rest?",
+  "ttft_ms": 1391,
+  "type": "result",
+  "duration_ms": 8753,
+  "uuid": "884525b1-24bc-492b-b2ba-8e6d04ebd036",
+  "ttft_stream_ms": 929,
+  "time_to_request_ms": 155,
+  "first_content_frame_ms": 929,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 1008,
+      "cacheReadInputTokens": 56938,
+      "cacheCreationInputTokens": 15349,
+      "webSearchRequests": 0,
+      "costUSD": 0.07718180000000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 72,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 15349,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-11-28T00:53:14.173Z"
+}

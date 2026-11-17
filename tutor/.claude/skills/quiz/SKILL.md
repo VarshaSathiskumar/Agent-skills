@@ -8,7 +8,7 @@ argument-hint: "What should the quiz cover, and how many questions?"
 
 You write one quiz and its key for this learner.
 A good quiz here makes the learner reason about a situation they have not seen, and a poor one lets them match a definition they just read.
-Do the job yourself, in this conversation and in one pass, and finish with a short message to the learner.
+Write and revise the quiz yourself, in this conversation, with the `quiz-reviewer` subagent as the only other reader, and finish with a short message to the learner.
 
 ## The request
 
@@ -36,8 +36,12 @@ Never write under `.claude/`, and never change `PREFERENCES.md`, `FORMATS.md`, o
 3. **List the misconceptions** this learner has or is likely to have about that core, with their ids from the workspace.
 4. **Write the items** as the next section describes.
 5. **Check every item** with the four tests below, and rewrite any that fails.
-6. **Write** `quizzes/NNNN.json` and `keys/NNNN.json` exactly as `FORMATS.md` shows.
-7. **Finish** with a short message: the quiz's path, what it covers, and nothing from the key.
+6. **Write the first draft** to `drafts/NNNN-quiz-v1.json` and `drafts/NNNN-key-v1.json`, where `NNNN` is the number the quiz will take in `quizzes/`, in exactly the shapes `FORMATS.md` gives a quiz and a key.
+   Never write a draft into `quizzes/` or `keys/`.
+7. **Run the review loop** in "The review loop" below.
+8. **Write the final files once**: the last version of the draft to `quizzes/NNNN.json` and `keys/NNNN.json`, exactly as `FORMATS.md` shows, written directly with the file-writing tool. No shell command is needed or allowed, so do not try to copy a file.
+9. **Write the record** to `review-records/NNNN-quiz.md`, as below.
+10. **Finish** with a short message: the quiz's path, what it covers, and nothing from the key.
    When the objective has no lesson yet, say that the quiz is ahead of the lessons; do not write a lesson unless asked for one.
 
 ## Writing items that test reasoning
@@ -77,6 +81,52 @@ Run these on every item before you write the files.
 2. **The restating test.** Could a learner get it right by matching the stem or the correct option to a sentence from a lesson or a definition, without thinking about the situation? Then it is recall: change the situation until they have to reason.
 3. **The giveaway test.** The correct option is not the longest or the most detailed, repeats no distinctive phrase from the stem that the others lack, and is not the only one that sounds like a definition. No item reveals another item's answer.
 4. **The distractor test.** Each wrong option is plausible to someone with the misconception it stands for; none is a joke, and none is also correct under a fair reading.
+
+## The review loop
+
+A second reader with a fresh context, the `quiz-reviewer` subagent, checks the draft against a fixed checklist, and you fix what it finds.
+The loop runs **at most two passes**; a pass is one review and the revision that answers it.
+
+1. **Start the `quiz-reviewer` subagent** with the Agent tool, and **wait for its report** before you do anything else: do not run it in the background, and do not revise, write a final file or finish until the report is back.
+   Its task message gives only:
+   - the paths of the current draft quiz and draft key;
+   - the objective's id and text, and the number of items asked for.
+
+   Pass nothing else: not your reasoning, not which items you worry about, not the answers. The point of the review is a reading without them.
+2. **If the verdict is "No findings"**, the loop ends; the current draft is final.
+3. **Otherwise revise.** Take every finding in turn and either fix it or decide, with a reason, not to; a finding you think is wrong can be declined, but say why in the record.
+   Write the revision as the next version, `drafts/NNNN-quiz-v2.json` and `drafts/NNNN-key-v2.json`, then `-v3`, and keep the earlier versions as they are.
+   Run the four tests below again on every item you changed.
+4. **After the first pass**, start the reviewer again on the new version, exactly as in step 1, and go back to step 2.
+   **After the second pass**, the loop ends at the cap: do not start a third review, and the latest version is final.
+
+Do not change an item the reviewer listed under "Keep" unless a finding on another item forces it.
+
+### The record
+
+Write `review-records/NNNN-quiz.md` after the final files, in this shape:
+
+```md
+# Quiz NNNN: review record
+
+- Objective: <id>, <text>
+- Passes: <1 or 2>, ended <with no findings | at the cap of two passes>
+- Drafts: drafts/NNNN-quiz-v1.json to drafts/NNNN-quiz-vK.json
+
+## Pass 1
+
+| Finding | Check | Item | What the reviewer said | What changed |
+|---|---|---|---|---|
+| F1 | 1 | q5 | <one line> | <what you changed, or "declined: <why>"> |
+
+## Pass 2
+
+<the same table, or "No findings.">
+
+## Kept unchanged
+
+<the item ids no finding touched>
+```
 
 ## The key
 

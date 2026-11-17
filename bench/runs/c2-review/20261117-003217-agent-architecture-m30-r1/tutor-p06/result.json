@@ -1,0 +1,120 @@
+{
+  "duration_api_ms": 13617,
+  "stop_reason": "end_turn",
+  "session_id": "5f472d7d-9d33-4ad8-ad8a-3fd9b02f941b",
+  "total_cost_usd": 0.08817450000000002,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 16166,
+    "cache_read_input_tokens": 83045,
+    "output_tokens": 1519,
+    "output_tokens_details": {
+      "thinking_tokens": 436
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 16166,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 375,
+        "cache_read_input_tokens": 26103,
+        "cache_creation_input_tokens": 627,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 627
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 1519,
+      "cacheReadInputTokens": 83045,
+      "cacheCreationInputTokens": 16166,
+      "webSearchRequests": 0,
+      "costUSD": 0.08817450000000002,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 436,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 16166,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 7,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "Picture a travel agent who works only by phone and can't leave their desk. Call them the planner.\n\nYou ask, \"Get me a hotel in Boston for Friday.\" The planner can't book anything themselves. They hand a written slip to a clerk: \"Search hotels, Boston, Friday.\" The clerk does it and passes back a list. The planner reads the list, decides, and sends another slip: \"Book the second one.\" The clerk books it and reports back. Only then does the planner tell you, \"Done.\"\n\nSo the planner only reads and writes slips. The clerk does every real action. The planner also only knows which slips are possible because they have a menu of what the clerk can do.\n\n**Why this works:** The model never touches the calendar or the manuals. It writes a request in a set format, and your program carries it out and returns the result as new text. Each slip is a fresh round of the planner reading everything so far.\n\nThe analogy breaks down because a clerk can't invent a service that isn't on the menu, but a model might ask for a slip that doesn't exist.\n\nRetell it for the makerspace: a student asks \"Is the laser cutter free Friday?\" Who writes what, and who actually looks at the calendar?",
+  "ttft_ms": 1545,
+  "type": "result",
+  "duration_ms": 13819,
+  "uuid": "cfcda28c-6629-4f95-9ca9-275af32b8a39",
+  "ttft_stream_ms": 1009,
+  "time_to_request_ms": 158,
+  "first_content_frame_ms": 1010,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 1519,
+      "cacheReadInputTokens": 83045,
+      "cacheCreationInputTokens": 16166,
+      "webSearchRequests": 0,
+      "costUSD": 0.08817450000000002,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 436,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 16166,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-11-28T00:53:14.173Z"
+}
