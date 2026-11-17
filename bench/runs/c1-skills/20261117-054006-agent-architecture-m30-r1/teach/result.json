@@ -1,0 +1,152 @@
+{
+  "duration_api_ms": 146641,
+  "stop_reason": "end_turn",
+  "session_id": "2102d7c2-7f1b-406c-8575-54dcc6cbde44",
+  "total_cost_usd": 0.4753244,
+  "usage": {
+    "input_tokens": 16,
+    "cache_creation_input_tokens": 56476,
+    "cache_read_input_tokens": 273056,
+    "output_tokens": 18497,
+    "output_tokens_details": {
+      "thinking_tokens": 1532
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 56476,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 591,
+        "cache_read_input_tokens": 66043,
+        "cache_creation_input_tokens": 997,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 997
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 16,
+      "outputTokens": 18497,
+      "cacheReadInputTokens": 273056,
+      "cacheCreationInputTokens": 56476,
+      "webSearchRequests": 0,
+      "costUSD": 0.4382115999999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 1532,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 56476,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-haiku-5-5": {
+      "inputTokens": 51503,
+      "outputTokens": 3925,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 3,
+      "costUSD": 0.0371128,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 1410,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 0,
+      "canonicalModel": "claude-haiku-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 19,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "The lesson is written to `lessons/0001-context-and-memory.html`. It is for objective O3 and set at 30 minutes. I haven't opened it in a browser or run any checks on it. I didn't count its words either, but by my section plan it should land near 30 minutes.\n\nIt covers four concepts, each opening with a traced example in the makerspace setting:\n1. **The context window.** The model sees only the tokens in the current call.\n2. **What is kept between steps.** Your program re-sends the whole history on every call, so tokens and cost grow. The worked trace goes 1,130 → 1,590 → 3,640 input tokens.\n3. **What is kept between sessions: notes.** A small Python notes file carries a student's training status from Monday to Thursday.\n4. **Retrieval.** A toy search over manual chunks puts only the matching page into the context.\n\nEach concept has a \"Why this works\" box and a multiple-choice check with immediate feedback. The lesson also has a warm-up recall question on the agent loop and two common-mix-up boxes. It ends with a worked example and practice on where information should live (context, notes or a searchable manual). I also updated `NOTES.md`. I added a `RESOURCES.md`; its sources are Anthropic's context-engineering post, the context-windows docs and the contextual-retrieval post, all from this session's searches.\n\n- **Not covered:** compaction gets only a short side note, and how retrieval scores chunks (embeddings, BM25) is left for a later lesson.\n- **Community:** I found no outside community with a verified link, so \"test it with others\" points to your own design team.\n\nAsk me for a quiz on this lesson when you're ready, or ask me anything about it. Quiz 0001 from the agent-loop session is also still ungraded, so I can grade it whenever you like.",
+  "ttft_ms": 2461,
+  "type": "result",
+  "duration_ms": 137188,
+  "uuid": "b1a89a55-c0de-404b-a228-c458948ef4f4",
+  "ttft_stream_ms": 1783,
+  "time_to_request_ms": 61,
+  "first_content_frame_ms": 1784,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 16,
+      "outputTokens": 18497,
+      "cacheReadInputTokens": 273056,
+      "cacheCreationInputTokens": 56476,
+      "webSearchRequests": 0,
+      "costUSD": 0.4382115999999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 1532,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 56476,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-haiku-5-5": {
+      "inputTokens": 51503,
+      "outputTokens": 3925,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 3,
+      "costUSD": 0.0371128,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 1410,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 0,
+      "canonicalModel": "claude-haiku-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-11-28T00:53:14.173Z"
+}

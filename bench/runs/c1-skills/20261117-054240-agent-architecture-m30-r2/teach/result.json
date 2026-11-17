@@ -1,0 +1,152 @@
+{
+  "duration_api_ms": 132026,
+  "stop_reason": "end_turn",
+  "session_id": "728b2fd8-43bb-4a32-acdc-6d441618ebc0",
+  "total_cost_usd": 0.46612570000000003,
+  "usage": {
+    "input_tokens": 18,
+    "cache_creation_input_tokens": 60058,
+    "cache_read_input_tokens": 334477,
+    "output_tokens": 16721,
+    "output_tokens_details": {
+      "thinking_tokens": 789
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 60058,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 579,
+        "cache_read_input_tokens": 69214,
+        "cache_creation_input_tokens": 1408,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1408
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 18,
+      "outputTokens": 16721,
+      "cacheReadInputTokens": 334477,
+      "cacheCreationInputTokens": 60058,
+      "webSearchRequests": 0,
+      "costUSD": 0.4409257,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 789,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 60058,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-haiku-5-5": {
+      "inputTokens": 35405,
+      "outputTokens": 3319,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 2,
+      "costUSD": 0.0252,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 1466,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 0,
+      "canonicalModel": "claude-haiku-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 20,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "I wrote your O3 lesson: `lessons/0001-context-and-memory-in-an-agent.html`, 30 minutes. I couldn't count words here. I estimate it at about 3,500 words, inside the 2,700–6,750 range that counts as 30 minutes, but under the 4,500-word target.\n\nThe win: you can decide whether each piece of information in the makerspace assistant belongs in the context, in saved notes, or in a manual that gets searched. You should be able to say why.\n\nEach concept opens with a traced makerspace example, then the name, a \"Why this works\" box and a check question. The five concepts are:\n1. **The context window:** what the model sees on one call.\n2. **What is kept between steps:** your program re-sends the growing history each call, which is why cost climbs with the loop's length.\n3. **What is kept between sessions:** nothing persists unless you save it outside the context.\n4. **Notes as memory:** saving short facts, such as a student's training status, and loading them at the start of the next session.\n5. **Retrieval as memory:** searching the manuals and loading only the best pages.\n\nThe lesson also has a warm-up on the agent loop, a worked example and a \"your turn\" sorting exercise, plus a summary. It ends with Anthropic's context-engineering post as the main source, and two more Claude docs pages. The facts and links come from those pages, which I read this session, and I added them to `RESOURCES.md`.\n\nI left compaction (summarizing a long history mid-session) for a later lesson. I also left out a community link, because I didn't know whether you want one.\n\nAsk me for a quiz when you're ready, or ask me anything about the lesson.\n\nOne question for you: do you want a community, such as a university AI or makerspace club, to test these skills with, or would you rather skip that?",
+  "ttft_ms": 2068,
+  "type": "result",
+  "duration_ms": 126455,
+  "uuid": "46f15e09-4c2b-4598-85a4-c4f73c9a2854",
+  "ttft_stream_ms": 1377,
+  "time_to_request_ms": 165,
+  "first_content_frame_ms": 1377,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 18,
+      "outputTokens": 16721,
+      "cacheReadInputTokens": 334477,
+      "cacheCreationInputTokens": 60058,
+      "webSearchRequests": 0,
+      "costUSD": 0.4409257,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 789,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 60058,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-haiku-5-5": {
+      "inputTokens": 35405,
+      "outputTokens": 3319,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 2,
+      "costUSD": 0.0252,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 1466,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 0,
+      "canonicalModel": "claude-haiku-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-11-28T00:53:14.173Z"
+}

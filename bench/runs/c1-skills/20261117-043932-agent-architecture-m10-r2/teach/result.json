@@ -1,0 +1,152 @@
+{
+  "duration_api_ms": 90199,
+  "stop_reason": "end_turn",
+  "session_id": "81ad793b-42a5-4cc4-9ed4-d25feaa76388",
+  "total_cost_usd": 0.35315820000000003,
+  "usage": {
+    "input_tokens": 16,
+    "cache_creation_input_tokens": 47800,
+    "cache_read_input_tokens": 262483,
+    "output_tokens": 11016,
+    "output_tokens_details": {
+      "thinking_tokens": 225
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 47800,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 573,
+        "cache_read_input_tokens": 57971,
+        "cache_creation_input_tokens": 393,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 393
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 16,
+      "outputTokens": 11016,
+      "cacheReadInputTokens": 262483,
+      "cacheCreationInputTokens": 47800,
+      "webSearchRequests": 0,
+      "costUSD": 0.3276403,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 225,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 47800,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-haiku-5-5": {
+      "inputTokens": 37219,
+      "outputTokens": 3592,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 2,
+      "costUSD": 0.0255179,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 1607,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 0,
+      "canonicalModel": "claude-haiku-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 17,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "The 10-minute lesson on O3 is written: `lessons/0001-context-and-memory.html`. I haven't opened it in a browser or counted its words. I aimed for roughly 1,500 words by section budget.\n\nIt covers three concepts, each opening with a makerspace example, then the name, a \"Why this works\" box and a check:\n1. **Context window:** the model keeps nothing between steps, so your program re-sends the whole message list on every call. That list grows, and you pay for it each time.\n2. **Notes:** a student's training status is saved to a file and loaded into the next session, because the context is rebuilt from scratch each session.\n3. **Retrieval:** search the 200-page manual and read one page instead of pasting it all in.\n\nIt also has a warm-up recall question, a short worked example and practice task, and a summary. A \"common mix-up\" box covers the idea that a bigger window means you can skip retrieval.\n\nCompaction, meaning summarizing a session whose context has filled up, is left for a later lesson. The primary source is Anthropic's [Effective context engineering for AI agents](https://www.anthropic.com/research/effective-context-engineering-for-ai-agents), and the other cited source is the [Claude context windows docs](https://platform.claude.com/docs/en/build-with-claude/context-windows). I also added `RESOURCES.md` and a line in `NOTES.md`.\n\nI wrote no cheat sheet or learning record, since nothing has been shown yet. The practice questions don't reuse anything from quiz 0001, and they leave out its answers.\n\nAsk for a quiz on this lesson when you're ready, or ask me anything about it.\n\nI couldn't find a community for testing these skills, so the lesson has none. Would you like me to look for one?",
+  "ttft_ms": 1997,
+  "type": "result",
+  "duration_ms": 84971,
+  "uuid": "1dac61e5-5e45-41cd-a095-56df647d6d84",
+  "ttft_stream_ms": 1310,
+  "time_to_request_ms": 160,
+  "first_content_frame_ms": 1310,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 16,
+      "outputTokens": 11016,
+      "cacheReadInputTokens": 262483,
+      "cacheCreationInputTokens": 47800,
+      "webSearchRequests": 0,
+      "costUSD": 0.3276403,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 225,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 47800,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-haiku-5-5": {
+      "inputTokens": 37219,
+      "outputTokens": 3592,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 2,
+      "costUSD": 0.0255179,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 1607,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 0,
+      "canonicalModel": "claude-haiku-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-11-28T00:53:14.173Z"
+}

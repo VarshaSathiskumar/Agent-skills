@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cheat sheet: context and memory in an agent</title>
+  <style>
+    body { max-width: 44rem; margin: 0 auto; padding: 2rem 1rem; font-family: Charter, Georgia, serif; line-height: 1.5; color: #1f1d1a; background: #fffdf8; }
+    h1 { font-size: 1.6rem; } h2 { font-size: 1.1rem; margin-top: 1.6rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+    th, td { text-align: left; vertical-align: top; padding: 0.4rem 0.5rem; border-bottom: 1px solid #e4dfd4; }
+    th { font-family: system-ui, sans-serif; font-size: 0.75rem; text-transform: uppercase; color: #6b665e; }
+    @media (prefers-color-scheme: dark) { body { background: #171614; color: #e9e5dc; } td, th { border-color: #36332e; } }
+  </style>
+</head>
+<body>
+  <h1>Context and memory: one page</h1>
+  <p>From <a href="../lessons/0001-context-and-memory.html">lesson 1</a>. The model is blank at every call; memory is what your program puts back.</p>
+  <table>
+    <thead><tr><th>Where</th><th>What it holds</th><th>Lasts</th><th>Cost</th></tr></thead>
+    <tbody>
+      <tr><td>System prompt</td><td>Short rules that apply to every call</td><td>Every call</td><td>Resent every step</td></tr>
+      <tr><td>Message history</td><td>Questions, model requests, tool results</td><td>One session</td><td>Grows each step; big results paid for again at every later call</td></tr>
+      <tr><td>Summary (compaction)</td><td>Decisions and open problems from a long chat</td><td>Rest of the session</td><td>One summary call; details can be lost</td></tr>
+      <tr><td>Notes</td><td>Short durable facts about one student</td><td>Between sessions</td><td>Read in at session start</td></tr>
+      <tr><td>Retrieval</td><td>Prepared manual chunks, searched on demand</td><td>Permanent store</td><td>Only the few returned pieces enter the window</td></tr>
+      <tr><td>Fresh tool call</td><td>Fast-changing data, such as the calendar</td><td>Not stored</td><td>Result enters the window when asked</td></tr>
+    </tbody>
+  </table>
+  <h2>Rules of thumb</h2>
+  <ul>
+    <li>Cost of a tool result = its size x the number of calls after it.</li>
+    <li>More context is not better: recall drops as the window fills (context rot).</li>
+    <li>Save facts that change decisions; do not save transcripts or things a tool can look up.</li>
+    <li>Do not rely on a summary for safety-critical facts.</li>
+  </ul>
+</body>
+</html>

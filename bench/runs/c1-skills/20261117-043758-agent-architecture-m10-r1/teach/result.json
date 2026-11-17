@@ -1,0 +1,152 @@
+{
+  "duration_api_ms": 92162,
+  "stop_reason": "end_turn",
+  "session_id": "2ed9e801-5d76-4563-a0f1-7c5964bd53a2",
+  "total_cost_usd": 0.4316388,
+  "usage": {
+    "input_tokens": 16,
+    "cache_creation_input_tokens": 65330,
+    "cache_read_input_tokens": 299569,
+    "output_tokens": 11530,
+    "output_tokens_details": {
+      "thinking_tokens": 592
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 65330,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 525,
+        "cache_read_input_tokens": 75449,
+        "cache_creation_input_tokens": 445,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 445
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 16,
+      "outputTokens": 11530,
+      "cacheReadInputTokens": 299569,
+      "cacheCreationInputTokens": 65330,
+      "webSearchRequests": 0,
+      "costUSD": 0.40660890000000005,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 592,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 65330,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-haiku-5-5": {
+      "inputTokens": 36134,
+      "outputTokens": 2833,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 2,
+      "costUSD": 0.0250299,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 744,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 0,
+      "canonicalModel": "claude-haiku-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 18,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "I wrote the 10-minute lesson on O3 at `lessons/0001-context-and-memory.html`. I haven't opened it in a browser or run a word count, so the length is an estimate from my section plan.\n\nIt teaches three concepts, each with a worked trace from the makerspace assistant, then the name, a \"Why this works\" box and a check question:\n1. **The context window.** Within a run, the program re-sends the whole growing message list on every model call, so each token kept in context is paid for again.\n2. **Notes as memory between sessions.** A new session starts with an empty window, so only facts saved outside it, such as a per-student notes file, survive.\n3. **Retrieval.** The assistant pulls in only the manual section it needs, instead of loading the whole manual.\n\nThe lesson also has a warm-up on the agent loop, a figure, a misconception box (\"a bigger window means it remembers students\"), a worked example with a faded task, and a summary. It doesn't reuse any quiz item or give away a quiz answer.\n\nI also created `RESOURCES.md` with the two sources the lesson cites: Anthropic's context-engineering post and the memory tool docs. I added a line to `NOTES.md` recording what the lesson covered and left out: compaction, and how retrieval search finds a page.\n\nThe lesson is 10 minutes because you asked for that. Ask for a shorter or longer one if you'd like. When you're ready, ask for a quiz on it, or ask me anything about it.\n\nQuestion for you: do you want the next session to cover how retrieval search finds the right page, or compaction (what to do when the window fills mid-run)?",
+  "ttft_ms": 1991,
+  "type": "result",
+  "duration_ms": 87037,
+  "uuid": "299fb1c5-c0e8-4b0b-a406-0b66fdc380b4",
+  "ttft_stream_ms": 1287,
+  "time_to_request_ms": 75,
+  "first_content_frame_ms": 1287,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 16,
+      "outputTokens": 11530,
+      "cacheReadInputTokens": 299569,
+      "cacheCreationInputTokens": 65330,
+      "webSearchRequests": 0,
+      "costUSD": 0.40660890000000005,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 592,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 65330,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-haiku-5-5": {
+      "inputTokens": 36134,
+      "outputTokens": 2833,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 2,
+      "costUSD": 0.0250299,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 744,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 0,
+      "canonicalModel": "claude-haiku-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-11-28T00:53:14.173Z"
+}

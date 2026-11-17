@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cheat sheet: context and memory in an agent</title>
+  <style>
+    body { max-width: 44rem; margin: 0 auto; padding: 2rem 1rem; font-family: Charter, Georgia, serif; line-height: 1.5; color: #1f1d1a; background: #fffdf8; }
+    h1 { font-size: 1.6rem; } h2 { font-size: 1.1rem; margin-top: 1.5rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+    th, td { text-align: left; vertical-align: top; padding: 0.4rem 0.5rem; border-bottom: 1px solid #e4dfd4; }
+    code { font-family: ui-monospace, Menlo, monospace; font-size: 0.85em; background: #f3efe6; padding: 0.1em 0.3em; }
+    @media (prefers-color-scheme: dark) { body { background: #171614; color: #e9e5dc; } th, td { border-color: #36332e; } code { background: #23211e; } }
+  </style>
+</head>
+<body>
+<h1>Context and memory in an agent</h1>
+<p>From <a href="../lessons/0001-context-and-memory-in-an-agent.html">Lesson 1</a>.</p>
+<table>
+  <tr><th>Idea</th><th>One line</th><th>Makerspace example</th></tr>
+  <tr><td>Context window</td><td>All text the model sees in one call: system prompt, tools, messages, tool results, its reply.</td><td>Manual file on the server is invisible until a tool puts text in.</td></tr>
+  <tr><td>Conversation history</td><td>The <code>messages</code> list your program resends every call; input cost grows each step.</td><td>3 calls: 1,550 + 2,510 + 2,980 = 7,040 input tokens.</td></tr>
+  <tr><td>Context rot</td><td>Accuracy falls as the window fills with clutter; window size is a ceiling, not a target.</td><td>11 stale manual pages bury one line.</td></tr>
+  <tr><td>Compaction</td><td>Summarize old history, continue from the summary; the prompt decides what survives.</td><td>Keep goals, bookings, numbers.</td></tr>
+  <tr><td>Notes</td><td>Short durable facts saved outside the window, loaded into the next session.</td><td>"dana: laser_training done".</td></tr>
+  <tr><td>Retrieval</td><td>A search tool pulls only the needed chunks into context on demand; only as good as the search.</td><td><code>search_manual("max acrylic thickness laser cutter")</code>.</td></tr>
+</table>
+<h2>Sorting question for any fact</h2>
+<p>Needed right now? Context. Must outlive the session? Notes. Reference material to look up? Retrieval. Live data that goes stale? Fetch with a tool, do not save.</p>
+</body>
+</html>

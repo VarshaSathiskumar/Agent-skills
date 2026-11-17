@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cheat sheet: context and memory in an agent</title>
+  <style>
+    body { max-width: 42rem; margin: 0 auto; padding: 2rem 1.25rem; font-family: Charter, Georgia, serif; line-height: 1.55; background: #fffdf8; color: #1f1d1a; }
+    h1 { font-size: 1.6rem; } th, td { text-align: left; vertical-align: top; padding: 0.4rem 0.6rem; border-bottom: 1px solid #e4dfd4; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+    @media (prefers-color-scheme: dark) { body { background: #171614; color: #e9e5dc; } th, td { border-color: #36332e; } }
+  </style>
+</head>
+<body>
+  <h1>Context and memory in an agent</h1>
+  <p>From <a href="../lessons/0001-context-and-memory-in-an-agent.html">Lesson 1</a>. The model sees only its request; everything else must be put there.</p>
+  <table>
+    <thead><tr><th>Where it lives</th><th>Lasts</th><th>Use for</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td>Context (system prompt, history)</td><td>One call; the history lasts one session</td><td>Instructions, tool descriptions, this session's tool results</td><td>Booking confirmed result</td></tr>
+      <tr><td>Notes (saved, reloaded)</td><td>Across sessions</td><td>Short, durable facts about one user</td><td>Training approved on a date</td></tr>
+      <tr><td>Retrieval (search a store)</td><td>The store persists; only hits enter context</td><td>Large documents</td><td>Acrylic speed in a manual</td></tr>
+    </tbody>
+  </table>
+  <h2>Rules to remember</h2>
+  <ul>
+    <li>Each model call resends the whole history, so requests grow and cost more per step.</li>
+    <li>Bigger window is not better memory: recall degrades as it fills (context rot), and the window empties between sessions.</li>
+    <li>Sorting test: how long must it live, how big is it, how often does it change?</li>
+    <li>Retrieval quality depends on the search: a missed page never reaches the model.</li>
+  </ul>
+</body>
+</html>

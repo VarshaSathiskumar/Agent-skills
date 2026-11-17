@@ -1,0 +1,152 @@
+{
+  "duration_api_ms": 205107,
+  "stop_reason": "end_turn",
+  "session_id": "5fd9b485-7bd8-4c37-bf46-da0cd882c7a9",
+  "total_cost_usd": 0.6099426,
+  "usage": {
+    "input_tokens": 16,
+    "cache_creation_input_tokens": 70283,
+    "cache_read_input_tokens": 290581,
+    "output_tokens": 26215,
+    "output_tokens_details": {
+      "thinking_tokens": 2556
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 70283,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 747,
+        "cache_read_input_tokens": 77972,
+        "cache_creation_input_tokens": 2875,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2875
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 16,
+      "outputTokens": 26215,
+      "cacheReadInputTokens": 290581,
+      "cacheCreationInputTokens": 70283,
+      "webSearchRequests": 0,
+      "costUSD": 0.5723720999999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 2556,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 70283,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-haiku-5-5": {
+      "inputTokens": 51200,
+      "outputTokens": 4901,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 3,
+      "costUSD": 0.0375705,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 2275,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 0,
+      "canonicalModel": "claude-haiku-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 24,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "I wrote the 60-minute lesson on O3, but I think it may be short of the target length, and I couldn't count the words. I wrote about 6,000 words and added four extra practice tasks to push it up. The bench accepts 5,400 to 13,500 words for a 60-minute lesson, and I think this lands just inside it. Nothing was run or opened in a browser, so the page's checks and figures are untested.\n\n**Lesson:** `lessons/0001-context-and-memory-in-an-agent.html`\n\nIt has six concept sections. Each opens with a traced example, then the name, a \"Why this works\" box and a check question:\n1. **The context window**: what the model sees in one call.\n2. **What is kept between steps**: your program resends the history on every call. A three-call request totals 7,040 input tokens.\n3. **Context rot**: why a bigger window is not better.\n4. **Compaction**: summarizing old history to make room.\n5. **Notes**: saving short, lasting facts so they carry into the next session. This uses Python and a JSON file, with the example of a student's training status.\n6. **Retrieval**: pulling manual chunks in on demand with a small search tool.\n\nIt also has a warm-up from your agent-loop record, a worked example (sorting each fact in a request into context, notes or retrieval) and a faded practice task. It ends with a summary and the sources.\n\nThe token counts and the failure scenario in the lesson are made-up illustrations, and the lesson labels them that way. The sources are Anthropic's [context engineering post](https://anthropic.com/engineering/effective-context-engineering-for-ai-agents) and the [Claude context window docs](https://platform.claude.com/docs/en/build-with-claude/context-windows). The [contextual retrieval post](https://anthropic.com/research/contextual-retrieval) is only linked as further reading, from a search result I did not open.\n\nI also added `cheatsheets/context-and-memory.html`, created `RESOURCES.md`, and added a line to `NOTES.md`. Embedding-based search and better retrieval methods are left for a later lesson.\n\nAsk me for a quiz when you're ready, or ask me anything about the lesson.\n\nOne question: should I look for a community where you can try agent designs? `RESOURCES.md` has none yet.",
+  "ttft_ms": 1750,
+  "type": "result",
+  "duration_ms": 195158,
+  "uuid": "b5ae1beb-e513-414f-9e4d-25daf525f830",
+  "ttft_stream_ms": 1309,
+  "time_to_request_ms": 172,
+  "first_content_frame_ms": 1310,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 16,
+      "outputTokens": 26215,
+      "cacheReadInputTokens": 290581,
+      "cacheCreationInputTokens": 70283,
+      "webSearchRequests": 0,
+      "costUSD": 0.5723720999999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 2556,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 70283,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-haiku-5-5": {
+      "inputTokens": 51200,
+      "outputTokens": 4901,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 3,
+      "costUSD": 0.0375705,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 2275,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 0,
+      "canonicalModel": "claude-haiku-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-11-28T00:53:14.173Z"
+}
