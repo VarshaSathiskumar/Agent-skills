@@ -107,3 +107,21 @@ An example of a finished entry:
 - With and without: reviews/c2-review.md, Round 6 (without) and the major review's full run of c2-review (with)
 - Review: The reviewer addressed the inconsistency between the three promised storage choices and the four used in the worked example. However, some sections still introduced details beyond the objective, and my alignment rating dropped from 5 to 4, showing that the reviewer only partially achieved its purpose.
 - Kept in final: TODO
+
+### lesson-planner
+
+- Kind: subagent
+- Step added: c3-split
+- Purpose: he lesson planner creates a structured outline with one concept per section, realistic word budgets, and examples aligned with the learner's mission, addressing the short and crowded lessons in c2-review. It is a subagent because a fresh context and dedicated instructions allow it to focus on planning without simultaneously managing lesson writing.
+- With and without: reviews/c3-split.md, Round 1 (without) and Round 2 (with)
+- Review: The lesson planner creates a structured outline with one concept per section, realistic word budgets, and examples aligned with the learner's mission, addressing the short and crowded lessons in c2-review. It is a subagent because a fresh context and dedicated instructions allow it to focus on planning without simultaneously managing lesson writing.
+- Kept in final: TODO
+
+### lesson-writer
+
+- Kind: subagent
+- Step added: c3-split
+- Purpose: The lesson writer turns the planner's outline into an HTML lesson while following its section budgets, examples, and exercises. It is a subagent because a fresh context focused on the plan and lesson format improves adherence, while requiring every departure to be documented.
+- With and without: reviews/c3-split.md, Round 2 (without) and Round 3 (with)
+- Review: The writer improved plan adherence, documented reasonable departures, and increased the length ratio from 0.87 to 0.92, although the overflow example remained in S3 and S5 still had only one check. Teach facts dropped to 0.83, but I suspect the skipped second review pass contributed more to this gap than the writer itself, which is why Round 3 fixed the loop's stopping rule.
+- Kept in final: TODO

@@ -1,0 +1,43 @@
+{
+  "quiz": "0001",
+  "submission": "s1",
+  "items": [
+    {
+      "id": "q1",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right, option d. What makes it an agent is the loop: the model picks an action, the program runs it, and the result comes back for the next step."
+    },
+    {
+      "id": "q2",
+      "verdict": "wrong",
+      "misconception": "M4",
+      "feedback": "Not right: you chose (a), that the model opens the booking system and reads the entries itself. It is tempting because the answer seems to come straight from the tool call. The model only outputs text, here a request naming check_calendar with the laser cutter and tomorrow's date as arguments (c); the program runs the tool and sends the result back."
+    },
+    {
+      "id": "q3",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right, option b. The agent is repeating itself with the same failing result, so only a stopping condition like a step limit ends the loop and hands the problem back to a person."
+    },
+    {
+      "id": "q4",
+      "verdict": "wrong",
+      "misconception": "M4",
+      "feedback": "Not right: you answered 1, with the model running the three tools itself inside one call. This is the same mistake as q2: the program runs the tools, not the model. Each tool request ends a model call and each result starts a new one, so 3 tool requests + 1 final answer = 4 calls."
+    },
+    {
+      "id": "q5",
+      "verdict": "partial",
+      "misconception": null,
+      "feedback": "The 'what' is right: the program sends the result back to the model. The 'why' is missing. Try first: what does the model do with that result once it has it? The complete answer: the result goes into the model's next input and the model is called again, so it can choose its next step or write the final answer."
+    },
+    {
+      "id": "q6",
+      "verdict": "partial",
+      "misconception": "M3",
+      "feedback": "The first half is right: the model is given each tool's name and description and picks the one that fits. The claim that it remembers its earlier picks from past sessions is wrong. Try first: where would that memory have to be stored for the model to see it in a new session? The model chooses only from what is in its current input; nothing carries over unless the program supplies it."
+    }
+  ],
+  "summary": "You have the loop itself (q1), the need for a stopping condition (q3), and how the model finds a tool from its description (q6, first half). The belief to change is that the model runs the tools itself (q2, q4): the model only writes a request, and the program runs the tool and calls the model again. Next, trace 'Is the laser cutter free tomorrow?' on paper as two columns, 'model outputs' and 'program does', and mark where each model call begins and ends."
+}

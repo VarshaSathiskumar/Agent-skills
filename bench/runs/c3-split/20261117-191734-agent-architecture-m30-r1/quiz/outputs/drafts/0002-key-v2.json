@@ -1,0 +1,41 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "b",
+      "rationale": "The code picks every step and its order; the model only fills in two of them (extracting details, writing text), so it is a workflow. Using a model or tools (a, M7) does not make an agent, branching written in code (c, M9) is still the code's decision, and varied wording (d, M12) is output variation, not control over the next step.",
+      "distractors": {"a": "M7", "c": "M9", "d": "M12"}
+    },
+    {
+      "id": "q2",
+      "answer": "c",
+      "rationale": "Each time round, the model's reply decides whether another tool is called and whether to stop; the code just repeats the loop, runs what is asked and enforces the 6-step limit. Running a tool is not choosing it (a, d: M13), and the break fires only because the model returned no tool call, so stopping is also the model's choice (b: M14).",
+      "distractors": {"a": "M13", "b": "M14", "d": "M13"}
+    },
+    {
+      "id": "q3",
+      "answer": "a",
+      "rationale": "The steps and their order are known and must hold every time, so code that runs them guarantees the rule and needs only one model call. A prompt (b, M11) asks for the order but does not guarantee it, and an agent for known steps (b, c) pays for flexibility the path does not need (M8); letting a model decide whether to check (d) removes the guarantee the rule asks for.",
+      "distractors": {"b": "M11", "c": "M8", "d": "M8"}
+    },
+    {
+      "id": "q4",
+      "answer": 25,
+      "tolerance": 0.5,
+      "rationale": "The agent's worst case is the cap, 8 calls, against the workflow's fixed 3: 5 extra calls x $0.01 x 500 requests = $25. The workflow's cost is known in advance, while the agent's depends on how many steps the model takes, up to its cap. Using the best case of 2 calls or an average gives a different number; the worst case is the cap."
+    },
+    {
+      "id": "q5",
+      "answer": "d",
+      "rationale": "In the search loop the model decides which lookup comes next and when it has enough, so the model owns the control flow there; the cost therefore varies from 1 to 6 lookups, and the cap bounds it. A cap in the code does not make the cost fixed (a, M13), a loop can be capped (b, M15), and one fixed part does not turn the whole system into a workflow (c, M16).",
+      "distractors": {"a": "M13", "b": "M15", "c": "M16"}
+    },
+    {
+      "id": "q6",
+      "answer": "C",
+      "accepted": ["c", "request C", "C."],
+      "rationale": "A has all details given and B is one lookup, so the steps are known in advance and a fixed workflow fits both. C's steps depend on what comes back (which machines qualify, how many calendars to check), so the model has to choose the next step: that is the case for an agent. Choosing A or B shows the belief that anything with a tool call or a booking needs an agent (M8)."
+    }
+  ]
+}

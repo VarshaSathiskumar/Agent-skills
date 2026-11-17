@@ -8,7 +8,7 @@ argument-hint: "What would you like to learn, and for how many minutes?"
 
 You write one lesson for this learner: a single HTML page that teaches one tightly scoped thing, tied to why they are learning it, at the length they asked for.
 Every concept in it is met the same way: a small concrete example first, then the name for what the example showed, then why it works.
-Write and revise the lesson yourself, in this conversation, with the lesson reviewers listed under "The review loop" as the only other readers, and finish with a short message to the learner.
+The `lesson-planner` subagent plans the lesson and the `lesson-writer` subagent writes its first draft; you check the draft, revise it in this conversation with the lesson reviewers listed under "The review loop" as the only other readers, and finish with a short message to the learner.
 
 Lessons are all this skill does.
 A question in the chat belongs to the tutor skill, a quiz to the quiz skill, and grading to the grade skill.
@@ -43,16 +43,18 @@ Never write under `.claude/`, never change `PREFERENCES.md` or `FORMATS.md`, and
 
 ## Steps
 
-1. **Pin down the lesson:** the objective and its id, the requested length in minutes, where the learner starts, and the one tangible win they will walk away with.
+1. **Pin down the request:** the objective and its id, and the requested length in minutes.
    When no length is asked for, use the one `PREFERENCES.md` implies, or 15 minutes, declare it in `p3-minutes`, and say in your message that they can ask for a shorter or longer lesson.
-2. **Find the knowledge:** search the web for high-trust sources on exactly this objective, read the best two or three, and choose the single best one as the lesson's primary source.
-   Add the sources to `RESOURCES.md` in the format in `references/RESOURCES-FORMAT.md`.
-3. **Choose the concepts:** list the concepts the objective needs, in the order a learner must meet them, and keep only as many as the time allows at one section each: four to six for 30 minutes, two or three for 10.
-   When the topic has several techniques or alternatives, pick the one or two that matter most for the mission to teach in full, and leave the others for a single line at the end.
-4. **Pick each concept's example before writing anything:** one small, concrete case for each, of the kind `PREFERENCES.md` asks for, that can be traced step by step. A concept with no example yet is not ready to be written.
-5. **Plan to the minutes:** give each section a word budget, as `references/LESSONS.md` explains, so the whole lesson fills the requested length. Lessons tend to come out short, so plan to the full budget.
-6. **Write the first draft** to `drafts/NNNN-<slug>.html`, where `NNNN` is the number the lesson will take in `lessons/`, following `FORMATS.md` and the template, with every concept section in the four beats below.
-   Never write a draft into `lessons/`: the lesson goes there once, at the end.
+   Take `NNNN`, the next number in `lessons/`, and a short slug.
+2. **Have the lesson planned.** Start the `lesson-planner` subagent with the Agent tool, and **wait for its report** before you do anything else: do not run it in the background, and do not draft until the report is back.
+   Its task message gives only the objective's id and text, the requested minutes, and the path to write the plan to, `drafts/NNNN-plan.md`.
+3. **Read the plan** in full, and check it before you write from it: every section has one concept, an example and a check; the budget adds up to the requested minutes at 150 words a minute; every key fact is taught in a section. Fix a gap in the plan yourself, in the plan file, and say so in the record.
+   Add the plan's sources to `RESOURCES.md` in the format in `references/RESOURCES-FORMAT.md`.
+4. **Have the draft written.** Start the `lesson-writer` subagent with the Agent tool, and **wait for its report** before you do anything else: do not run it in the background, and do not touch the draft until the report is back.
+   Its task message gives only three paths: the plan, `drafts/NNNN-plan.md`; the draft to write, `drafts/NNNN-<slug>.html`; and its notes, `drafts/NNNN-writer-notes.md`.
+   Pass nothing else: the plan carries every decision, and the writer reads the learner files itself.
+5. **Read the writer's notes.** Check each departure from the plan: keep it when its reason holds, and otherwise put the planned item back in the draft. Every departure you keep goes in the record.
+6. **Check the draft against the plan** before any reviewer sees it: every planned section is there in order, every section has its planned check, every promise is worded the same everywhere, and no section carries a concept or a box the plan does not give it. Fix what fails in the draft with the Edit tool; do not write the lesson again.
 7. **Check it** against the list below and the one at the end of `references/LESSONS.md`, and fix what fails.
 8. **Run the review loop** in "The review loop" below.
 9. **Write the final lesson once** to `lessons/NNNN-<slug>.html`: the whole revised draft, written directly with the file-writing tool. No shell command is needed or allowed, so do not try to copy a file.
@@ -82,6 +84,7 @@ Keep to one concept at a time:
 
 Reviewers with a fresh context read the draft against their own checklists, and you fix what they find.
 The loop runs **at most two passes**; a pass is one round of reviews and the revision that answers it.
+It ends in exactly one of two ways, and no other: **every reviewer's verdict is "No findings"**, or **the second pass is done**.
 
 The reviewers, each a subagent with its own concern:
 
@@ -102,8 +105,11 @@ The reviewers, each a subagent with its own concern:
    **Fix what matters most first.** Three reviewers can return many findings, and every revision can bring new problems, so in each pass fix, in this order: anything that is wrong or would mislead the learner, including a habit that would hurt their project; a part of the objective that is missing or a promise the lesson does not keep; anything that breaks a section's one concept; a `high` finding from the quality reviewer; then the rest as far as they go without rewriting sections that passed. In the second pass, decline a `low` finding unless it is a one-line change, and say so in the record.
    **When two reviewers pull different ways**, keep every correct fact and fix the teaching around it: a correction the facts reviewer asked for stays in the lesson, and an overload the pedagogy reviewer found is fixed by splitting the section, moving the detail into an aside, the worked example or the summary, never by deleting the correction.
    A fix for one reviewer must not break another's check: a correction added in a pass goes in as its own short step with its own example, not as extra sentences in a section that already teaches a concept.
-4. **After the first pass**, start the reviewers again on the revised draft, exactly as in step 1, and go back to step 2.
+4. **After the first pass**, start every reviewer again on the revised draft, exactly as in step 1, and go back to step 2. This second round of reviews is required whenever any reviewer raised any finding in the first pass, whether you fixed that finding or declined it.
    **After the second pass**, the loop ends at the cap: do not start a third round of reviews.
+
+**What does not end the loop.** Your own judgment that the revision is good enough does not end it. Neither does having fixed every high-priority finding, having declined the rest, a finding you think was wrong, or the time or tokens spent so far. Only a "No findings" verdict from every reviewer in the same round ends the loop before the cap.
+Before you write the final lesson, check the count: if any reviewer raised a finding in the first round and you have started only one round of reviews, you are not done; start the second round now.
 
 ### The record
 
@@ -113,7 +119,9 @@ Write `review-records/NNNN-lesson.md` after the final lesson, in this shape:
 # Lesson NNNN: review record
 
 - Objective: <id>, <text>
-- Passes: <1 or 2>, ended <with no findings | at the cap of two passes>
+- Plan: drafts/NNNN-plan.md, <n> sections, <n> words budgeted; changes you made to the plan: <none, or what and why>
+- Writer: drafts/NNNN-writer-notes.md, <n> departures from the plan, <n> kept; items you put back after the writer: <none, or which>
+- Passes: <1 or 2>, ended <with no findings | at the cap of two passes>; review rounds started: <1 or 2>; findings in round 1: <n>, in round 2: <n, or "not run">
 - Draft: drafts/NNNN-<slug>.html
 
 ## Pass 1

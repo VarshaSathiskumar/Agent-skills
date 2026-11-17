@@ -1,0 +1,68 @@
+{
+  "id": "0002",
+  "objective": "O4",
+  "title": "Workflows and agents: who owns the control flow?",
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "A student's message goes to a model with the prompt \"Reply with one word: manual or booking.\" Then Python runs:\n\nif label == \"booking\":\n    book_flow(message)\nelse:\n    manual_flow(message)\n\nwhere each flow is a list of steps written by your team. Which description fits best?",
+      "options": [
+        {"id": "a", "text": "Agent: the model's output decides which steps the system runs next"},
+        {"id": "b", "text": "Workflow: the model picks a label, but every path was written in code"},
+        {"id": "c", "text": "Agent: the system branches, so it adapts to each request it gets"},
+        {"id": "d", "text": "Workflow: it calls the model once, and agents always call it several times"}
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "Here is the core of an assistant:\n\nmessages = [question]\nfor step in range(6):\n    reply = model(messages, tools)\n    if reply.tool_call is None:\n        break\n    messages.append(run_tool(reply.tool_call))\n\nIn one run the model requests check_calendar for Friday, then check_calendar for Saturday, then writes its answer. Who decided what in this run?",
+      "options": [
+        {"id": "a", "text": "The code decided both calendar checks, because it executes run_tool each time"},
+        {"id": "b", "text": "The model chose the checks, but the code chose when to stop, via the break"},
+        {"id": "c", "text": "The model chose both checks and when to stop; the code only set the 6-step limit"},
+        {"id": "d", "text": "The model chose Friday's check; the code chose Saturday's after seeing the result"}
+      ]
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "Students phrase booking requests in dozens of ways (\"grab me the laser Thursday\", \"any slot on the cutter?\"), but handling has always been the same three steps in one order: training record, calendar, book. A skipped training check once let an untrained student book. The model budget is small. Which design is best for this path?",
+      "options": [
+        {"id": "a", "text": "A model call turns the message into fields; code then runs the three steps in order"},
+        {"id": "b", "text": "An agent with the three tools, since varied phrasing needs the model to pick the steps"},
+        {"id": "c", "text": "An agent with the three tools and a system prompt that lists the required order"},
+        {"id": "d", "text": "Code runs the training check, then an agent handles the calendar and the booking"}
+      ]
+    },
+    {
+      "id": "q4",
+      "type": "numeric",
+      "objective": "O4",
+      "stem": "Every model call costs $0.01. A fixed workflow always makes 3 model calls per request. An agent version makes between 2 and 8 model calls per request, and its loop has a hard cap of 8. Over 500 requests, how much more can the agent cost than the workflow in the worst case, in US dollars?",
+      "unit": "USD"
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "In the manual-search part of the assistant, a model call chooses each next page lookup and when to stop, and the program cuts it off at 6 lookups. Every lookup costs the same. Which statement about the cost of one question is right?",
+      "options": [
+        {"id": "a", "text": "It is always 6 lookups' worth, because the loop runs until it reaches the cap"},
+        {"id": "b", "text": "It has no upper limit, because a loop driven by a model cannot be capped"},
+        {"id": "c", "text": "It is the same for every question, because the code decides how many lookups run"},
+        {"id": "d", "text": "It varies from 1 to 6 lookups' worth by question; the cap bounds the worst case"}
+      ]
+    },
+    {
+      "id": "q6",
+      "type": "short",
+      "objective": "O4",
+      "stem": "Three requests reach the assistant. A: \"Book the laser cutter tomorrow at 3 pm, and tell me what training it needs.\" B: \"Book me whichever printer can fit a 300 mm part this Friday.\" C: \"What are the PLA fan settings on the Prusa, and is it free on Friday?\" Only one is poorly served by a fixed workflow. Which one? Answer with the letter."
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "b",
+      "rationale": "This is routing, and it is a workflow: your team wrote both paths and the code runs the chosen one, so the model only picks a label from a list the code defines. A model call that influences which branch runs (a, M12) is not the same as the model owning the flow, branching written in code (c, M9) is still the code's decision, and the number of model calls (d, M10) is not the test.",
+      "distractors": {"a": "M12", "c": "M9", "d": "M10"}
+    },
+    {
+      "id": "q2",
+      "answer": "c",
+      "rationale": "Each time round, the model's reply decides whether another tool is called and whether to stop; the code repeats the loop, runs what is asked and enforces the 6-step limit. Running a tool is not choosing it (a, d: M13), and the break fires only because the model returned no tool call, so stopping is also the model's choice (b: M14).",
+      "distractors": {"a": "M13", "b": "M14", "d": "M13"}
+    },
+    {
+      "id": "q3",
+      "answer": "a",
+      "rationale": "The model is used where phrasing varies (reading the message), and code fixes the steps and their order, so the training check can never be skipped and the cost is small. Varied wording does not mean varied steps (b, M8), a prompt asks for the order but does not guarantee it (c, M11), and handing the calendar and booking to an agent (d, M8) pays for flexibility the path does not need.",
+      "distractors": {"b": "M8", "c": "M11", "d": "M8"}
+    },
+    {
+      "id": "q4",
+      "answer": 25,
+      "tolerance": 0.5,
+      "rationale": "The agent's worst case is the cap, 8 calls, against the workflow's fixed 3: 5 extra calls x $0.01 x 500 requests = $25. The workflow's cost is known in advance, while the agent's depends on how many steps the model takes, up to its cap. Using the best case of 2 calls or an average gives a different number; the worst case is the cap."
+    },
+    {
+      "id": "q5",
+      "answer": "d",
+      "rationale": "Because the model decides when it has enough, some questions end after 1 lookup and others use all 6, so cost varies per question and the cap only bounds the worst case. Assuming the loop always runs to the cap (a, M17) or that code fixes the count (c, M13) misses that the model chooses when to stop, and a loop can be capped (b, M15).",
+      "distractors": {"a": "M17", "b": "M15", "c": "M13"}
+    },
+    {
+      "id": "q6",
+      "answer": "B",
+      "accepted": ["b", "request B", "B.", "the second", "the second one"],
+      "rationale": "B sounds simple but its steps depend on what comes back: which printers fit 300 mm comes from the manuals, and how many calendars to check follows from that, so the model has to choose the next step. A and C sound like more work but have known steps in a known order (training lookup, calendar, book; fan settings lookup, calendar), which a workflow handles. Choosing A or C because they look bigger shows the belief that more tasks means an agent (M8)."
+    }
+  ]
+}

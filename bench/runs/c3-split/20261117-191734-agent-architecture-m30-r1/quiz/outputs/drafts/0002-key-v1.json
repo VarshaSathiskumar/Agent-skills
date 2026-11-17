@@ -1,0 +1,41 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "b",
+      "rationale": "The code decides every step and its order, and the model only fills in two of them (extracting details, writing text), so it is a workflow. Using a model or tools (a) does not make a system an agent, branching written in code (c) is still the code's decision, and the number of model calls (d) is not the test: who chooses the next step is.",
+      "distractors": {"a": "M7", "c": "M9", "d": "M10"}
+    },
+    {
+      "id": "q2",
+      "answer": "the model",
+      "accepted": ["model", "The model", "the LLM", "llm", "the model decided"],
+      "rationale": "The code only repeats the loop and caps it at 6 steps; whether another tool is called is the model's choice each time, and that is what makes this an agent. Answering 'the code' because the code runs the loop and the tool confuses running a step with choosing it (M9)."
+    },
+    {
+      "id": "q3",
+      "answer": "d",
+      "rationale": "The order is known and must hold every time, so code that runs the steps guarantees it and uses the fewest model calls. A prompt (a) only asks the model to follow the order, a stronger model (b) costs more without a guarantee, and skipping steps (c) is the failure to prevent; the first three show the belief that an agent is the better choice everywhere (M8), and (a) also that a prompt enforces order (M11).",
+      "distractors": {"a": "M11", "b": "M8", "c": "M8"}
+    },
+    {
+      "id": "q4",
+      "answer": 25,
+      "tolerance": 0.5,
+      "rationale": "The agent's worst case is the cap, 8 calls, against the workflow's fixed 3: 5 extra calls x $0.01 x 500 requests = $25. The workflow's cost is exactly known in advance, while the agent's depends on how many steps the model takes, up to its cap. Using 2 calls (its best case) or the average gives a different number; the worst case is the cap."
+    },
+    {
+      "id": "q5",
+      "answer": "a",
+      "rationale": "Routing is still a workflow: you wrote both paths, and the model only chooses a branch from a list the code defines. An agent is a system where the model decides the next step itself, including which tool and when to stop. Choosing a branch (b, d) is not owning the flow, and control flow is not split in half (c).",
+      "distractors": {"b": "M9", "d": "M7"}
+    },
+    {
+      "id": "q6",
+      "answer": "agent",
+      "accepted": ["an agent", "Agent", "use an agent"],
+      "rationale": "The steps cannot be written in advance because each lookup depends on what the manuals return, so the model has to choose the next step, which is the case for an agent (with a step cap for cost). Answering 'workflow' shows trying to script a path the code cannot know."
+    }
+  ]
+}

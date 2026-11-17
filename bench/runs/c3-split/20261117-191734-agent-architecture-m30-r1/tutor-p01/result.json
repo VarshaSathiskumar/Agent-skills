@@ -1,0 +1,120 @@
+{
+  "duration_api_ms": 5874,
+  "stop_reason": "end_turn",
+  "session_id": "1f9f936b-9373-4209-8620-3bd412807111",
+  "total_cost_usd": 0.0667752,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 15588,
+    "cache_read_input_tokens": 56487,
+    "output_tokens": 618,
+    "output_tokens_details": {
+      "thinking_tokens": 60
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 10643,
+      "ephemeral_5m_input_tokens": 4945
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 249,
+        "cache_read_input_tokens": 24716,
+        "cache_creation_input_tokens": 1436,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 1436,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 618,
+      "cacheReadInputTokens": 56487,
+      "cacheCreationInputTokens": 15588,
+      "webSearchRequests": 0,
+      "costUSD": 0.0667752,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 60,
+      "cacheCreationEphemeral5mInputTokens": 4945,
+      "cacheCreationEphemeral1hInputTokens": 10643,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 5,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "I don't give or confirm quiz answers before grading, but I can give you something to reason with.\n\nTake a different agent: a support bot that calls `restart_service(\"api\")`, gets \"still unhealthy\", and calls `restart_service(\"api\")` again, over and over. Everything it has tried is sitting in its context, so it can see the repeats.\n\nThink about each kind of change you could make to that bot, one at a time: a bigger context window, a cap on steps, a \"try harder\" instruction, or just waiting. In that situation, what would each one actually do on step 41? Which of them would still work if the model keeps choosing the same action every time?\n\nTell me what you'd expect for each and which you'd pick. I'll pick it up from there. Once the quiz is graded, we can go through q3 together.",
+  "ttft_ms": 978,
+  "type": "result",
+  "duration_ms": 5976,
+  "uuid": "a991c024-0841-4738-826b-416ed42f0518",
+  "ttft_stream_ms": 493,
+  "time_to_request_ms": 70,
+  "first_content_frame_ms": 493,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 618,
+      "cacheReadInputTokens": 56487,
+      "cacheCreationInputTokens": 15588,
+      "webSearchRequests": 0,
+      "costUSD": 0.0667752,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 60,
+      "cacheCreationEphemeral5mInputTokens": 4945,
+      "cacheCreationEphemeral1hInputTokens": 10643,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-12-15T07:58:14.281Z"
+}
