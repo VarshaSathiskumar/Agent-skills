@@ -60,50 +60,50 @@ An example of a finished entry:
 - Step added: c2-review
 - Purpose: The quiz reviewer checks for obvious answers, weak distractors, and questions that reveal the correct response. As a separate subagent, it reviews the draft with fresh context, making it more likely to catch problems the quiz writer overlooked.
 - With and without: reviews/c2-review.md, Round 1 (without) and Round 2 (with)
-- Review: TODO
+- Review: The quiz reviewer improved q1 by replacing definition recall with code-based reasoning, but q5 still gave away clues and q6 remained ambiguous. The improvement partly justified the increased cost from 127k to 552k tokens and 0.8 to 4.0 minutes.
 - Kept in final: TODO
 
 ### grade-reviewer
 
 - Kind: subagent
 - Step added: c2-review
-- Purpose: TODO
+- Purpose: The grade reviewer checks whether feedback accurately identifies misconceptions and provides guiding questions that help learners recognize and correct their mistakes independently before seeing the full answer. It is a subagent because fresh context enables an independent evaluation without being influenced by the grade writer's reasoning.
 - With and without: reviews/c2-review.md, Round 2 (without) and Round 3 (with)
-- Review: TODO
+- Review: The reviewer provided little improvement over the original grade skill. All s1 findings were declined, s2 only improved the summary, and the "Try first:" issue remained unresolved, making the increase from 245k to 625k tokens and 0.9 to 2.5 minutes unjustified.
 - Kept in final: TODO
 
 ### lesson-facts-reviewer
 
 - Kind: subagent
 - Step added: c2-review
-- Purpose: TODO
+- Purpose: The lesson facts reviewer checks technical accuracy and missing facts, addressing the incomplete coverage in c1-skills, where teach facts scored 0.83. It is a subagent because it independently verifies claims against web sources without being influenced by the lesson writer's reasoning.
 - With and without: reviews/c2-review.md, Round 3 (without) and Round 4 (with)
-- Review: TODO
+- Review: The reviewer filled the missing technical gaps, including per-call input billing and prompt caching, contributing to teach facts reaching 1.00 in the full run. However, the additional explanations made some sections denser, creating a trade-off between technical completeness and readability.
 - Kept in final: TODO
 
 ### lesson-pedagogy-reviewer
 
 - Kind: subagent
 - Step added: c2-review
-- Purpose: TODO
+- Purpose: The lesson pedagogy reviewer checks whether concepts are introduced one at a time, explanations are easy to follow, and sections are not overloaded. It is a subagent because an independent reading can identify teaching problems that the lesson writer may overlook.
 - With and without: reviews/c2-review.md, Round 4 (without) and Round 5 (with)
-- Review: TODO
+- Review: The reviewer improved the structure of "What is kept between steps" by separating concepts, but the retrieval section's closing note remained crowded. The runtime increased from 6.8 to 9.9 minutes, making the improvement useful but incomplete.
 - Kept in final: TODO
 
 ### lesson-quality-reviewer
 
 - Kind: subagent
 - Step added: c2-review
-- Purpose: TODO
+- Purpose: The lesson quality reviewer evaluates the finished lesson as a whole, checking its length, layout, figures, and references. It is a subagent because a fresh reading helps identify visual inconsistencies and usability issues that the lesson writer may overlook.
 - With and without: reviews/c2-review.md, Round 5 (without) and Round 6 (with)
-- Review: TODO
+- Review: The reviewer improved the figures, corrected the section timings to 30 minutes, fixed an incorrect answer panel reference, and made the "Go further" references more useful. However, some content remained repetitive, and the runtime increased from 9.9 to 11.1 minutes.
 - Kept in final: TODO
 
 ### lesson-alignment-reviewer
 
 - Kind: subagent
 - Step added: c2-review
-- Purpose: TODO
+- Purpose: The lesson alignment reviewer checks whether the lesson covers its objective, delivers what it promises, and supports the learner's mission using MISSION.md. It is a subagent because an independent reading can identify inconsistencies and scope drift that the lesson writer may overlook.
 - With and without: reviews/c2-review.md, Round 6 (without) and the major review's full run of c2-review (with)
-- Review: TODO
+- Review: The reviewer addressed the inconsistency between the three promised storage choices and the four used in the worked example. However, some sections still introduced details beyond the objective, and my alignment rating dropped from 5 to 4, showing that the reviewer only partially achieved its purpose.
 - Kept in final: TODO
