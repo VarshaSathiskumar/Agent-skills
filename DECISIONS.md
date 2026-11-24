@@ -26,7 +26,7 @@ They are about what you chose and what you saw, and the Builder and the Guide ne
 Of everything you changed while building `c1-skills`, which one change to a skill made the biggest difference, and how do you know?
 Name the round, and give the evidence: a rating that moved, a check in `REPORT.md` that moved, or a quote from an output before and after.
 
-TODO: your answer to prompt 1.
+See EVAL.md, section 2. The tutor skill made the biggest difference, improving behavior met from 0.56 to 0.83 while preventing hints from revealing quiz answers.
 
 ---
 
@@ -36,7 +36,7 @@ In `c2-review` you put reviewers on teach, quiz and grade.
 Which loop earned its cost and which did not?
 For each of the two, give what it cost in tokens against `c1-skills` and one thing its reviewer caught, or say that it caught nothing.
 
-TODO: your answer to prompt 2.
+See EVAL.md, section 3. The teach review loop earned its cost of 3.87M tokens compared with 455k in `c1-skills`, because it improved factual coverage. The grade review loop did not justify its 625k tokens compared with 245k, since the grading checks were already accurate and showed no meaningful improvement.
 
 ---
 
@@ -46,7 +46,7 @@ TODO: your answer to prompt 2.
 Did the lesson get better by your own ratings, and what did the split cost against `c2-review`?
 Say in one sentence whether you would pay that price again.
 
-TODO: your answer to prompt 3.
+The split improved the lesson's pedagogy and alignment from 4 to 5, while technical correctness and overall quality stayed at 4. Compared with `c2-review`, tokens dropped from 3.87M to 2.78M, possibly because the subagents handled more focused tasks, while runtime increased slightly from 12.1 to 12.7 minutes and list-price cost stayed nearly the same ($3.10 vs. $3.06). I would keep the split because it produced a better learning experience at roughly the same cost, although one run per configuration is not enough to confirm the improvement is consistent.
 
 ---
 
