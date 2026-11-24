@@ -61,7 +61,7 @@ The review loop stopped after one pass because "the revision answered every high
 
 ## Major review
 
-**Run:** bench/runs/c3-split/TODO
+**Run:** bench/runs/c3-split/20261117-191734-agent-architecture-m30-r1
 
 **Live tries:**
 
@@ -71,27 +71,27 @@ TODO
 
 #### Technical correctness and facts
 
-Rating: TODO
+Rating: 4
 
-TODO
+The lesson covers all five concepts accurately, but the explanation that context overflow always returns a 400 error is too general and depends on the provider.
 
 #### Pedagogy
 
-Rating: TODO
+Rating: 5
 
-TODO
+I liked the step-by-step Python traces, token calculations, and practical examples. The compaction example showing how a booking detail gets lost made the trade-off easy to understand.
 
 #### Alignment with the learning goal
 
-Rating: TODO
+Rating: 5
 
-TODO
+The lesson directly supports O3 and my makerspace assistant project, especially through examples of managing context, remembering student preferences, and retrieving manual pages.
 
 #### Overall quality
 
-Rating: TODO
+Rating: 4
 
-TODO
+This lesson feels more complete and easier to follow, with teach facts improving to 1.00 and the length ratio reaching 0.90. A few explanations could be more precise, but overall it is a strong improvement.
 
 ### Compared with the previous step
 
@@ -99,4 +99,4 @@ TODO
 
 ### What the next step should fix
 
-TODO
+The planner and writer seem to have improved the lesson's structure and depth, especially with clearer examples and step-by-step explanations, although I still need to compare their individual costs to know if both are worth keeping. The review loop helped catch issues, but finding 29 problems in pass 2 suggests that stopping after two passes may leave too many unresolved issues. I would keep the two-pass cap for now to control cost, but prioritize fixing critical problems before finalizing. In "When it fills," I would also clarify that context overflow behavior depends on the provider rather than always resulting in a 400 error.
