@@ -14,17 +14,33 @@ Keep every heading as it is, because `p3 check` reads them, and add a round by c
 
 ### Round 1 (optional)
 
-**Run:** TODO
+ **Run:** bench/runs/_live/20261125-011738-agent-architecture-m30-r1, grade-s1 with the guard on
 
 **My thoughts:**
 
-TODO
+The guard worked as intended, blocking five tool calls (three Reads and two Greps), but grading accuracy remained at 1.00 even without access to the answer key. The feedback was still clear and specific, and the reviewer improved q4, q6, and the summary without changing any verdicts. However, the reviewer repeatedly requested misconception IDs it could not verify and suggested changes that conflicted with the grade skill. I would keep the guard but allow a dedicated grader subagent to read the answer key, since correctly grading these six questions without it does not guarantee consistent grading on unfamiliar topics.
 
 **What changed:**
 
-- Kind: TODO
-- Files: TODO
-- Why: TODO
+- Kind: new subagent
+- Files: tutor/.claude/agents/grader.md, tutor/.claude/skills/grade/SKILL.md
+- Why: The thoughts ask to keep the guard but let a dedicated grader read the key, so a new `grader` subagent, the one name the guard allows, now decides every verdict, misconception and piece of feedback from the key, and the grade skill starts it and the reviewer in turn instead of grading in the main conversation.
+
+
+### Round 2
+
+**Run:** bench/runs/_live/20261125-012806-agent-architecture-m30-r1, quiz, grade-s1 and tutor-p01 with the grader
+
+**My thoughts:**
+
+ The grader subagent worked well, maintaining a verdict agreement of 1.00 while allowing grading to use the answer key. A few Read and Grep calls were still blocked during quiz generation and grading, but they did not affect the results. For my fifth skill, I want to build a reusable Review Session skill that uses past quiz mistakes, grading feedback, and misconceptions to generate short, targeted practice without repeating previous questions. Since the bench only runs the four existing skills, I will test this new skill manually in a live learning session.
+ 
+**What changed:**
+
+- Kind: new skill
+- Files: tutor/.claude/skills/review-session/SKILL.md, tutor/CLAUDE.md
+- Why: The thoughts ask for a fifth skill that turns past quiz mistakes, grading feedback and misconceptions into short targeted practice without repeating earlier questions, so a new review-session skill picks one or two open mistakes from grades/ and learning-records/, asks three to five new questions one at a time with feedback, and logs them in practice/ so later sessions do not repeat them; tutor/CLAUDE.md routes review requests to it.
+
 
 ## Major review
 

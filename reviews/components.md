@@ -125,3 +125,21 @@ An example of a finished entry:
 - With and without: reviews/c3-split.md, Round 2 (without) and Round 3 (with)
 - Review: The writer improved plan adherence, documented reasonable departures, and increased the length ratio from 0.87 to 0.92, although the overflow example remained in S3 and S5 still had only one check. Teach facts dropped to 0.83, but I suspect the skipped second review pass contributed more to this gap than the writer itself, which is why Round 3 fixed the loop's stopping rule.
 - Kept in final: TODO
+
+### grader
+
+- Kind: subagent
+- Step added: final
+- Purpose: TODO
+- With and without: reviews/final.md, Round 1 (without) and Round 2 (with)
+- Review: TODO
+- Kept in final: TODO
+
+### review-session
+
+- Kind: skill
+- Step added: final
+- Purpose: TODO
+- With and without: reviews/final.md, Round 2 (without) and Round 3 (with)
+- Review: TODO
+- Kept in final: TODO
