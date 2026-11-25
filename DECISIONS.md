@@ -64,7 +64,7 @@ TODO: your answer to prompt 4.
 Which component did you remove, and what did you predict would happen to quality and to cost before you ran it?
 Then the result, with the numbers of the ablation's run beside `final`'s, and what one run lets you claim and what it does not.
 
-TODO: your answer to prompt 5.
+I chose to remove the grade review loop because I am least convinced that its additional cost improves grading quality. I predict that verdict agreement will remain close to 1.00, since the grader already produces accurate verdicts, but token usage, runtime, and cost should decrease without repeated review passes. If grading quality stays the same, it would suggest that the review loop adds more overhead than value.
 
 ---
 
