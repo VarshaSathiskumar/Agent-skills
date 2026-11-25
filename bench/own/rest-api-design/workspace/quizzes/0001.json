@@ -1,0 +1,42 @@
+
+{
+  "id": "0001",
+  "objective": "O1",
+  "title": "REST API Resources and URI Design",
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "objective": "O1",
+      "stem": "You are designing an API for an online bookstore. Which URI best identifies a specific book with ID 42?",
+      "options": [
+        {
+          "id": "a",
+          "text": "/post-or-put-book/42"
+        },
+        {
+          "id": "b",
+          "text": "/books/42"
+        },
+        {
+          "id": "c",
+          "text": "/200/books/42"
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "numeric",
+      "objective": "O1",
+      "stem": "Consider the URI /users/15/orders/72. How many non-empty path segments does this URI contain?",
+      "unit": "segments"
+    },
+    {
+      "id": "q3",
+      "type": "short",
+      "objective": "O1",
+      "stem": "An online store needs a URI to identify the collection of orders belonging to user 15. Write an appropriate REST API URI and briefly explain your choice."
+    }
+  ]
+}
+

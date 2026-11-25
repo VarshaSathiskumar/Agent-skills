@@ -1,0 +1,30 @@
+
+{
+  "id": "0001",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "b",
+      "rationale": "/books/42 is correct because it identifies a specific book resource using the collection name and the book's unique ID.",
+      "distractors": {
+        "a": "M1",
+        "c": "M2"
+      }
+    },
+    {
+      "id": "q2",
+      "answer": 4,
+      "tolerance": 0.5,
+      "rationale": "The URI /users/15/orders/72 contains four non-empty path segments: users, 15, orders, and 72."
+    },
+    {
+      "id": "q3",
+      "answer": "/users/15/orders identifies the collection of orders belonging to user 15.",
+      "accepted": [
+        "/users/15/orders",
+        "Use /users/15/orders because it represents the orders collection nested under user 15."
+      ],
+      "rationale": "A correct answer should identify the orders collection for user 15 using a resource-oriented URI and explain that the path represents the relationship between the user and their orders."
+    }
+  ]
+}

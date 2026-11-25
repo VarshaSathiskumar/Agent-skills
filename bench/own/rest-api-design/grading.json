@@ -1,0 +1,26 @@
+
+{
+  "quiz": "0001",
+  "submissions": {
+    "s1": [
+      {
+        "id": "q1",
+        "verdict": "wrong",
+        "misconception": null,
+        "why": "The learner chose /post-or-put-book/42, which describes an operation rather than identifying the book as a resource. The correct answer is /books/42. This is a URI design error, not enough evidence to conclude the learner believes POST and PUT are interchangeable (M1)."
+      },
+      {
+        "id": "q2",
+        "verdict": "correct",
+        "misconception": null,
+        "why": "The learner answered 4, correctly counting the four non-empty path segments in /users/15/orders/72: users, 15, orders, and 72."
+      },
+      {
+        "id": "q3",
+        "verdict": "partial",
+        "misconception": null,
+        "why": "The learner correctly used /orders to represent an orders collection, but the question asks specifically for orders belonging to user 15. The answer is missing the user relationship, which could be represented by /users/15/orders."
+      }
+    ]
+  }
+}

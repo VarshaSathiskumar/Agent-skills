@@ -1,0 +1,18 @@
+{
+  "quiz": "0001",
+  "learner": "Alex",
+  "answers": [
+    {
+      "id": "q1",
+      "response": "a"
+    },
+    {
+      "id": "q2",
+      "response": "4"
+    },
+    {
+      "id": "q3",
+      "response": "I would use /orders because it represents the collection of orders in the application."
+    }
+  ]
+}

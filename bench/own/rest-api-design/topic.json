@@ -1,0 +1,57 @@
+{
+  "id": "rest-api-design",
+  "title": "REST API Design Fundamentals",
+  "learner_summary": "A junior software engineering student who has built small web applications using Python and has basic experience sending HTTP requests and working with JSON. They understand how frontend and backend applications communicate but have limited experience designing REST APIs, choosing appropriate HTTP methods and status codes, or structuring consistent error responses. They want to learn how to design clear, reliable APIs for real-world applications.",
+  "minutes": 30,
+  "teach_objective": "O2",
+  "quiz_objective": "O3",
+  "graded_quiz": "0001",
+  "submissions": [
+    "s1"
+  ],
+  
+"objectives": [
+  {
+    "id": "O1",
+    "text": "Identify REST API resources and design clear, consistent URIs to access individual resources and collections."
+  },
+  {
+    "id": "O2",
+    "text": "Choose appropriate HTTP methods and status codes for common REST API operations, explaining how each method behaves."
+  },
+  {
+    "id": "O3",
+    "text": "Design consistent API error responses and explain how clients can use status codes and error details to handle failed requests."
+  }
+],
+
+"facts": [
+  {
+    "id": "F2.1",
+    "objective": "O2",
+    "text": "The GET method retrieves a resource and is intended to be safe, meaning it should not cause a requested change to server state."
+  },
+  {
+    "id": "F2.2",
+    "objective": "O2",
+    "text": "The PUT method is idempotent, meaning repeating the same request has the same intended effect on server state as sending it once."
+  },
+  {
+    "id": "F2.3",
+    "objective": "O2",
+    "text": "HTTP status code 201 Created indicates that a request succeeded and resulted in the creation of one or more resources."
+  }
+],
+"misconceptions": [
+  {
+    "id": "M1",
+    "text": "POST and PUT are interchangeable because both send data to the server.",
+    "correction": "POST submits data for processing, often to create a resource, while PUT creates or replaces the state of a resource at a target URI. PUT is idempotent, while POST is not guaranteed to be."
+  },
+  {
+    "id": "M2",
+    "text": "If an API request reaches the server successfully, the response should always return HTTP 200.",
+    "correction": "HTTP status codes describe the outcome of a request, not just whether it reached the server. For example, 201 indicates resource creation, 400 indicates a bad request, and 404 indicates a resource was not found."
+  }
+]
+}
