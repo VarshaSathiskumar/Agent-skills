@@ -1,0 +1,41 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "b",
+      "rationale": "It is a workflow: the code, not the model, decides the order, and the model only fills in two steps. Using a model or tools does not make something an agent; who owns the control flow does. Picking a or c shows the belief that model calls, tools or acting for the user make an agent; d wrongly says workflows cannot contain model or tool calls.",
+      "distractors": {"a": "M21", "c": "M21", "d": "M23"}
+    },
+    {
+      "id": "q2",
+      "answer": "the model",
+      "accepted": ["model", "the LLM", "the language model", "llm"],
+      "rationale": "The model decides whether to call a tool and which one; the code only runs what is asked and enforces a 10-step cap. A step cap is a safeguard, not control of the path, so this is an agent loop."
+    },
+    {
+      "id": "q3",
+      "answer": "d",
+      "rationale": "The steps are known in advance, so fixed code with one model call per reminder is cheapest, most predictable and easiest to debug. An agent (a, c) pays for decisions nobody needs and adds failure paths; several agents (b) add even more calls and coordination.",
+      "distractors": {"a": "M22", "b": "M22", "c": "M22"}
+    },
+    {
+      "id": "q4",
+      "answer": 60,
+      "tolerance": 0.5,
+      "rationale": "Agent: 5 x $0.002 x 10,000 = $100; workflow: 2 x $0.002 x 10,000 = $40; the difference is $60 per month. An answer of 100 or 40 gives one design's cost, not the difference, and treating the two designs as equal in cost shows M24."
+    },
+    {
+      "id": "q5",
+      "answer": "c",
+      "rationale": "Only c has steps that depend on what earlier lookups return: how many calendars to check and how to adjust cannot be listed in advance, so the model should choose them. The others have fixed or single steps that code can run (a, d) or one retrieval (b); a and d show M21, b shows M22.",
+      "distractors": {"a": "M21", "b": "M22", "d": "M21"}
+    },
+    {
+      "id": "q6",
+      "answer": "an agent",
+      "accepted": ["agent", "the agent", "an agent loop"],
+      "rationale": "An agent lets the model read the result and choose the next action, such as checking another machine. A workflow only does what its code spells out, so it needs new code for the maintenance case; that flexibility is what an agent costs extra model calls for."
+    }
+  ]
+}

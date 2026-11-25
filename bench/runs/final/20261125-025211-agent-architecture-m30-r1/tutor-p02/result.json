@@ -1,0 +1,120 @@
+{
+  "duration_api_ms": 9534,
+  "stop_reason": "end_turn",
+  "session_id": "aa7c4954-9380-4d31-b6e4-86b5d52ccc1d",
+  "total_cost_usd": 0.0883736,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 18158,
+    "cache_read_input_tokens": 61596,
+    "output_tokens": 957,
+    "output_tokens_details": {
+      "thinking_tokens": 265
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 18158,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 345,
+        "cache_read_input_tokens": 27683,
+        "cache_creation_input_tokens": 1481,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1481
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 957,
+      "cacheReadInputTokens": 61596,
+      "cacheCreationInputTokens": 18158,
+      "webSearchRequests": 0,
+      "costUSD": 0.0883736,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 265,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 18158,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 6,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "I don't give or confirm quiz answers before they're graded, so I can't say whether it's (a). If your TA really did clear it, check with your teacher directly, since I can't verify that.\n\nHere's a similar case to work through instead. Suppose a different assistant has a tool `get_order_status(order_id)`, and a customer types \"Where's order 4821?\"\n\nWalk me through what happens, step by step, from the customer's message to the moment the order status is known. Say who does each step: the model, or the program wrapped around it. What does the model actually produce at the moment it decides to use the tool?\n\nThen take that picture back to the quiz question and tell me what you think. I'll go through q2 with you properly once the quiz is graded.",
+  "ttft_ms": 1693,
+  "type": "result",
+  "duration_ms": 9764,
+  "uuid": "f0bbe966-7385-4e79-bb32-3bc299c2d6bf",
+  "ttft_stream_ms": 1100,
+  "time_to_request_ms": 128,
+  "first_content_frame_ms": 1100,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 957,
+      "cacheReadInputTokens": 61596,
+      "cacheCreationInputTokens": 18158,
+      "webSearchRequests": 0,
+      "costUSD": 0.0883736,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 265,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 18158,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-12-15T20:43:24.128Z"
+}

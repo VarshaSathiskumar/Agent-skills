@@ -1,0 +1,41 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "a",
+      "rationale": "Handler 1 is a workflow: the model only labels the message and the code owns the path. Handler 2 is an agent: the model picks each next action, and the code just carries it out. Choosing b shows M21 (using a model and tools makes it an agent), c shows M27 (any model decision means an agent, even when it only routes), and d shows M28 (whoever runs the tools owns the control flow; in both handlers the code runs them).",
+      "distractors": {"b": "M21", "c": "M27", "d": "M28"}
+    },
+    {
+      "id": "q2",
+      "answer": "the model; no",
+      "accepted": ["the model, and no", "the model, no", "model, no", "the model decides, the cap does not change that", "the model; the cap only limits the loop", "the model, the cap only limits how long it runs", "the model, no it does not", "model; no"],
+      "rationale": "The model decides after every result whether to call a tool and which one; the cap only bounds how long the loop runs. A limit on the loop is not control over the path. Saying the code, or that the cap changes it, shows M24 (a step limit or guardrail means the code owns the flow)."
+    },
+    {
+      "id": "q3",
+      "answer": "d",
+      "rationale": "The steps are known, so code selects students by date and the model is used once per reminder, where language is needed. Option b pays a model call per student for a filter that code does for free (M29, using the model for every decision), while a and c pay for an agent's open-ended loop that nobody needs (M22, an agent is the better default).",
+      "distractors": {"a": "M22", "b": "M29", "c": "M22"}
+    },
+    {
+      "id": "q4",
+      "answer": 60,
+      "tolerance": 0.5,
+      "rationale": "Agent: 5 x $0.002 x 10,000 = $100; workflow: 2 x $0.002 x 10,000 = $40; the difference is $60 per month. An answer of 100 or 40 gives one design's cost rather than the difference."
+    },
+    {
+      "id": "q5",
+      "answer": "b",
+      "rationale": "Diagnosing failed bookings means each lookup depends on what the last one found, so the model should choose the steps. Checking three calendars (a), cancelling and emailing (c) and summarising one manual (d) are all fixed sequences that code can run, even though a looks open-ended. Choosing a, c or d shows M30, taking tool use or several lookups as the sign that an agent is needed.",
+      "distractors": {"a": "M30", "c": "M30", "d": "M30"}
+    },
+    {
+      "id": "q6",
+      "answer": 3.15,
+      "tolerance": 0.02,
+      "rationale": "Every request pays 1 routing call, then 0.95 x 2 = 1.9 calls on the workflow path and 0.05 x 5 = 0.25 on the agent path: 1 + 1.9 + 0.25 = 3.15. Forgetting the routing call gives 2.15, and sending everything to an agent would average 5 or more."
+    }
+  ]
+}

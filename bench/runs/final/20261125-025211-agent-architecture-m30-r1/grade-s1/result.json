@@ -1,0 +1,168 @@
+{
+  "duration_api_ms": 168350,
+  "stop_reason": "end_turn",
+  "session_id": "c8c644d1-8f2b-42bd-bb5c-3a3472f60309",
+  "total_cost_usd": 0.6469138999999999,
+  "usage": {
+    "input_tokens": 18,
+    "cache_creation_input_tokens": 35342,
+    "cache_read_input_tokens": 294989,
+    "output_tokens": 7105,
+    "output_tokens_details": {
+      "thinking_tokens": 177
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 35342,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 609,
+        "cache_read_input_tokens": 42804,
+        "cache_creation_input_tokens": 3544,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3544
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 60,
+      "outputTokens": 23701,
+      "cacheReadInputTokens": 547609,
+      "cacheCreationInputTokens": 120804,
+      "webSearchRequests": 0,
+      "costUSD": 0.6469138999999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 3763,
+      "cacheCreationEphemeral5mInputTokens": 85462,
+      "cacheCreationEphemeral1hInputTokens": 35342,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [
+    {
+      "tool_name": "Read",
+      "tool_use_id": "toolu_0181pTBj6Q8M7vQEGoLzQksF",
+      "tool_input": {
+        "file_path": "/private/var/folders/sb/4cll4vyd5715mdws72rhnx1h0000gn/T/p3-bhjq48wo/keys/0001.json"
+      }
+    },
+    {
+      "tool_name": "Grep",
+      "tool_use_id": "toolu_014jPffG7Lk2eaH72Zv81kca",
+      "tool_input": {
+        "pattern": "\\bM\\d+\\b",
+        "path": "/private/var/folders/sb/4cll4vyd5715mdws72rhnx1h0000gn/T/p3-bhjq48wo",
+        "glob": "!keys/**",
+        "output_mode": "content"
+      }
+    },
+    {
+      "tool_name": "Read",
+      "tool_use_id": "toolu_012BJ66yXyh7S6xZT1eZqvqa",
+      "tool_input": {
+        "file_path": "/private/var/folders/sb/4cll4vyd5715mdws72rhnx1h0000gn/T/p3-bhjq48wo/keys/0001.json"
+      }
+    },
+    {
+      "tool_name": "Grep",
+      "tool_use_id": "toolu_0185SnJbDV9nLAX86VNcDMBX",
+      "tool_input": {
+        "pattern": "\\bM\\d+\\b",
+        "path": "/private/var/folders/sb/4cll4vyd5715mdws72rhnx1h0000gn/T/p3-bhjq48wo",
+        "glob": "!keys/**",
+        "output_mode": "content"
+      }
+    },
+    {
+      "tool_name": "Grep",
+      "tool_use_id": "toolu_01SFneRSDka2jbqvbgqusboi",
+      "tool_input": {
+        "pattern": "\\bM[0-9]+\\b",
+        "path": "/private/var/folders/sb/4cll4vyd5715mdws72rhnx1h0000gn/T/p3-bhjq48wo",
+        "glob": "!{keys,drafts}/**",
+        "output_mode": "content"
+      }
+    }
+  ],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 5,
+    "requested": {
+      "background": 0,
+      "foreground": 5,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 1,
+    "spawned_by_subagents": 0,
+    "completed": 5,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {
+      "grader": 3,
+      "grade-reviewer": 2
+    }
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 18,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "I've graded Riley's submission s1 for quiz 0001 and written the grades to `grades/0001-s1.json`. It scored two correct, two partial and two wrong.\n\n- **q1, q3 (correct):** Riley knows what makes an agent, which is the loop, and that a step limit stops an agent that is stuck.\n- **q5 (partial):** \"Sends it back to the model\" is right, but the answer gives no reason why.\n- **q6 (partial):** Riley is right that the model picks tools from their descriptions. The added claim that it remembers tool choices across sessions on its own is wrong (M3).\n- **q2, q4 (wrong):** Riley thinks the model runs the tools itself (M4). The model only writes a request, and the program runs the tool and calls the model again. That's why q4 is 4 model calls and not 1.\n\n**Next step:** trace \"Is the laser cutter free tomorrow at 3 pm?\" on paper. For each step, write whether the model or the program acts, and what text goes in or out. Then answer: at which steps could the model's output change if the program skipped sending a result back?\n\n**Review:** the grades went through two review passes and ended at the cap of two. Both passes asked for \"Try first:\" questions on the correct and wrong items too. The grader declined, because its rules give that question only to partial items. Both passes also asked for q5 and q6 to stop answering their own question, and the grader fixed those. No verdicts changed. The reviewer couldn't read the key, so it couldn't confirm M3 and M4. The grader confirmed both against the key.\n\nI also wrote `review-records/0001-s1-grade.md` and `learning-records/0003-the-program-runs-the-tools.md`, and updated `NOTES.md`.\n\nSubmission s2 for this quiz is still ungraded. It will show whether the M4 mistake held after four days.",
+  "ttft_ms": 1586,
+  "type": "result",
+  "duration_ms": 169304,
+  "uuid": "e072b9ad-8cab-4142-bf0b-c583dab0307a",
+  "ttft_stream_ms": 1147,
+  "time_to_request_ms": 59,
+  "first_content_frame_ms": 1148,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 60,
+      "outputTokens": 23701,
+      "cacheReadInputTokens": 547609,
+      "cacheCreationInputTokens": 120804,
+      "webSearchRequests": 0,
+      "costUSD": 0.6469138999999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 3763,
+      "cacheCreationEphemeral5mInputTokens": 85462,
+      "cacheCreationEphemeral1hInputTokens": 35342,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-12-15T20:43:24.128Z"
+}

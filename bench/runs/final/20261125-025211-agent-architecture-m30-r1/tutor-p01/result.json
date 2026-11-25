@@ -1,0 +1,120 @@
+{
+  "duration_api_ms": 9948,
+  "stop_reason": "end_turn",
+  "session_id": "6e97f789-ba02-4a11-b682-9204c95598a2",
+  "total_cost_usd": 0.0861578,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 17557,
+    "cache_read_input_tokens": 60978,
+    "output_tokens": 982,
+    "output_tokens_details": {
+      "thinking_tokens": 368
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 17557,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 442,
+        "cache_read_input_tokens": 27087,
+        "cache_creation_input_tokens": 1476,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1476
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 982,
+      "cacheReadInputTokens": 60978,
+      "cacheCreationInputTokens": 17557,
+      "webSearchRequests": 0,
+      "costUSD": 0.0861578,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 368,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 17557,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 6,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "I don't give or confirm quiz answers before grading, even on a retake, so I won't name a letter. I can help you reason it out, though.\n\nTake the four choices one at a time. Picture the agent at step 41, stuck on the same edit and the same failing test, and ask what each change would do there:\n\n- What would the agent do differently at step 41 with that change?\n- Would the loop still be running at step 60?\n- Is the change made to the model's input, or to the program that runs the loop?\n\nThen tell me which one you'd pick and why. Where you get stuck on a choice, that's what we'll work on next.\n\nOnce the quiz is graded, we can go through q3 together.",
+  "ttft_ms": 1601,
+  "type": "result",
+  "duration_ms": 10203,
+  "uuid": "f885a0d7-018d-467c-9082-eac821bc2868",
+  "ttft_stream_ms": 1064,
+  "time_to_request_ms": 157,
+  "first_content_frame_ms": 1064,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 982,
+      "cacheReadInputTokens": 60978,
+      "cacheCreationInputTokens": 17557,
+      "webSearchRequests": 0,
+      "costUSD": 0.0861578,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 368,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 17557,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-12-15T20:43:24.128Z"
+}

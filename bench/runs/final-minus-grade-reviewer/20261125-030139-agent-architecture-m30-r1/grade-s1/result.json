@@ -1,0 +1,110 @@
+{
+  "duration_api_ms": 44227,
+  "stop_reason": "end_turn",
+  "session_id": "d28460e9-34f0-4b30-b72f-b8381f31d1b8",
+  "total_cost_usd": 0.24836619999999998,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 4978,
+    "cache_read_input_tokens": 105961,
+    "output_tokens": 2856,
+    "output_tokens_details": {
+      "thinking_tokens": 46
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 4978,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 444,
+        "cache_read_input_tokens": 36426,
+        "cache_creation_input_tokens": 2857,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2857
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 20,
+      "outputTokens": 6337,
+      "cacheReadInputTokens": 196832,
+      "cacheCreationInputTokens": 49143,
+      "webSearchRequests": 0,
+      "costUSD": 0.24836619999999998,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 359,
+      "cacheCreationEphemeral5mInputTokens": 20866,
+      "cacheCreationEphemeral1hInputTokens": 28277,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "origin": {
+    "kind": "task-notification",
+    "producer": "session-task",
+    "runId": "0mwvjeye9-a32dd4b5"
+  },
+  "subagent_stats": {
+    "spawned": 1,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 1
+    },
+    "started_in_background": 1,
+    "max_depth": 1,
+    "spawned_by_subagents": 0,
+    "completed": 1,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {
+      "grader": 1
+    }
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 7,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "Riley, I've graded submission s1 for quiz 0001. You got 2 right, 2 partly right and 2 wrong.\n\n- **Right:** q1 (the loop is what makes an agent) and q3 (a step limit stops a stuck agent).\n- **Partly right:**\n  - **q5:** You said the result goes back to the model, but not why. Try this first: once the model has the result, what can it do that it couldn't before?\n  - **q6:** You were right that the model picks a tool from the names and descriptions it's given. The claim that it remembers its choices across sessions on its own is false.\n- **Wrong:** q2 and q4 share one mistake. You think the model runs the tools itself, but it only writes a request, and the program runs the tool and sends the result back. That also changes the q4 count, because each step is its own model call.\n\n**Next step:** Trace \"Is the laser cutter free tomorrow?\" step by step. For each step, write whether the model or the program acts, and what text goes in and out.\n\nThe grades' summary ends with \"reread the lesson on the agent loop\", but `lessons/` has no such lesson. I left the grader's wording as it was, so ignore that line.\n\nI wrote `grades/0001-s1.json` and the review record, added learning record 0003 for the open misconceptions, and updated `NOTES.md`. Submission s2 is still ungraded.",
+  "ttft_ms": 1712,
+  "type": "result",
+  "duration_ms": 17883,
+  "uuid": "10dbb77e-0152-4000-86f4-4577dc5d693d",
+  "ttft_stream_ms": 977,
+  "time_to_request_ms": 13,
+  "first_content_frame_ms": 977,
+  "queued_turn_count": 0,
+  "result_index": 1,
+  "model_usage_since_last_result": {},
+  "credential_expires_at": "2026-12-15T20:43:24.153Z"
+}

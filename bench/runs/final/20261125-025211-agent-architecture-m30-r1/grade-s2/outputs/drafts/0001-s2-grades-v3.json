@@ -1,0 +1,43 @@
+{
+  "quiz": "0001",
+  "submission": "s2",
+  "items": [
+    {
+      "id": "q1",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. The loop of choose an action, run it, feed the result back is what separates an agent from one model call; a longer prompt or bigger model doesn't change that structure."
+    },
+    {
+      "id": "q2",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. The model only outputs a structured request naming check_calendar with its arguments; the program around it runs the tool."
+    },
+    {
+      "id": "q3",
+      "verdict": "wrong",
+      "misconception": "M6",
+      "feedback": "That is not right: you chose 'No change; left to run longer, it will eventually fix the bug'. It is tempting because an agent keeps trying, but all 40 steps are already in context and the test result is the same each time, so more steps add nothing new. The safeguard is a stopping condition, such as a step limit, that ends the loop and reports what happened so a person can step in."
+    },
+    {
+      "id": "q4",
+      "verdict": "partial",
+      "misconception": "M4",
+      "feedback": "Your count of 4 is right, but your reason is not: you wrote that the model runs check_calendar, search_manuals and check_training_record itself. Try first: in q2 you said the model outputs a request, so who actually executes it? The program runs each tool between model calls; the model is called 3 times to request them and once more to write the answer, so 4."
+    },
+    {
+      "id": "q5",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. The result goes back in as the model's next input, and the model uses it to decide its next step; both the what and the why are there."
+    },
+    {
+      "id": "q6",
+      "verdict": "partial",
+      "misconception": null,
+      "feedback": "You are right that the name helps: check_calendar signals what the tool is for. What is missing is that the name is only part of what the model sees. Try first: the model has never seen check_calendar's code, so what other text about the tool could it be given? The program supplies each tool's description (name, what it does, parameters), for example 'check_calendar(machine, date): returns the bookings for a machine on a date', and the model picks the tool whose description fits. A name alone can mislead."
+    }
+  ],
+  "summary": "You have the agent loop structure down (q1, q2) and you know a tool result goes back into the model's next input so it can choose its next step (q5). The idea to work on is that the model only reads text and requests actions, while the program does everything else: you had the model running the tools in q4, and in q6 you left out the descriptions the program hands it. Next step: write the loop for 'Is the laser cutter free tomorrow?' as numbered lines, each marked 'model' or 'program', and mark the line where a step limit would stop it."
+}

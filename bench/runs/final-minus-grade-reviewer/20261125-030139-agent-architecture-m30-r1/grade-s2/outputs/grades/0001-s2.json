@@ -1,0 +1,43 @@
+{
+  "quiz": "0001",
+  "submission": "s2",
+  "items": [
+    {
+      "id": "q1",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. What makes it an agent is the loop: the model picks an action, the program runs it, and the result comes back for the next step."
+    },
+    {
+      "id": "q2",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. The model only outputs a structured request naming check_calendar with its arguments; the program around it runs the tool."
+    },
+    {
+      "id": "q3",
+      "verdict": "wrong",
+      "misconception": "M6",
+      "feedback": "That is not right: you chose 'no change; left to run longer, it will eventually fix the bug'. It is tempting because each step is a new attempt, but the agent is repeating the same edit and getting the same failure, so more steps add nothing. The right fix is a step limit (b): a stopping condition that ends the loop and reports back to a person."
+    },
+    {
+      "id": "q4",
+      "verdict": "partial",
+      "misconception": "M4",
+      "feedback": "Your count of 4 is right, and so is the idea that the 4th call writes the answer. The reasoning is off: you said the model 'runs' each tool itself. Try first: in your own trace, who actually executes check_calendar, and what does the model output at that step? The model only requests each tool, one request per call, and the program runs it. So the calls are 3 requests plus 1 final answer = 4."
+    },
+    {
+      "id": "q5",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. The result goes back as the model's next input and the model is called again, so it can decide its next step or write the final answer."
+    },
+    {
+      "id": "q6",
+      "verdict": "partial",
+      "misconception": null,
+      "feedback": "You are right that the name matters: check_calendar signals what the tool is for. But you left out the rest of what the model is given. Try first: if two tools had similar names, what else could the model look at to tell them apart? The program gives the model each tool's description, meaning its name, what it does and its parameters, and the model picks the tool whose description fits the request, since it never sees the code."
+    }
+  ],
+  "summary": "You have the loop structure down (q1, q2) and you explained how a tool result goes back into the next model call (q5). The idea to work on is that an agent needs a stopping condition: in q3 you assumed it would eventually fix the bug on its own. Also keep the roles straight in q4: the model requests, the program runs. Next step: trace a run of your makerspace assistant where the booking tool keeps returning the same error. At which step would a step limit stop it, and what should the assistant report?"
+}

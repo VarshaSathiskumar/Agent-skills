@@ -1,0 +1,43 @@
+{
+  "quiz": "0001",
+  "submission": "s2",
+  "items": [
+    {
+      "id": "q1",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. The loop of choose an action, run it, feed the result back is what separates an agent from one model call; a longer prompt or bigger model doesn't change that structure."
+    },
+    {
+      "id": "q2",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. The model only outputs a structured request naming check_calendar with its arguments; the program around it runs the tool."
+    },
+    {
+      "id": "q3",
+      "verdict": "wrong",
+      "misconception": "M6",
+      "feedback": "That is not right: you chose 'No change; left to run longer, it will eventually fix the bug'. It is tempting because an agent keeps trying, but it is repeating the same edit and getting the same failing test, so more steps add no new information. The safeguard is a stopping condition, such as a step limit, that ends the loop after the 40 steps and reports what happened so a person can step in."
+    },
+    {
+      "id": "q4",
+      "verdict": "partial",
+      "misconception": "M4",
+      "feedback": "Your count of 4 is right, but your reasoning is not: you wrote that the model 'runs' each tool itself. Try first: in your own trace, who actually executes check_calendar, and what does the model hand over to get that done? The model only requests each tool and the program runs it. Calls are 3 tool requests plus 1 final answer, so 4."
+    },
+    {
+      "id": "q5",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. The result goes back in as the model's next input, and the model uses it to decide its next step; both the what and the why are there."
+    },
+    {
+      "id": "q6",
+      "verdict": "partial",
+      "misconception": null,
+      "feedback": "You are right that the name helps: check_calendar signals what the tool is for. What is missing is that the name is only part of what the model sees. Try first: if two tools had vague or misleading names, what else could the model use to choose between them? The program gives the model each tool's description, covering its name, what it does and its parameters, and the model picks the one whose description fits the request."
+    }
+  ],
+  "summary": "You have the agent loop structure down (q1, q2) and you know that a tool result goes back into the model's next input so it can choose its next step (q5). The idea to work on is who does what: the model only requests actions and the program runs them, and the loop needs a stopping condition because the model will not necessarily get out of a rut on its own. This shows in q3 and in the reasoning in q4. Next step: for the makerspace assistant, write the loop for one request as a list of lines, each marked 'model' or 'program', and then decide at which step a step limit would stop it. Then reread the lesson section on stopping conditions if one exists."
+}

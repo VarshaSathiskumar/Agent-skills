@@ -1,0 +1,127 @@
+{
+  "run_id": "20261125-030139-agent-architecture-m30-r1",
+  "config": "final-minus-grade-reviewer",
+  "config_hash": "sha256:2ed1524bdd64b6bf96a017f5f0545469128993292ac908d4ad437fe1f8962de2",
+  "topic": "agent-architecture",
+  "topic_hash": "sha256:15e7410b31c44309b8c89066f95db4318ca9706ed790aeeb431d4f1a89552410",
+  "topic_commit": "c9cd2ae633ff66af95aaba6b9868f5d27883dec2",
+  "repeat": 1,
+  "minutes": 30,
+  "quick": false,
+  "started_at": "2026-11-25T03:01:39Z",
+  "finished_at": "2026-11-25T03:03:08Z",
+  "claude_version": "2.1.332 (Claude Code)",
+  "p3_version": "0.2.0",
+  "platform": "macOS-26.7.1-arm64-arm-64bit-Mach-O",
+  "model": "sonnet",
+  "allowed_tools": [
+    "Glob",
+    "Grep",
+    "WebSearch",
+    "WebFetch"
+  ],
+  "entries": {
+    "teach": "/teach",
+    "tutor": "/tutor",
+    "quiz": "/quiz",
+    "grade": "/grade"
+  },
+  "only": [
+    "grade-s1",
+    "grade-s2"
+  ],
+  "ancestor_memory": [],
+  "scenarios": [
+    {
+      "id": "grade-s1",
+      "job": "grade",
+      "entry": "/grade",
+      "status": "ok",
+      "duration_ms": 43982,
+      "num_turns": 7,
+      "tokens": {
+        "input": 20,
+        "output": 6337,
+        "cache_read": 196832,
+        "cache_write": 49143
+      },
+      "cost_usd_list": 0.248366,
+      "web_searches": 0,
+      "web_fetches": 0,
+      "subagents": {
+        "spawned": 1,
+        "max_depth": 1,
+        "by_type": {
+          "grader": 1
+        }
+      },
+      "permission_denials": [],
+      "outputs": [
+        "NOTES.md",
+        "drafts/0001-s1-grades-v1.json",
+        "grades/0001-s1.json",
+        "learning-records/0003-program-runs-tools-not-the-model.md",
+        "review-records/0001-s1-grade.md"
+      ],
+      "changed": [
+        "NOTES.md"
+      ],
+      "deleted": [],
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "search_queries": [],
+      "fetch_urls": [],
+      "exit_code": 0,
+      "submission": "s1",
+      "claude_version": "2.1.332"
+    },
+    {
+      "id": "grade-s2",
+      "job": "grade",
+      "entry": "/grade",
+      "status": "ok",
+      "duration_ms": 44776,
+      "num_turns": 7,
+      "tokens": {
+        "input": 24,
+        "output": 6262,
+        "cache_read": 256260,
+        "cache_write": 43499
+      },
+      "cost_usd_list": 0.239337,
+      "web_searches": 0,
+      "web_fetches": 0,
+      "subagents": {
+        "spawned": 1,
+        "max_depth": 1,
+        "by_type": {
+          "grader": 1
+        }
+      },
+      "permission_denials": [],
+      "outputs": [
+        "NOTES.md",
+        "drafts/0001-s2-grades-v1.json",
+        "grades/0001-s2.json",
+        "learning-records/0003-agent-needs-a-stopping-condition.md",
+        "review-records/0001-s2-grade.md"
+      ],
+      "changed": [
+        "NOTES.md"
+      ],
+      "deleted": [],
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "search_queries": [],
+      "fetch_urls": [],
+      "exit_code": 0,
+      "submission": "s2",
+      "claude_version": "2.1.332"
+    }
+  ],
+  "claude_versions": [
+    "2.1.332"
+  ]
+}

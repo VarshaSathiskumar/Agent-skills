@@ -1,0 +1,68 @@
+{
+  "id": "0002",
+  "objective": "O4",
+  "title": "Workflows, agents, and who owns the control flow",
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "A makerspace booking handler treats every student message the same way: a model call extracts the machine and time, check_calendar runs, book_slot runs if the slot is free, and a second model call writes the confirmation. Which label fits, and why?",
+      "options": [
+        {"id": "a", "text": "An agent, because the model decides whether the slot is free"},
+        {"id": "b", "text": "A workflow, because every request runs the same steps in order"},
+        {"id": "c", "text": "An agent, because two model calls and two tools are involved"},
+        {"id": "d", "text": "An agent, because it books equipment for the student directly"}
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "short",
+      "objective": "O4",
+      "stem": "Your code is `while steps < 10: reply = call_model(messages, tools); if no tool requested: break; result = run_tool(reply); messages.append(result); steps += 1`. A teammate says the `steps < 10` cap means the code, not the model, owns the control flow. Is the teammate right: yes or no?"
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "A job runs at 2 a.m.: for each student whose safety training expires within 7 days, it reads their record, writes a one-paragraph reminder with a model, and sends it. The sponsor's model budget is small. Which design is best for keeping cost down?",
+      "options": [
+        {"id": "a", "text": "One agent with query, draft and send tools, choosing its own order each night"},
+        {"id": "b", "text": "Plain code looping over all students, with a model call to judge who needs a reminder"},
+        {"id": "c", "text": "Three agents for querying, drafting and sending, handing work to each other"},
+        {"id": "d", "text": "Plain code that selects students by date, with one model call per reminder"}
+      ]
+    },
+    {
+      "id": "q4",
+      "type": "numeric",
+      "objective": "O4",
+      "stem": "Handling one request costs 2 model calls as a fixed workflow, or on average 5 model calls as an agent. Assume every call costs $0.002 and the assistant gets 10,000 requests a month. How many more dollars per month does the agent design cost than the workflow?",
+      "unit": "dollars per month"
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "Which of these makerspace requests is the best fit for an agent rather than a fixed workflow?",
+      "options": [
+        {"id": "a", "text": "Book a laser slot after checking training, machine status and the calendar"},
+        {"id": "b", "text": "Say how thick an acrylic sheet the laser cutter can cut"},
+        {"id": "c", "text": "Find a free machine that can cut 6 mm acrylic, or the nearest alternative"},
+        {"id": "d", "text": "Email each student whose training expires within seven days"}
+      ]
+    },
+    {
+      "id": "q6",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "Your assistant gets three kinds of request: bookings and manual questions, which each follow the same steps every time, and open-ended troubleshooting such as \"my print keeps failing\", where the next lookup depends on the last result. The budget is small and troubleshooting must still be answered. Which design fits best?",
+      "options": [
+        {"id": "a", "text": "Fixed workflows for bookings and manuals, an agent for troubleshooting"},
+        {"id": "b", "text": "One agent for all three kinds, because it can handle any request"},
+        {"id": "c", "text": "Fixed workflows for all three, with troubleshooting sent to a canned reply"},
+        {"id": "d", "text": "One agent per request kind, each with its own tools and instructions"}
+      ]
+    }
+  ]
+}

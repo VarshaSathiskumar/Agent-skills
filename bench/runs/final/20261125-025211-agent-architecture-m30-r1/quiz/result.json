@@ -1,0 +1,152 @@
+{
+  "duration_api_ms": 249763,
+  "stop_reason": "end_turn",
+  "session_id": "ed2b5b11-fe54-4d1c-a013-1c2802ba1e85",
+  "total_cost_usd": 0.668188,
+  "usage": {
+    "input_tokens": 22,
+    "cache_creation_input_tokens": 51795,
+    "cache_read_input_tokens": 429544,
+    "output_tokens": 19692,
+    "output_tokens_details": {
+      "thinking_tokens": 6415
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 51795,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 363,
+        "cache_read_input_tokens": 58514,
+        "cache_creation_input_tokens": 4287,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 4287
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 44,
+      "outputTokens": 32434,
+      "cacheReadInputTokens": 564875,
+      "cacheCreationInputTokens": 83832,
+      "webSearchRequests": 0,
+      "costUSD": 0.668188,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 11053,
+      "cacheCreationEphemeral5mInputTokens": 32037,
+      "cacheCreationEphemeral1hInputTokens": 51795,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [
+    {
+      "tool_name": "Read",
+      "tool_use_id": "toolu_01S4KuQf4drNyg4BaDrHFRxe",
+      "tool_input": {
+        "file_path": "/private/var/folders/sb/4cll4vyd5715mdws72rhnx1h0000gn/T/p3-f1ctoglf/keys/0001.json"
+      }
+    },
+    {
+      "tool_name": "Grep",
+      "tool_use_id": "toolu_018adG3r7FDE6UJTzTXjy4Wf",
+      "tool_input": {
+        "pattern": "M2[0-9]|\\bM[0-9]+\\b",
+        "path": "/private/var/folders/sb/4cll4vyd5715mdws72rhnx1h0000gn/T/p3-f1ctoglf",
+        "glob": "!{keys,grades,FORMATS.md}/**",
+        "output_mode": "content",
+        "head_limit": 30
+      }
+    },
+    {
+      "tool_name": "Grep",
+      "tool_use_id": "toolu_01FVD3WTLwB1c1gVhNeQSnJv",
+      "tool_input": {
+        "pattern": "M2[0-9]",
+        "path": "/private/var/folders/sb/4cll4vyd5715mdws72rhnx1h0000gn/T/p3-f1ctoglf",
+        "glob": "!keys/**",
+        "output_mode": "content",
+        "head_limit": 20
+      }
+    }
+  ],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 2,
+    "requested": {
+      "background": 0,
+      "foreground": 2,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 1,
+    "spawned_by_subagents": 0,
+    "completed": 2,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {
+      "quiz-reviewer": 2
+    }
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 21,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "The quiz is at `quizzes/0002.json`: six questions on O4, \"Workflows, agents, and who owns the control flow.\" There is no lesson on O4 yet, so the quiz is ahead of the lessons.\n\n- **Who owns the control flow:** you compare two makerspace handlers and trace a short model loop (q1, q2).\n- **Choosing a fixed workflow:** you pick a design for a low-budget nightly job, and decide which requests really need an agent (q3, q5).\n- **Cost of agent versus workflow:** two calculations with model-call counts and prices (q4, q6).\n\nThe quiz-reviewer ran two passes. I fixed what it flagged in the first pass, but I made the last round of changes (q1, q3, q5, q6 and the key's misconception ids) without a further review, because the two-pass cap had been reached.\n\nI couldn't read `keys/0001.json` because the keys guard blocks it. The ids M21–M30 in the new key may therefore clash with ids that key already uses. Please check them before grading.\n\nDo you want a lesson on O4 before you take the quiz?",
+  "ttft_ms": 1879,
+  "type": "result",
+  "duration_ms": 250670,
+  "uuid": "e13eb493-75ab-41eb-9f64-d8a40cfe391f",
+  "ttft_stream_ms": 1440,
+  "time_to_request_ms": 164,
+  "first_content_frame_ms": 1441,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 44,
+      "outputTokens": 32434,
+      "cacheReadInputTokens": 564875,
+      "cacheCreationInputTokens": 83832,
+      "webSearchRequests": 0,
+      "costUSD": 0.668188,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 11053,
+      "cacheCreationEphemeral5mInputTokens": 32037,
+      "cacheCreationEphemeral1hInputTokens": 51795,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-12-15T20:43:24.153Z"
+}

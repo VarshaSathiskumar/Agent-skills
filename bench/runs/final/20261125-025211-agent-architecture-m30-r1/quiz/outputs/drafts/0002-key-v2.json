@@ -1,0 +1,41 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "b",
+      "rationale": "It is a workflow: every request follows the same predefined steps, and the model only fills in two of them. Using models or tools, or acting for the user, does not make something an agent; who chooses the next step does. Picking a, c or d shows M21, the belief that model calls, tools or taking actions make an agent.",
+      "distractors": {"a": "M21", "c": "M21", "d": "M21"}
+    },
+    {
+      "id": "q2",
+      "answer": "no",
+      "accepted": ["no, the model still decides", "no, the model still chooses the next tool", "not right", "the teammate is wrong", "no the model owns it"],
+      "rationale": "No: the model still decides whether to call a tool and which one after every result; the cap only limits how long the loop can run. A safeguard on the loop is not control over the path. Answering yes shows M24, treating a limit or guardrail as ownership of the flow."
+    },
+    {
+      "id": "q3",
+      "answer": "d",
+      "rationale": "The steps are known, so code selects students by date and the model is used only where language is needed, once per reminder. Option b pays a model call for every student on a filter that code does for free, a and c pay for decisions or hand-offs nobody needs. Choosing a shows M22 (an agent is the better default), b shows M21, c shows M25 (more agents is more robust).",
+      "distractors": {"a": "M22", "b": "M21", "c": "M25"}
+    },
+    {
+      "id": "q4",
+      "answer": 60,
+      "tolerance": 0.5,
+      "rationale": "Agent: 5 x $0.002 x 10,000 = $100; workflow: 2 x $0.002 x 10,000 = $40; the difference is $60 per month. An answer of 100 or 40 gives one design's cost rather than the difference."
+    },
+    {
+      "id": "q5",
+      "answer": "c",
+      "rationale": "Only c depends on what earlier lookups return: which machine, whether any fits, and what to suggest instead cannot be fixed in advance, so the model should choose the steps. Options a and d are long but fixed sequences that code can run, and b is a single lookup. Choosing a, b or d shows M21, taking tools or many steps as the sign of an agent.",
+      "distractors": {"a": "M21", "b": "M21", "d": "M21"}
+    },
+    {
+      "id": "q6",
+      "answer": "a",
+      "rationale": "Hand control to the model only where the path is unpredictable: fixed workflows for the two predictable kinds keep cost and behaviour predictable, and an agent covers troubleshooting. One agent for everything (b) pays agent cost on every request and shows M22; all workflows (c) drops a request type that needs flexibility and shows M26 (a fixed workflow is always the safe choice); an agent per kind (d) adds cost and hand-offs and shows M25.",
+      "distractors": {"b": "M22", "c": "M26", "d": "M25"}
+    }
+  ]
+}
