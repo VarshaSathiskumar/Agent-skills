@@ -1,0 +1,41 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "b",
+      "rationale": "It is a workflow: the Python code decides the order of the steps, and the model only fills one step by reading the message. Using a model or several tools does not make a system an agent; picking a or c shows that mix-up.",
+      "distractors": {"a": "M10", "c": "M13", "d": "M12"}
+    },
+    {
+      "id": "q2",
+      "answer": "workflow",
+      "accepted": ["a workflow", "it is a workflow", "workflow, the code owns the control flow", "a fixed workflow", "routing workflow", "a routing workflow"],
+      "rationale": "It is a workflow: the model only chooses a label, and the code owns which paths exist and what runs on each. A model making a decision inside a step does not hand it the control flow; calling it an agent shows M10."
+    },
+    {
+      "id": "q3",
+      "answer": "c",
+      "rationale": "The path is known, so a fixed workflow gives the same result with fewer model calls, lower cost and easier testing. Choosing an agent for flexibility nobody needs shows M11; thinking workflows cannot use a model shows M12.",
+      "distractors": {"a": "M11", "b": "M11", "d": "M12"}
+    },
+    {
+      "id": "q4",
+      "answer": 12,
+      "tolerance": 0.05,
+      "rationale": "The agent costs 6 x $0.003 x 1,000 = $18 and the workflow 2 x $0.003 x 1,000 = $6, so the difference is $12. An answer of 18 or 6 gives one design's total instead of the difference."
+    },
+    {
+      "id": "q5",
+      "answer": "d",
+      "rationale": "Booking has known steps in a fixed order, so a workflow is cheaper and more reliable, while open questions need a variable number of lookups, which is where the model choosing the next step pays off. Using agents for everything shows M11; workflows for everything ignores that unpredictable steps need the model to decide.",
+      "distractors": {"a": "M11", "b": "M14", "c": "M11"}
+    },
+    {
+      "id": "q6",
+      "answer": "the model",
+      "accepted": ["model", "the model owns it", "the llm", "llm", "the model decides", "agent"],
+      "rationale": "In that stage the model chooses the next step and when to stop, so the model owns the control flow and that stage is an agent loop, inside a workflow that is otherwise code-driven. Answering the code treats the surrounding pipeline as deciding for the whole system."
+    }
+  ]
+}

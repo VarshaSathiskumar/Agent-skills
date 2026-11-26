@@ -1,0 +1,62 @@
+{
+  "id": "0002",
+  "objective": "O4",
+  "title": "Workflows, agents and who owns the control flow",
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "Read this booking handler from the makerspace assistant:\n\ndef handle(msg):\n    slot = ask_model(\"Extract machine, date, time as JSON: \" + msg)\n    if not check_calendar(slot):\n        return \"Sorry, that slot is taken.\"\n    book_slot(slot)\n    send_email(slot)\n\nHow should you classify it?",
+      "options": [
+        {"id": "a", "text": "An agent, since the model's JSON feeds the later steps"},
+        {"id": "b", "text": "A workflow, since the booking steps run whatever JSON the model returns"},
+        {"id": "c", "text": "An agent, since it calls tools such as check_calendar"},
+        {"id": "d", "text": "A workflow, since the model is called just once"}
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "short",
+      "objective": "O4",
+      "stem": "Read this handler:\n\ndef handle(msg):\n    history = [msg]\n    for _ in range(10):\n        reply = ask_model(history)\n        if reply.tool_call:\n            history.append(run_tool(reply.tool_call))\n        else:\n            return reply.text\n\nIs this a workflow or an agent?"
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "Every night a job reads the 500 new machine-usage log lines, has a model summarize them, and stores the summary. Over the last month it has run that same read, summarize, store sequence every night. The team wants the lowest cost per night that still gets the summary stored. Which design is best?",
+      "options": [
+        {"id": "a", "text": "An agent, since it can retry the summary if a night's logs look odd"},
+        {"id": "b", "text": "An agent, since it can choose which log lines to read first"},
+        {"id": "c", "text": "A fixed workflow, since the same sequence needs no extra model calls"},
+        {"id": "d", "text": "An agent, since only an agent is allowed to call a model"}
+      ]
+    },
+    {
+      "id": "q4",
+      "type": "numeric",
+      "objective": "O4",
+      "stem": "A fixed workflow answers each request with 2 model calls. An agent doing the same job averages 6 model calls per request, because it loops. Each call costs $0.003, and the assistant handles 1,000 requests. How many extra dollars does the agent cost compared with the workflow?",
+      "unit": "dollars"
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "The assistant has two jobs. Job A: after a student confirms a booking, it checks the calendar, reserves the slot and emails the student, and the sponsor wants each step logged. Job B: it answers \"why did my print warp?\" from the manuals, where some questions need one lookup and others need several. The sponsor caps every request at 8 model calls. Which design is best?",
+      "options": [
+        {"id": "a", "text": "A as a fixed workflow; B as an agent loop that stops at 8 calls"},
+        {"id": "b", "text": "A as a fixed workflow; B as a workflow that loops exactly 8 lookups"},
+        {"id": "c", "text": "A and B as one agent, with the booking steps written in its prompt"},
+        {"id": "d", "text": "A as an agent that stops at 8 calls; B as a fixed 3-lookup workflow"}
+      ]
+    },
+    {
+      "id": "q6",
+      "type": "short",
+      "objective": "O4",
+      "stem": "A request pipeline runs these stages, in this order, from code. Classify: a model labels the question \"manual\" or \"booking\", and the code sends it to the matching hard-coded branch. Retrieve: the code fetches pages. Draft: a model writes an answer. Review: a model reads the draft and returns \"retrieve\" or \"stop\", and the code repeats retrieve, draft and review until it returns \"stop\". In which stage does the model's output choose what runs next in an open-ended way?"
+    }
+  ]
+}

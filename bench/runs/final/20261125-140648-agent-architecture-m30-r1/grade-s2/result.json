@@ -1,0 +1,148 @@
+{
+  "duration_api_ms": 150713,
+  "stop_reason": "end_turn",
+  "session_id": "10302d38-0abe-4d0e-8806-c37686079952",
+  "total_cost_usd": 0.5411193,
+  "usage": {
+    "input_tokens": 20,
+    "cache_creation_input_tokens": 34888,
+    "cache_read_input_tokens": 335278,
+    "output_tokens": 6092,
+    "output_tokens_details": {
+      "thinking_tokens": 106
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 34888,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 465,
+        "cache_read_input_tokens": 42690,
+        "cache_creation_input_tokens": 3204,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3204
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 54,
+      "outputTokens": 20055,
+      "cacheReadInputTokens": 512318,
+      "cacheCreationInputTokens": 94759,
+      "webSearchRequests": 0,
+      "costUSD": 0.5411193,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 3507,
+      "cacheCreationEphemeral5mInputTokens": 59871,
+      "cacheCreationEphemeral1hInputTokens": 34888,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [
+    {
+      "tool_name": "Read",
+      "tool_use_id": "toolu_01FUBECq8L1CSXATKEdVjdwA",
+      "tool_input": {
+        "file_path": "/private/var/folders/sb/4cll4vyd5715mdws72rhnx1h0000gn/T/p3-qvzpqxct/keys/0001.json"
+      }
+    },
+    {
+      "tool_name": "Read",
+      "tool_use_id": "toolu_018JWG7JrWYVMHPhDbkxG64X",
+      "tool_input": {
+        "file_path": "/private/var/folders/sb/4cll4vyd5715mdws72rhnx1h0000gn/T/p3-qvzpqxct/keys/0001.json"
+      }
+    },
+    {
+      "tool_name": "Grep",
+      "tool_use_id": "toolu_0112RqaMRtAK1a6yKgtK27aT",
+      "tool_input": {
+        "pattern": "\\bM\\d+\\b",
+        "path": "/private/var/folders/sb/4cll4vyd5715mdws72rhnx1h0000gn/T/p3-qvzpqxct",
+        "glob": "!keys/**",
+        "output_mode": "content"
+      }
+    }
+  ],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 5,
+    "requested": {
+      "background": 0,
+      "foreground": 5,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 1,
+    "spawned_by_subagents": 0,
+    "completed": 5,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {
+      "grader": 3,
+      "grade-reviewer": 2
+    }
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 19,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "Riley, I've graded s2 for quiz 0001. You got 3 correct, 2 partial and 1 wrong.\n\n| Item | Verdict |\n|---|---|\n| q1 | Correct |\n| q2 | Correct |\n| q3 | Wrong |\n| q4 | Partial |\n| q5 | Correct |\n| q6 | Partial |\n\n- **q3 (wrong):** You picked \"left to run longer, it will eventually fix the bug\". The agent sees the same edit and the same failing test on every step, so more steps add nothing. A step limit is what stops the loop.\n- **q4 (partial):** Your count of 4 calls is right. But your reason says the model \"runs\" each tool, and that contradicts what you said in q2.\n- **q6 (partial):** The name matters, but it isn't the only thing the model sees.\n\nThe feedback on each item is in `grades/0001-s2.json`.\n\n**Next step:** Trace the q4 laser cutter question line by line. For each of the 4 steps, write what the model outputs and what the program does. Which of those lines is a model call, and which is not?\n\nThe review ran the full two passes and ended at the cap. It left every verdict unchanged. It tightened the summary, and it reworked the q4 and q6 hints so they no longer give away the answer. I also added a learning record and updated `NOTES.md`. The record of the review is in `review-records/0001-s2-grade.md`.",
+  "ttft_ms": 1727,
+  "type": "result",
+  "duration_ms": 151800,
+  "uuid": "56f2c0d9-5294-4ff1-9d58-b44e03bc70e7",
+  "ttft_stream_ms": 1291,
+  "time_to_request_ms": 128,
+  "first_content_frame_ms": 1292,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 54,
+      "outputTokens": 20055,
+      "cacheReadInputTokens": 512318,
+      "cacheCreationInputTokens": 94759,
+      "webSearchRequests": 0,
+      "costUSD": 0.5411193,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 3507,
+      "cacheCreationEphemeral5mInputTokens": 59871,
+      "cacheCreationEphemeral1hInputTokens": 34888,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-12-15T20:43:24.128Z"
+}

@@ -1,0 +1,120 @@
+{
+  "duration_api_ms": 6018,
+  "stop_reason": "end_turn",
+  "session_id": "e96b5b76-1857-4476-85e3-a86e5be5774f",
+  "total_cost_usd": 0.0737517,
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 16103,
+    "cache_read_input_tokens": 33917,
+    "output_tokens": 594,
+    "output_tokens_details": {
+      "thinking_tokens": 28
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 16103,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 263,
+        "cache_read_input_tokens": 22911,
+        "cache_creation_input_tokens": 4198,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 4198
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 4,
+      "outputTokens": 594,
+      "cacheReadInputTokens": 33917,
+      "cacheCreationInputTokens": 16103,
+      "webSearchRequests": 0,
+      "costUSD": 0.0737517,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 28,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 16103,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 5,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "No grade exists for quiz 0001, so I can't confirm answers for it yet. I don't give or confirm quiz answers before grading, and that includes option a. If your TA has allowed it, please check that with them directly.\n\nHere's something to think through instead. Say your makerspace assistant has a tool that books a laser cutter slot. The student asks, \"Can I use the laser cutter Friday afternoon?\" Walk me through what happens, step by step, and say who does each step: the model, your code, or the calendar system.\n\nOnce you've tried that, tell me what you'd expect to happen in the situation q2 describes. Take each of its options in turn, say what it would actually do, and say why you'd pick the one you did. I'll start from wherever you get stuck.\n\nWhen quiz 0001 is graded, we can go through q2 together.",
+  "ttft_ms": 1519,
+  "type": "result",
+  "duration_ms": 6149,
+  "uuid": "44efb08a-40db-43f8-ab59-c65350e11158",
+  "ttft_stream_ms": 1033,
+  "time_to_request_ms": 61,
+  "first_content_frame_ms": 1034,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 4,
+      "outputTokens": 594,
+      "cacheReadInputTokens": 33917,
+      "cacheCreationInputTokens": 16103,
+      "webSearchRequests": 0,
+      "costUSD": 0.0737517,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 28,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 16103,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-12-15T20:43:24.128Z"
+}

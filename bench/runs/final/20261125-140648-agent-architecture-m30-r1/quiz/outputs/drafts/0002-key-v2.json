@@ -1,0 +1,41 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "b",
+      "rationale": "It is a workflow: the order of the calls is written in the code, and the model's output only fills in the slot values. Using a model, its output, or tools does not hand it the control flow; a or c shows that mix-up.",
+      "distractors": {"a": "M10", "c": "M13", "d": "M12"}
+    },
+    {
+      "id": "q2",
+      "answer": "agent",
+      "accepted": ["an agent", "it is an agent", "agent loop", "an agent loop", "the model decides, so an agent"],
+      "rationale": "It is an agent: each pass the model decides whether to call a tool or finish, so the model owns the control flow, and the code only runs the loop and the tools. Answering workflow because Python wrote a for loop shows M17."
+    },
+    {
+      "id": "q3",
+      "answer": "c",
+      "rationale": "The path is known and the format never changes, so a fixed workflow gives one pass, a steady cost and testable output. Choosing an agent for flexibility or self-checking nobody needs shows M11; claiming an agent could not do the summary treats the workflow as the only way a model can be used, which is not true of either design.",
+      "distractors": {"a": "M11", "b": "M11", "d": "M12"}
+    },
+    {
+      "id": "q4",
+      "answer": 12,
+      "tolerance": 0.05,
+      "rationale": "The agent costs 6 x $0.003 x 1,000 = $18 and the workflow 2 x $0.003 x 1,000 = $6, so the difference is $12. An answer of 18 or 6 gives one design's total instead of the difference."
+    },
+    {
+      "id": "q5",
+      "answer": "a",
+      "rationale": "Job A has known steps and needs the same checks and an audit trail, so a workflow fits; Job B needs a variable number of lookups, so a model-driven loop with the 8-call cap fits. Using workflows or one agent for everything shows M14 or M11, and reversing the roles shows M15.",
+      "distractors": {"b": "M14", "c": "M11", "d": "M15"}
+    },
+    {
+      "id": "q6",
+      "answer": "the final stage",
+      "accepted": ["final stage", "the fourth stage", "fourth stage", "stage 4", "the last stage", "last stage", "the final one", "the final loop", "the fourth"],
+      "rationale": "In the final stage the model's output picks the next step and when to stop, so that stage is an agent loop inside an otherwise code-driven workflow. Classify, retrieve and draft run in the order the code sets; naming classify shows M10, the idea that any model decision gives it control."
+    }
+  ]
+}

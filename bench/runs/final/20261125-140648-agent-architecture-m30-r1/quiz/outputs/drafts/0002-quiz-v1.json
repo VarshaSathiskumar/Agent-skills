@@ -1,0 +1,62 @@
+{
+  "id": "0002",
+  "objective": "O4",
+  "title": "Workflows, agents and who owns the control flow",
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "A Python function handles each booking request in the same order: one model call turns the student's message into machine, date and time, then the code calls check_calendar, then book_slot, then sends a confirmation email. Which description fits this system?",
+      "options": [
+        {"id": "a", "text": "An agent, because a language model reads the student's message"},
+        {"id": "b", "text": "A workflow, because the code fixes the order of the steps"},
+        {"id": "c", "text": "An agent, because it calls several tools one after another"},
+        {"id": "d", "text": "A workflow, because it makes no language model calls at all"}
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "short",
+      "objective": "O4",
+      "stem": "In a backend service, one model call labels each incoming question as \"manual\", \"booking\" or \"other\". Python code then runs a fixed pipeline for each label, and the model never picks tools or steps. Is this a workflow or an agent?"
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "Every night a job reads the 500 new machine-usage log lines, has a model summarize them, and writes the summary to a database table. The steps never vary, and the team's model budget is small. Which design is best for this job?",
+      "options": [
+        {"id": "a", "text": "An agent, so the model can adapt if the logs ever look different"},
+        {"id": "b", "text": "An agent, because agents are the more capable design in general"},
+        {"id": "c", "text": "A fixed workflow, because the path is known and loops would add cost"},
+        {"id": "d", "text": "A fixed workflow, because workflows can never call a language model"}
+      ]
+    },
+    {
+      "id": "q4",
+      "type": "numeric",
+      "objective": "O4",
+      "stem": "A fixed workflow answers each request with 2 model calls. An agent doing the same job averages 6 model calls per request, because it loops. Each call costs $0.003, and the assistant handles 1,000 requests. How many extra dollars does the agent cost compared with the workflow?",
+      "unit": "dollars"
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "The makerspace assistant must (1) confirm a booking by checking the calendar, reserving the slot and emailing the student, always in that order, and (2) answer open questions like \"why did my print warp?\", which may need anywhere from one manual lookup to several. Which split of the two parts is best?",
+      "options": [
+        {"id": "a", "text": "Both parts as agents, so one design handles everything"},
+        {"id": "b", "text": "Both parts as fixed workflows, so cost stays predictable"},
+        {"id": "c", "text": "Booking as an agent, and open questions as a fixed workflow"},
+        {"id": "d", "text": "Booking as a fixed workflow, and open questions as an agent"}
+      ]
+    },
+    {
+      "id": "q6",
+      "type": "short",
+      "objective": "O4",
+      "stem": "A pipeline always runs classify, then retrieve, then draft. A teammate adds a final stage: the model reads the draft and chooses whether to retrieve again, re-classify, or stop, repeating until it chooses to stop. For that final stage, who owns the control flow: the code or the model?"
+    }
+  ]
+}

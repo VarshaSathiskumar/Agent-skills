@@ -1,0 +1,41 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "b",
+      "rationale": "It is a workflow: the order of the calls is written in the code, and the model's output only fills in the slot values. Using a model, its output, or tools does not hand it the control flow; a shows M10 and c shows M13.",
+      "distractors": {"a": "M10", "c": "M13", "d": "M12"}
+    },
+    {
+      "id": "q2",
+      "answer": "agent",
+      "accepted": ["an agent", "it is an agent", "agent loop", "an agent loop", "the model decides, so an agent"],
+      "rationale": "It is an agent: each pass the model decides whether to call a tool or finish, so the model owns the control flow, and the code only runs the loop and the tools. Answering workflow because Python wrote a for loop shows M17."
+    },
+    {
+      "id": "q3",
+      "answer": "c",
+      "rationale": "The sequence is the same every night, so a fixed workflow does it in one pass with no extra model calls, which is the lowest cost. Choosing an agent for retries or choices nobody needs shows M11, and thinking only an agent may call a model shows M10.",
+      "distractors": {"a": "M11", "b": "M11", "d": "M10"}
+    },
+    {
+      "id": "q4",
+      "answer": 12,
+      "tolerance": 0.05,
+      "rationale": "The agent costs 6 x $0.003 x 1,000 = $18 and the workflow 2 x $0.003 x 1,000 = $6, so the difference is $12. An answer of 18 or 6 gives one design's total instead of the difference."
+    },
+    {
+      "id": "q5",
+      "answer": "a",
+      "rationale": "Job A has known steps that must be logged, so a workflow fits; Job B needs one or several lookups, so a model-driven loop with the 8-call cap fits. A loop of exactly 8 lookups wastes the budget and shows M14, one agent for everything shows M11, and reversing the roles shows M15.",
+      "distractors": {"b": "M14", "c": "M11", "d": "M15"}
+    },
+    {
+      "id": "q6",
+      "answer": "review",
+      "accepted": ["the review stage", "review stage", "review", "stage 4", "stage four", "the fourth stage", "fourth stage", "4th stage", "the fourth", "fourth", "step 4", "the last stage", "last stage", "the last one", "the final stage", "final stage", "4"],
+      "rationale": "In review the model's output decides whether to retrieve again or stop, so that stage is an agent loop inside an otherwise code-driven workflow. Classify only picks between two hard-coded branches, so naming it shows M10, the idea that any model decision gives it control."
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "quiz": "0001",
+  "submission": "s1",
+  "items": [
+    {
+      "id": "q1",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. What makes it an agent is the loop: the model picks an action, the program runs it, and the result goes back for the next step."
+    },
+    {
+      "id": "q2",
+      "verdict": "wrong",
+      "misconception": "M4",
+      "feedback": "That is not right: you chose that the model outputs the calendar entries after opening the booking system itself. It is tempting because the end result is the model answering with calendar data, but a model only writes text and has no way to reach your booking system. What it outputs is a request naming check_calendar with the laser cutter and tomorrow's date as arguments, and the program runs the tool."
+    },
+    {
+      "id": "q3",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. The agent is repeating itself, so more context or effort will not help; a step limit ends the loop and reports back."
+    },
+    {
+      "id": "q4",
+      "verdict": "wrong",
+      "misconception": "M4",
+      "feedback": "That is not right: you answered 1, with the model running the 3 tools itself. This is the same mistake as q2: the program runs the tools, not the model. Each tool request ends one model call, so the three requests are 3 calls and the final answer is a 4th, giving 4."
+    },
+    {
+      "id": "q5",
+      "verdict": "partial",
+      "misconception": null,
+      "feedback": "The part you have is what happens: the result goes back to the model. What is missing is the why, and that it goes in as the model's next input. Try first: what could the model do now that it could not do before it had the result? Complete answer: the program adds the result to the model's next input and calls the model again, so the model can choose its next step or write the final answer."
+    },
+    {
+      "id": "q6",
+      "verdict": "partial",
+      "misconception": "M3",
+      "feedback": "The first part is right: the model is given each tool's name and a short description and picks the one that fits. The added claim is wrong: the model does not remember earlier sessions on its own. Try first: where would a past choice be stored if nothing saves it, and what does the model see on each call? Complete answer: the model picks from the descriptions in its input, and any memory across sessions has to be saved and supplied by the program."
+    }
+  ],
+  "summary": "You have the loop itself (q1), the need for a stopping condition (q3), and that tools come to the model as names plus descriptions (q6). The idea to change is that the model runs tools or reaches systems itself (q2, q4): the model only writes text, including requests for tools, and the program runs them. A related belief showed up in q6, where the model remembers on its own across sessions. Next, trace the request \"Is the laser cutter free tomorrow?\" line by line, and for each step write who does it, the model or the program, and what text the model sees next."
+}

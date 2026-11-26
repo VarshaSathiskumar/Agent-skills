@@ -1,0 +1,120 @@
+{
+  "duration_api_ms": 11824,
+  "stop_reason": "end_turn",
+  "session_id": "50456bb0-09f6-495c-869f-51d9cdcb4bf4",
+  "total_cost_usd": 0.0861728,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 17091,
+    "cache_read_input_tokens": 61468,
+    "output_tokens": 1165,
+    "output_tokens_details": {
+      "thinking_tokens": 159
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 17091,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 392,
+        "cache_read_input_tokens": 27587,
+        "cache_creation_input_tokens": 510,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 510
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 1165,
+      "cacheReadInputTokens": 61468,
+      "cacheCreationInputTokens": 17091,
+      "webSearchRequests": 0,
+      "costUSD": 0.0861728,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 159,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 17091,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 6,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "Short answer: for your assistant, you almost certainly shouldn't train a model with PPO. The idea behind it is simple, though.\n\nPicture an agent trying a booking request. It calls tools, and a score comes back: +1 if the right machine was booked, 0 if not. PPO nudges the model toward the tool calls that scored well. It also caps each nudge so one lucky run can't wreck what the model already does well.\n\n**Why this works:** the best agents you read about are trained this way by labs with large GPU budgets, thousands of scored runs, and a model they can modify. You'd be calling a hosted model through an API, so you can't run PPO on it. Your budget is also small. Most tool-calling failures in a project like yours come from vague tool descriptions, bad parameter names, or missing examples, and those are cheap to fix.\n\nI'm leaving out the derivation. It needs probability and gradients, which go beyond your one statistics course, and your mission marks training and its math as out of scope.\n\nThe skill that carries over is scoring runs. If you wrote 10 test requests and checked whether the assistant called the right tool each time, what would your pass/fail rule be for \"booked the right machine\"? I can build a lesson on this.",
+  "ttft_ms": 2504,
+  "type": "result",
+  "duration_ms": 12060,
+  "uuid": "c9cc2792-15dd-4a44-8548-2695cab4daab",
+  "ttft_stream_ms": 1841,
+  "time_to_request_ms": 154,
+  "first_content_frame_ms": 1842,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 6,
+      "outputTokens": 1165,
+      "cacheReadInputTokens": 61468,
+      "cacheCreationInputTokens": 17091,
+      "webSearchRequests": 0,
+      "costUSD": 0.0861728,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 159,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 17091,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-12-15T20:43:24.128Z"
+}

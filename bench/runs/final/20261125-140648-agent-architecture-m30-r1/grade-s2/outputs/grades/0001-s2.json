@@ -1,0 +1,43 @@
+{
+  "quiz": "0001",
+  "submission": "s2",
+  "items": [
+    {
+      "id": "q1",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. What makes it an agent is the loop: the model picks an action, the program runs it, and the result comes back for the next step."
+    },
+    {
+      "id": "q2",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. The model only outputs a structured request naming check_calendar and its arguments; the program around it runs the tool."
+    },
+    {
+      "id": "q3",
+      "verdict": "wrong",
+      "misconception": "M6",
+      "feedback": "You chose 'no change; left to run longer, it will eventually fix the bug'. That is tempting because more attempts sound like more chances, but this agent gets the same edit and the same failing test every time, so extra steps add nothing. A step limit ends the loop after N steps and reports what happened, so a person can take over."
+    },
+    {
+      "id": "q4",
+      "verdict": "partial",
+      "misconception": "M4",
+      "feedback": "Your count of 4 is right, and so is your last point that the 4th call writes the answer. One phrase in your reason contradicts your q2 answer. Try first: who runs a tool, and is that run a model call? The program runs each tool. The model is called 4 times: three calls each end in a tool request, and the fourth writes the answer."
+    },
+    {
+      "id": "q5",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. The result goes back into the model's next input, and the model is called again so it can choose its next step. Both what happens and why are there."
+    },
+    {
+      "id": "q6",
+      "verdict": "partial",
+      "misconception": null,
+      "feedback": "You are right that the name matters: check_calendar points the model at the calendar. But the name is only part of what the model sees; something else is missing from your answer. Try first: what could go wrong if two tools had similar names but did different things? The program gives the model each tool's name, its description of what it does and its parameters, and the model picks the tool whose description fits the request."
+    }
+  ],
+  "summary": "You have the loop down: q1, q2 and q5 show you know the model asks for a tool and the program feeds the result back. The idea to work on is that the model runs the tools itself: in q4 you wrote that the model 'runs' each tool, when the program runs them and the model only requests them, which is why the answer is 4 calls and not fewer. Next step: trace the laser cutter question from q4 line by line, and for each of the 4 steps write what the model outputs and what the program does. Which of those lines is a model call, and which is not?"
+}

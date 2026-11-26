@@ -1,0 +1,43 @@
+{
+  "quiz": "0001",
+  "submission": "s2",
+  "items": [
+    {
+      "id": "q1",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. What makes it an agent is the loop: the model picks an action, the program runs it, and the result comes back for the next step."
+    },
+    {
+      "id": "q2",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. The model only outputs a structured request naming check_calendar and its arguments; the program around it runs the tool."
+    },
+    {
+      "id": "q3",
+      "verdict": "wrong",
+      "misconception": "M6",
+      "feedback": "You chose 'no change; left to run longer, it will eventually fix the bug'. That is tempting because more attempts sound like more chances, but this agent gets the same edit and the same failing test every time, so extra steps add nothing. A step limit ends the loop after N steps and reports what happened, so a person can take over."
+    },
+    {
+      "id": "q4",
+      "verdict": "partial",
+      "misconception": "M4",
+      "feedback": "Your count of 4 is right, and so is your last point that the 4th call writes the answer. The reasoning is off where you say the model 'runs' check_calendar, search_manuals and check_training_record itself. Try first: in q2 you said who actually runs a tool, so who runs these three, and does that run count as a model call? The program runs each tool. The model is called 4 times: three calls each end in a tool request, and the fourth writes the answer."
+    },
+    {
+      "id": "q5",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Right. The result goes back into the model's next input, and the model is called again so it can choose its next step. Both what happens and why are there."
+    },
+    {
+      "id": "q6",
+      "verdict": "partial",
+      "misconception": null,
+      "feedback": "You are right that the name matters: check_calendar points the model at the calendar. The missing part is that the model gets the whole description, not just the name. Try first: what could go wrong if two tools had similar names but did different things? The program gives the model each tool's name, what it does and its parameters, and the model picks the tool whose description fits the request."
+    }
+  ],
+  "summary": "You have the loop and the split of work down: q1, q2 and q5 show you know the model asks and the program acts and feeds results back. The idea to work on is that the model does the acting itself, or that a loop will sort itself out: in q4 you said the model runs the tools, and in q3 you trusted the agent to get there eventually without a stopping condition (q6 is a smaller gap, relying on names alone). Next step: trace the laser cutter question from q4 line by line, writing for each of the 4 steps what the model outputs and what the program does, then ask yourself what in that trace would end a loop that never finishes."
+}

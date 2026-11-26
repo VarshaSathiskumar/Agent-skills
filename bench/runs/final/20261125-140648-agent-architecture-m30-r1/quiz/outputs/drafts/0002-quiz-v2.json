@@ -1,0 +1,62 @@
+{
+  "id": "0002",
+  "objective": "O4",
+  "title": "Workflows, agents and who owns the control flow",
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "Read this booking handler from the makerspace assistant:\n\ndef handle(msg):\n    slot = ask_model(\"Extract machine, date, time as JSON: \" + msg)\n    if not check_calendar(slot):\n        return \"Sorry, that slot is taken.\"\n    book_slot(slot)\n    send_email(slot)\n\nHow should you classify it?",
+      "options": [
+        {"id": "a", "text": "An agent, since the model's output feeds the later steps"},
+        {"id": "b", "text": "A workflow, since whatever the model returns, the next step is already set by this code"},
+        {"id": "c", "text": "An agent, since it calls tools such as check_calendar"},
+        {"id": "d", "text": "A workflow, since the model is called only once"}
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "short",
+      "objective": "O4",
+      "stem": "Read this handler:\n\ndef handle(msg):\n    history = [msg]\n    for _ in range(10):\n        reply = ask_model(history)\n        if reply.tool_call:\n            history.append(run_tool(reply.tool_call))\n        else:\n            return reply.text\n\nIs this a workflow or an agent?"
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "Every night a job reads the 500 new machine-usage log lines, which always have the same format, has a model summarize them, and stores the summary. The sponsor wants a predictable cost per night. Which design is best for this job?",
+      "options": [
+        {"id": "a", "text": "An agent, since it can adapt if the log format changes"},
+        {"id": "b", "text": "An agent, since it can re-check its summary until satisfied"},
+        {"id": "c", "text": "A fixed workflow, since one pass gives a steady cost and output"},
+        {"id": "d", "text": "A fixed workflow, since an agent could not summarize that many lines"}
+      ]
+    },
+    {
+      "id": "q4",
+      "type": "numeric",
+      "objective": "O4",
+      "stem": "A fixed workflow answers each request with 2 model calls. An agent doing the same job averages 6 model calls per request, because it loops. Each call costs $0.003, and the assistant handles 1,000 requests. How many extra dollars does the agent cost compared with the workflow?",
+      "unit": "dollars"
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "The assistant has two jobs. Job A: when a student confirms a booking, the sponsor requires the same checks every time and an audit log of each step. Job B: answer \"why did my print warp?\" from the manuals, where the number of lookups depends on what the student says. The sponsor caps every request at 8 model calls. Which design is best?",
+      "options": [
+        {"id": "a", "text": "Job A as a fixed workflow; Job B as an agent loop capped at 8 calls"},
+        {"id": "b", "text": "Both jobs as fixed workflows, with Job B always running three lookups"},
+        {"id": "c", "text": "Both jobs handled by one agent, told by its prompt to log every step"},
+        {"id": "d", "text": "Job A as an agent capped at 8 calls; Job B as a fixed workflow"}
+      ]
+    },
+    {
+      "id": "q6",
+      "type": "short",
+      "objective": "O4",
+      "stem": "A pipeline runs three stages in code: classify, retrieve, draft. A fourth, final stage passes the draft to a model, and the code runs whatever word the model returns (\"retrieve\", \"classify\" or \"stop\") and repeats until it returns \"stop\". Which stage gives the model control over the flow?"
+    }
+  ]
+}
