@@ -1,0 +1,50 @@
+{
+  "id": "0002",
+  "objective": "O2",
+  "title": "HTTP methods and status codes",
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "objective": "O2",
+      "stem": "A chat app sends a new message by calling the same endpoint again whenever the connection drops before a reply arrives. The server stores one message per request it receives. Which method choice makes these automatic retries safest?",
+      "options": [
+        {"id": "a", "text": "POST /messages, since the server assigns IDs"},
+        {"id": "b", "text": "PUT /messages/{id}, with an ID the client generates"},
+        {"id": "c", "text": "PATCH /messages, since it only adds one item"},
+        {"id": "d", "text": "GET /messages/new, since it needs no request body"}
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "objective": "O2",
+      "stem": "A client sends POST /accounts with an email address that is already registered. The JSON is valid and the fields pass validation. Which status code best describes this outcome?",
+      "options": [
+        {"id": "a", "text": "200 OK, with an error message in the body"},
+        {"id": "b", "text": "409 Conflict, since it clashes with current state"},
+        {"id": "c", "text": "500 Internal Server Error, since the save failed"},
+        {"id": "d", "text": "404 Not Found, since the account does not exist"}
+      ]
+    },
+    {
+      "id": "q3",
+      "type": "short",
+      "objective": "O2",
+      "stem": "A client calls DELETE /notes/9 twice in a row. The first call removes the note and the second finds nothing. In one sentence, why is DELETE still called idempotent even though the two responses can differ?"
+    },
+    {
+      "id": "q4",
+      "type": "numeric",
+      "objective": "O2",
+      "stem": "Each call to POST /tickets creates one new ticket. A client sends the same POST /tickets request 3 times and every request succeeds. How many tickets exist afterwards, starting from none?",
+      "unit": "tickets"
+    },
+    {
+      "id": "q5",
+      "type": "short",
+      "objective": "O2",
+      "stem": "A client sends PUT /profiles/4 with only {\"bio\": \"Hello\"} to a server that follows PUT's replace semantics. Which method should the client have used to change only the bio, and what is at risk with the PUT?"
+    }
+  ]
+}

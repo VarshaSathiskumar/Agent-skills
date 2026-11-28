@@ -154,11 +154,11 @@ TODO
 
 ### Session 1
 
-**Date:** TODO
+**Date:** 27/11/2026
 
-**Topic:** TODO
+**Topic:** rest-api-design
 
-TODO
+The lesson did a good job explaining HTTP methods and status codes through practical task API examples instead of just listing definitions. I especially liked the retry example showing how POST can create duplicate tasks while PUT produces the same result when repeated, which made idempotency easier to understand. One thing that bothered me was that it introduced several status codes, including 400, 422, 404, and 409, in a short section, making it harder to absorb their differences. I would have preferred fewer codes with more focused examples and practice before moving on.
 
 ### Session 2
 

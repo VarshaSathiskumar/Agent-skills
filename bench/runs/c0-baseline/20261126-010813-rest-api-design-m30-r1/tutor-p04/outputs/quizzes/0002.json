@@ -1,0 +1,56 @@
+{
+  "id": "0002",
+  "objective": "O4",
+  "title": "Distributed rate limiting with Redis and Lua",
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "Your API runs on 4 servers behind a load balancer. A limiter keeps each client's count in a Python dict inside each server. What is wrong with this design?",
+      "options": [
+        {"id": "a", "text": "Each server enforces its own limit, so one client gets about four times the intended rate"},
+        {"id": "b", "text": "Python dicts cannot be updated by more than one request at the same moment in time"},
+        {"id": "c", "text": "The load balancer sums every server's counter and so rejects clients too early"},
+        {"id": "d", "text": "Counters kept in memory are lost on each request and so never reach the limit"}
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "A developer runs GET on a client's token count, decides in Python, then runs SET with the new count, as three separate Redis commands. Each Redis command is atomic. Why can the limiter still over-allow?",
+      "options": [
+        {"id": "a", "text": "Redis may run the commands out of order, so the SET can be applied first"},
+        {"id": "b", "text": "Another server's commands can run between the GET and the SET of this one"},
+        {"id": "c", "text": "Redis forgets the value after a GET until a later SET has been received"},
+        {"id": "d", "text": "A SET command is atomic only when it is sent from a single server alone"}
+      ]
+    },
+    {
+      "id": "q3",
+      "type": "numeric",
+      "objective": "O4",
+      "stem": "A token bucket has capacity 8 and refills at 4 tokens per second. A client's stored bucket holds 3 tokens, and the next request (cost 1) arrives exactly 2 seconds after the last update. After the refill is applied and the request is allowed, how many tokens are stored?",
+      "unit": "tokens"
+    },
+    {
+      "id": "q4",
+      "type": "short",
+      "objective": "O4",
+      "stem": "Your Lua rate-limit script needs the current time. Should it take the time from the API server that calls it or from Redis itself, and why, in one sentence?"
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "objective": "O4",
+      "stem": "A client exceeds its limit. Which response best fits good REST API design?",
+      "options": [
+        {"id": "a", "text": "Status 200 with an error message in the body, since the request arrived"},
+        {"id": "b", "text": "Status 500 with a generic message, since the server declined the request"},
+        {"id": "c", "text": "Status 429 with a Retry-After header and your standard JSON error body"},
+        {"id": "d", "text": "Status 404 with an empty body, since the server hides the resource now"}
+      ]
+    }
+  ]
+}

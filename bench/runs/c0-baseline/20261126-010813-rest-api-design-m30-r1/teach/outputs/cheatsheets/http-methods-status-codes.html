@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cheat sheet: HTTP methods and status codes</title>
+  <style>
+    body { max-width: 44rem; margin: 0 auto; padding: 2rem 1rem; font-family: Charter, Georgia, serif; line-height: 1.5; color: #1f1d1a; background: #fffdf8; }
+    h1 { font-size: 1.6rem; } h2 { font-size: 1.1rem; margin-top: 1.8rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th, td { text-align: left; padding: 0.35rem 0.5rem; border-bottom: 1px solid #e4dfd4; vertical-align: top; }
+    code { font-family: ui-monospace, Menlo, monospace; background: #f3efe6; padding: 0.1em 0.3em; border-radius: 4px; }
+    @media (prefers-color-scheme: dark) { body { background: #171614; color: #e9e5dc; } th, td { border-color: #36332e; } code { background: #23211e; } }
+  </style>
+</head>
+<body>
+<h1>HTTP methods and status codes</h1>
+<p>From <a href="../lessons/0001-http-methods-and-status-codes.html">lesson 1</a>. Source: <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods">MDN</a>.</p>
+<h2>Methods</h2>
+<table>
+  <tr><th>Method</th><th>Use</th><th>Safe</th><th>Idempotent</th></tr>
+  <tr><td><code>GET</code></td><td>Read</td><td>yes</td><td>yes</td></tr>
+  <tr><td><code>POST</code></td><td>Create (server picks ID) or process</td><td>no</td><td>no</td></tr>
+  <tr><td><code>PUT</code></td><td>Replace whole resource at known URL</td><td>no</td><td>yes</td></tr>
+  <tr><td><code>PATCH</code></td><td>Change some fields</td><td>no</td><td>not guaranteed</td></tr>
+  <tr><td><code>DELETE</code></td><td>Remove</td><td>no</td><td>yes (state, not response)</td></tr>
+</table>
+<h2>Success</h2>
+<table>
+  <tr><td><code>200</code></td><td>OK, result in body</td></tr>
+  <tr><td><code>201</code></td><td>Created, add a <code>Location</code> header</td></tr>
+  <tr><td><code>204</code></td><td>OK, no body</td></tr>
+</table>
+<h2>Errors: whose fault?</h2>
+<table>
+  <tr><td><code>400</code></td><td>Malformed request</td></tr>
+  <tr><td><code>401</code></td><td>Not authenticated</td></tr>
+  <tr><td><code>403</code></td><td>Authenticated, not allowed</td></tr>
+  <tr><td><code>404</code></td><td>No such resource</td></tr>
+  <tr><td><code>409</code></td><td>Conflicts with current state</td></tr>
+  <tr><td><code>422</code></td><td>Well-formed but invalid</td></tr>
+  <tr><td><code>500</code></td><td>Server failed</td></tr>
+</table>
+<h2>Rules of thumb</h2>
+<ul>
+  <li>Status code = outcome, never "it arrived", so no 200 with an error body.</li>
+  <li>Whole resource at a known URL: PUT. Some fields: PATCH. Server picks the ID: POST.</li>
+  <li>Retry is safe only for idempotent methods.</li>
+</ul>
+</body>
+</html>

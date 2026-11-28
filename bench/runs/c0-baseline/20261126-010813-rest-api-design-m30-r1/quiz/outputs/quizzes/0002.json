@@ -1,0 +1,67 @@
+{
+  "id": "0002",
+  "objective": "O3",
+  "title": "Consistent API error responses",
+  "items": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "objective": "O3",
+      "stem": "A client sends POST /users without the required email field. Which response best reports this failure to the client?",
+      "options": [
+        {"id": "a", "text": "Status 200 with a body like {\"error\": \"email is required\"}"},
+        {"id": "b", "text": "Status 400 or 422 with a body that names the email field"},
+        {"id": "c", "text": "Status 500 with a body that holds the server stack trace"},
+        {"id": "d", "text": "Status 204 with an empty body, since nothing was created"}
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "objective": "O3",
+      "stem": "A signed-in user with a valid token sends DELETE /orders/9, an order owned by someone else. The server knows who the user is and refuses the action without hiding the order. Which status fits best?",
+      "options": [
+        {"id": "a", "text": "400 Bad Request, because the request was malformed"},
+        {"id": "b", "text": "401 Unauthorized, because the user is not identified"},
+        {"id": "c", "text": "403 Forbidden, because the user lacks permission"},
+        {"id": "d", "text": "409 Conflict, because the order is owned by another"}
+      ]
+    },
+    {
+      "id": "q3",
+      "type": "short",
+      "objective": "O3",
+      "stem": "RFC 9457 defines a standard JSON format for HTTP API errors, called \"problem details\". What media type (Content-Type value) should a response carry when its body is in this format?"
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "objective": "O3",
+      "stem": "A client receives 429 Too Many Requests with the header Retry-After: 30. What is the best way for the client to handle this?",
+      "options": [
+        {"id": "a", "text": "Wait about 30 seconds, then retry the same request"},
+        {"id": "b", "text": "Retry at once, because the same request may now work"},
+        {"id": "c", "text": "Tell the user their input is invalid and ask for edits"},
+        {"id": "d", "text": "Treat it as a permanent failure and never try again"}
+      ]
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "objective": "O3",
+      "stem": "An API has many endpoints. Which approach keeps its error responses consistent for client developers?",
+      "options": [
+        {"id": "a", "text": "Each endpoint picks whatever error JSON suits it best"},
+        {"id": "b", "text": "Send only a status code and always leave the body empty"},
+        {"id": "c", "text": "Put the error text in a header and let bodies vary"},
+        {"id": "d", "text": "Use one shared error body shape on every endpoint"}
+      ]
+    },
+    {
+      "id": "q6",
+      "type": "short",
+      "objective": "O3",
+      "stem": "In an RFC 9457 problem details object, which member holds the human-readable explanation specific to this occurrence of the problem, such as \"Your balance is 30, but the item costs 50\"? Give the member name."
+    }
+  ]
+}

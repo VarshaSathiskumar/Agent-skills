@@ -1,0 +1,152 @@
+{
+  "duration_api_ms": 169164,
+  "stop_reason": "end_turn",
+  "session_id": "99aa5fe0-48e6-46ae-9b96-3546fadfb028",
+  "total_cost_usd": 0.5748648,
+  "usage": {
+    "input_tokens": 18,
+    "cache_creation_input_tokens": 64644,
+    "cache_read_input_tokens": 337893,
+    "output_tokens": 23469,
+    "output_tokens_details": {
+      "thinking_tokens": 843
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 64644,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 689,
+        "cache_read_input_tokens": 70781,
+        "cache_creation_input_tokens": 4869,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 4869
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 18,
+      "outputTokens": 23469,
+      "cacheReadInputTokens": 337893,
+      "cacheCreationInputTokens": 64644,
+      "webSearchRequests": 0,
+      "costUSD": 0.5270913,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 843,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 64644,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-haiku-5-5": {
+      "inputTokens": 60855,
+      "outputTokens": 3376,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 4,
+      "costUSD": 0.047773499999999997,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 726,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 0,
+      "canonicalModel": "claude-haiku-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 23,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "The 30-minute lesson on O2 is written, with a short quiz ready. I checked it by eye against the format rules but didn't run any script on it.\n\n- **Lesson:** `lessons/0001-http-methods-and-status-codes.html`. The win is that you can take a plain-English operation, pick the method and status code, and explain the choice in a sentence. It runs in this order:\n  - a warm-up recalling O1;\n  - GET, POST, PUT, PATCH and DELETE, including safe versus idempotent, with a figure of PUT versus POST repeated three times;\n  - success codes 200, 201 and 204, and error codes 400, 401, 403, 404, 409, 422 and 500, with a decision figure;\n  - boxes that tackle your two sticking points directly: POST and PUT are not interchangeable (M1), and 200 does not mean \"the request arrived\" (M2);\n  - a worked example, a faded exercise, a summary, and sources.\n  \n  I estimate it at about 3,500 words, inside the fit range for 30 minutes, but I didn't count them.\n- **Quiz:** `quizzes/0002.json` has 5 items, and the answers are in `keys/0002.json`. Ask me for it whenever you like.\n- **Cheat sheet:** `cheatsheets/http-methods-status-codes.html`.\n- **Notes:** I updated `RESOURCES.md` and `NOTES.md`.\n\nSources I actually opened or saw in search results are the MDN methods, status-code and idempotent pages, plus the IANA registry. I couldn't find a verified link to the RFC 9110 text, so the lesson leans on MDN's summary of it. The Azure API design page is linked, but only its landing description appeared in search, so I didn't cite specifics from it. For community, the lesson names Stack Overflow's `rest` and `api-design` tags without a link, since I had no verified URL.\n\nYou can ask me anything about the lesson in the chat. Which would help more next: a shorter lesson on the PUT/PATCH/POST decision, or a go at the quiz first?",
+  "ttft_ms": 1615,
+  "type": "result",
+  "duration_ms": 159228,
+  "uuid": "d6217478-1f12-4de0-8c82-539851a4909f",
+  "ttft_stream_ms": 1211,
+  "time_to_request_ms": 66,
+  "first_content_frame_ms": 1212,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 18,
+      "outputTokens": 23469,
+      "cacheReadInputTokens": 337893,
+      "cacheCreationInputTokens": 64644,
+      "webSearchRequests": 0,
+      "costUSD": 0.5270913,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 843,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 64644,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-haiku-5-5": {
+      "inputTokens": 60855,
+      "outputTokens": 3376,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 4,
+      "costUSD": 0.047773499999999997,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 726,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 0,
+      "canonicalModel": "claude-haiku-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-12-15T20:43:24.128Z"
+}

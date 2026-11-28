@@ -1,0 +1,35 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "b",
+      "rationale": "PUT is idempotent: with a client-generated ID, a retried request sets the same message again instead of creating another. POST is not idempotent, so a retry can duplicate the message (M1). GET must not create data, and PATCH is not guaranteed idempotent.",
+      "distractors": {"a": "M1"}
+    },
+    {
+      "id": "q2",
+      "answer": "b",
+      "rationale": "The request is well-formed but conflicts with existing state, which is 409 Conflict. 200 with an error body hides the failure (M2). 500 blames the server for a client-side problem, and 404 is for a missing resource.",
+      "distractors": {"a": "M2"}
+    },
+    {
+      "id": "q3",
+      "answer": "Idempotency is about server state, not responses: after one or many calls the note is gone either way.",
+      "accepted": ["the end state is the same", "the server state is the same after one or many calls", "the note is gone either way", "same resulting state even if the response differs"],
+      "rationale": "Idempotent means repeating the request leaves the server in the same state. Only the second response differs (for example 404), the state does not."
+    },
+    {
+      "id": "q4",
+      "answer": 3,
+      "tolerance": 0,
+      "rationale": "POST is not idempotent: each request creates a new ticket, so three succeeded requests give three tickets. An answer of 1 treats POST like PUT (M1)."
+    },
+    {
+      "id": "q5",
+      "answer": "PATCH; the PUT replaces the whole profile, so the omitted fields may be lost.",
+      "accepted": ["use patch, put would overwrite the whole resource and drop other fields", "patch because put replaces everything and other fields could be erased", "PATCH, risk of losing the other fields"],
+      "rationale": "PATCH applies a partial change. PUT replaces the entire resource, so fields not sent can be dropped. An answer of POST shows M1."
+    }
+  ]
+}

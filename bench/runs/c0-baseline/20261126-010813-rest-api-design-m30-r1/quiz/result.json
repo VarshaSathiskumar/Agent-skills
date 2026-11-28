@@ -1,0 +1,120 @@
+{
+  "duration_api_ms": 36121,
+  "stop_reason": "end_turn",
+  "session_id": "98f501af-4aa4-4ff5-9d89-ed341a27e558",
+  "total_cost_usd": 0.1741527,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 28815,
+    "cache_read_input_tokens": 104167,
+    "output_tokens": 4846,
+    "output_tokens_details": {
+      "thinking_tokens": 1552
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 28815,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 328,
+        "cache_read_input_tokens": 36030,
+        "cache_creation_input_tokens": 3791,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3791
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 4846,
+      "cacheReadInputTokens": 104167,
+      "cacheCreationInputTokens": 28815,
+      "webSearchRequests": 0,
+      "costUSD": 0.1741527,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 1552,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 28815,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 12,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "The six-question quiz on O3 is ready: `quizzes/0002.json`, with its key in `keys/0002.json`. I didn't read the quiz back to check the answers, and I wrote it from my own knowledge of HTTP status codes and RFC 9457 (the problem-details standard for API errors). I didn't search for or read a source.\n\n- **Status codes:** q1 asks which response reports a missing field (this is where M2, \"200 whenever the request reaches the server\", shows up). q2 is 401 versus 403. q4 asks how a client should handle a 429 with `Retry-After`.\n- **Consistent error design:** q5 asks how to keep errors consistent across endpoints. q3 and q6 ask for the problem-details media type and for the member that holds the explanation for one specific failure.\n\nThe quiz is ahead of the lessons: no lesson covers O3 yet, so it checks the objective directly. Each question gives the context it needs. I can write a lesson on error responses next if you'd like one.",
+  "ttft_ms": 1817,
+  "type": "result",
+  "duration_ms": 36320,
+  "uuid": "b0df71b5-2341-45ba-8f06-660f21d685a1",
+  "ttft_stream_ms": 1166,
+  "time_to_request_ms": 109,
+  "first_content_frame_ms": 1166,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 4846,
+      "cacheReadInputTokens": 104167,
+      "cacheCreationInputTokens": 28815,
+      "webSearchRequests": 0,
+      "costUSD": 0.1741527,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 1552,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 28815,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-12-15T20:43:24.128Z"
+}

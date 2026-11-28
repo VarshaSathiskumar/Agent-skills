@@ -1,0 +1,120 @@
+{
+  "duration_api_ms": 14506,
+  "stop_reason": "end_turn",
+  "session_id": "c71496c1-4b9f-44fe-a983-0d78fb28a414",
+  "total_cost_usd": 0.12067739999999999,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 23674,
+    "cache_read_input_tokens": 101754,
+    "output_tokens": 1579,
+    "output_tokens_details": {
+      "thinking_tokens": 116
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 23674,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 552,
+        "cache_read_input_tokens": 34353,
+        "cache_creation_input_tokens": 327,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 327
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 1579,
+      "cacheReadInputTokens": 101754,
+      "cacheCreationInputTokens": 23674,
+      "webSearchRequests": 0,
+      "costUSD": 0.12067739999999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 116,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 23674,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 9,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "Not quite. They both send data, but they mean different things, so you can't pick either one freely.\n\n**Example.** You have a \"Sign up\" button, and the network hiccups so the browser sends the request twice.\n\n- `POST /users` with `{\"name\": \"Ana\"}` means \"create a new user under this collection, and the server decides the ID.\" Sent twice, you can get two Anas, `/users/101` and `/users/102`.\n- `PUT /users/101` with `{\"name\": \"Ana\", \"email\": \"a@x.com\"}` means \"make the user at this URL look exactly like this body.\" Sent twice, you still have one user in the same state.\n\n**The general idea:**\n- **Idempotent** means repeating the request leaves the server in the same state as sending it once. PUT is idempotent. POST is not.\n- **Who picks the URL.** With POST the server usually assigns it, and you reply `201 Created` with a `Location` header. With PUT the client already knows the URL.\n- **PUT replaces.** It swaps in the whole resource. If you leave out `email`, it is gone or reset. For changing just one field, use PATCH.\n\nSo for your mission:\n- Creating a user usually uses `POST /users`.\n- Replacing a user uses `PUT /users/101`.\n- Changing one field uses `PATCH /users/101`.\n\nPUT can also create a resource when the client chooses the ID, such as `PUT /users/ana`. That is a legitimate case, but it's the exception.\n\nQuick check: a mobile app times out on a request and automatically retries it. Which of POST and PUT would you worry about, and what could go wrong?\n\nI can put together a short lesson on methods, idempotency and status codes (O2) if you want one.",
+  "ttft_ms": 1981,
+  "type": "result",
+  "duration_ms": 14730,
+  "uuid": "bf571395-7a50-4ebd-a3d4-3aab58dcc440",
+  "ttft_stream_ms": 1299,
+  "time_to_request_ms": 148,
+  "first_content_frame_ms": 1300,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 1579,
+      "cacheReadInputTokens": 101754,
+      "cacheCreationInputTokens": 23674,
+      "webSearchRequests": 0,
+      "costUSD": 0.12067739999999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 116,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 23674,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-12-15T20:43:24.128Z"
+}

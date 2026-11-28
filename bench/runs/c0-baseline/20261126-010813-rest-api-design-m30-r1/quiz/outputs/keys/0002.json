@@ -1,0 +1,38 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "b",
+      "rationale": "A 4xx status (400, or 422 for a well-formed but invalid body) tells every client and tool the request failed, and the body names the field so the client can show it. Answer a shows M2: 200 only means the request reached the server, not that it succeeded.",
+      "distractors": {"a": "M2"}
+    },
+    {
+      "id": "q2",
+      "answer": "c",
+      "rationale": "403 means the server knows the caller's identity and refuses the action. 401 is for missing or invalid credentials, and nothing is malformed (400) or in a conflicting state (409)."
+    },
+    {
+      "id": "q3",
+      "answer": "application/problem+json",
+      "accepted": ["application/problem+json; charset=utf-8", "problem+json"],
+      "rationale": "RFC 9457 registers application/problem+json (and application/problem+xml) for problem details responses."
+    },
+    {
+      "id": "q4",
+      "answer": "a",
+      "rationale": "429 is a temporary rate-limit failure and Retry-After says how long to wait, so the client should back off and retry. Retrying at once keeps hitting the limit; it is not an input error or a permanent failure."
+    },
+    {
+      "id": "q5",
+      "answer": "d",
+      "rationale": "One shared error shape (for example RFC 9457 problem details with type, title, status, detail) lets clients write a single error handler. Per-endpoint shapes or empty bodies force special cases and hide the reason for failure."
+    },
+    {
+      "id": "q6",
+      "answer": "detail",
+      "accepted": ["the detail member", "detail member", "\"detail\"", "detail field"],
+      "rationale": "In RFC 9457, detail is the occurrence-specific explanation; title is the short, stable summary of the problem type, and type is the URI identifying it."
+    }
+  ]
+}

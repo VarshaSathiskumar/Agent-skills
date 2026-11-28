@@ -1,0 +1,154 @@
+{
+  "duration_api_ms": 156854,
+  "stop_reason": "end_turn",
+  "session_id": "b800ced1-2492-4002-b44e-a19ca8356548",
+  "total_cost_usd": 0.5039222150000001,
+  "usage": {
+    "input_tokens": 18,
+    "cache_creation_input_tokens": 61257,
+    "cache_read_input_tokens": 338040,
+    "output_tokens": 18556,
+    "output_tokens_details": {
+      "thinking_tokens": 2535
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 61257,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 698,
+        "cache_read_input_tokens": 67784,
+        "cache_creation_input_tokens": 4479,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 4479
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 18,
+      "outputTokens": 18556,
+      "cacheReadInputTokens": 338040,
+      "cacheCreationInputTokens": 61257,
+      "webSearchRequests": 0,
+      "costUSD": 0.464428,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 2535,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 61257,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-haiku-5-5": {
+      "inputTokens": 43809,
+      "outputTokens": 6644,
+      "cacheReadInputTokens": 3219,
+      "cacheCreationInputTokens": 14073,
+      "webSearchRequests": 3,
+      "costUSD": 0.039494215000000006,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 2106,
+      "cacheCreationEphemeral5mInputTokens": 14073,
+      "cacheCreationEphemeral1hInputTokens": 0,
+      "canonicalModel": "claude-haiku-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 1,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 1
+    },
+    "started_in_background": 0,
+    "max_depth": 1,
+    "spawned_by_subagents": 0,
+    "completed": 1,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {
+      "web-fetch": 1
+    }
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 23,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "I've written a 15-minute lesson on a Redis, Lua and token-bucket rate limiter, plus a five-item quiz with its key. I haven't opened the lesson in a browser or run its code. I also wrote no learning record, because you haven't shown any understanding of this topic yet.\n\nYou didn't give a length, so I chose 15 minutes. Ask me for a shorter or longer version if you want one.\n\n**Lesson:** `lessons/0001-distributed-rate-limiter-redis-lua.html`. It builds up in this order:\n1. Why per-server counters fail across several API servers.\n2. How a token bucket works, with a numeric example.\n3. How a Lua script makes the read, refill, decide and write one atomic step. This is the answer to your atomic-updates question.\n4. How to call the script from Python with `register_script`, and how to answer over-limit requests with 429, a `Retry-After` header and a consistent JSON error body.\n\nIt also has a worked example, a faded practice task, and the two mix-ups I think are most likely (M3 and M5).\n\n- **How I got the script:** I based it on the official Redis token bucket guide (linked in the lesson) and changed two things. It reads the time from Redis (`TIME`) instead of the caller's clock, and it sets a key expiry. The guide's own token bucket does neither.\n- **Why 429 matters here:** it ties the limiter to your REST design mission (status codes and error responses). Returning 200 for a refused request is the M2 mix-up from your notes.\n- **Flask example:** I used Flask, but any framework works the same way, since every server runs the same code against the same Redis.\n- **Redis community link:** I couldn't verify a Redis community URL, so the lesson points to the community generally without a link.\n\n**Quiz:** `quizzes/0002.json` is ready whenever you want to take it. Ask me for it here and I'll show the questions.\n\nI also updated `NOTES.md` (new objective O4 and misconceptions M3–M5) and created `RESOURCES.md`.\n\nTwo questions for you:\n- Which framework are you using?\n- Is Redis already running in your project?",
+  "ttft_ms": 1664,
+  "type": "result",
+  "duration_ms": 146477,
+  "uuid": "edfe6684-0246-429a-9a7c-d2ad868715f7",
+  "ttft_stream_ms": 1351,
+  "time_to_request_ms": 138,
+  "first_content_frame_ms": 1351,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 18,
+      "outputTokens": 18556,
+      "cacheReadInputTokens": 338040,
+      "cacheCreationInputTokens": 61257,
+      "webSearchRequests": 0,
+      "costUSD": 0.464428,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 2535,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 61257,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    },
+    "claude-haiku-5-5": {
+      "inputTokens": 43809,
+      "outputTokens": 6644,
+      "cacheReadInputTokens": 3219,
+      "cacheCreationInputTokens": 14073,
+      "webSearchRequests": 3,
+      "costUSD": 0.039494215000000006,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 2106,
+      "cacheCreationEphemeral5mInputTokens": 14073,
+      "cacheCreationEphemeral1hInputTokens": 0,
+      "canonicalModel": "claude-haiku-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-12-15T20:43:24.128Z"
+}

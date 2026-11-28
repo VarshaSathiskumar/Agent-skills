@@ -1,0 +1,322 @@
+{
+  "run_id": "20261126-010813-rest-api-design-m30-r1",
+  "config": "c0-baseline",
+  "config_hash": "sha256:3727de8ebe2e5331f2d9ccfd57b54b5f969ef6ca0e181c1f994201ad3ebde8f5",
+  "topic": "rest-api-design",
+  "topic_hash": "sha256:ef6d079404df058f530d3020c6b1f17d8b5ad4855ff7196334b5e6817a38ee45",
+  "topic_commit": "581f080c0fdc1ee24725007160869324eca8113b",
+  "repeat": 1,
+  "minutes": 30,
+  "quick": false,
+  "started_at": "2026-11-26T01:08:13Z",
+  "finished_at": "2026-11-26T01:15:04Z",
+  "claude_version": "2.1.332 (Claude Code)",
+  "p3_version": "0.2.0",
+  "platform": "macOS-26.7.1-arm64-arm-64bit-Mach-O",
+  "model": "sonnet",
+  "allowed_tools": [
+    "Glob",
+    "Grep",
+    "WebSearch",
+    "WebFetch"
+  ],
+  "entries": {
+    "teach": "/teach",
+    "tutor": "/teach",
+    "quiz": "/teach",
+    "grade": "/teach"
+  },
+  "only": null,
+  "ancestor_memory": [],
+  "scenarios": [
+    {
+      "id": "teach",
+      "job": "teach",
+      "entry": "/teach",
+      "status": "ok",
+      "duration_ms": 160283,
+      "num_turns": 23,
+      "tokens": {
+        "input": 60873,
+        "output": 26845,
+        "cache_read": 337893,
+        "cache_write": 64644
+      },
+      "cost_usd_list": 0.574865,
+      "web_searches": 4,
+      "web_fetches": 0,
+      "subagents": {
+        "spawned": 0,
+        "max_depth": 0,
+        "by_type": {}
+      },
+      "permission_denials": [],
+      "outputs": [
+        "NOTES.md",
+        "RESOURCES.md",
+        "cheatsheets/http-methods-status-codes.html",
+        "keys/0002.json",
+        "lessons/0001-http-methods-and-status-codes.html",
+        "quizzes/0002.json"
+      ],
+      "changed": [
+        "NOTES.md"
+      ],
+      "deleted": [],
+      "models": [
+        "claude-haiku-5-5",
+        "claude-sonnet-5-5"
+      ],
+      "search_queries": [
+        "RFC 9110 HTTP semantics idempotent methods PUT POST PATCH safe methods",
+        "Microsoft Azure Architecture Web API design best practices HTTP methods status codes",
+        "MDN HTTP response status codes 201 Created 204 No Content 404 409 422",
+        "r/webdev OR Stack Overflow rest tag REST API design questions community"
+      ],
+      "fetch_urls": [],
+      "exit_code": 0,
+      "claude_version": "2.1.332"
+    },
+    {
+      "id": "quiz",
+      "job": "quiz",
+      "entry": "/teach",
+      "status": "ok",
+      "duration_ms": 36717,
+      "num_turns": 12,
+      "tokens": {
+        "input": 8,
+        "output": 4846,
+        "cache_read": 104167,
+        "cache_write": 28815
+      },
+      "cost_usd_list": 0.174153,
+      "web_searches": 0,
+      "web_fetches": 0,
+      "subagents": {
+        "spawned": 0,
+        "max_depth": 0,
+        "by_type": {}
+      },
+      "permission_denials": [],
+      "outputs": [
+        "keys/0002.json",
+        "quizzes/0002.json"
+      ],
+      "changed": [],
+      "deleted": [],
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "search_queries": [],
+      "fetch_urls": [],
+      "exit_code": 0,
+      "claude_version": "2.1.332"
+    },
+    {
+      "id": "grade-s1",
+      "job": "grade",
+      "entry": "/teach",
+      "status": "ok",
+      "duration_ms": 23871,
+      "num_turns": 14,
+      "tokens": {
+        "input": 8,
+        "output": 2952,
+        "cache_read": 103435,
+        "cache_write": 26727
+      },
+      "cost_usd_list": 0.146787,
+      "web_searches": 0,
+      "web_fetches": 0,
+      "subagents": {
+        "spawned": 0,
+        "max_depth": 0,
+        "by_type": {}
+      },
+      "permission_denials": [],
+      "outputs": [
+        "NOTES.md",
+        "grades/0001-s1.json",
+        "learning-records/0002-quiz-0001-uri-design.md"
+      ],
+      "changed": [
+        "NOTES.md"
+      ],
+      "deleted": [],
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "search_queries": [],
+      "fetch_urls": [],
+      "exit_code": 0,
+      "submission": "s1",
+      "claude_version": "2.1.332"
+    },
+    {
+      "id": "tutor-p01",
+      "job": "tutor",
+      "entry": "/teach",
+      "status": "ok",
+      "duration_ms": 10755,
+      "num_turns": 9,
+      "tokens": {
+        "input": 6,
+        "output": 1135,
+        "cache_read": 62426,
+        "cache_write": 18205
+      },
+      "cost_usd_list": 0.090425,
+      "web_searches": 0,
+      "web_fetches": 0,
+      "subagents": {
+        "spawned": 0,
+        "max_depth": 0,
+        "by_type": {}
+      },
+      "permission_denials": [],
+      "outputs": [],
+      "changed": [],
+      "deleted": [],
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "search_queries": [],
+      "fetch_urls": [],
+      "exit_code": 0,
+      "probe": "p01",
+      "claude_version": "2.1.332"
+    },
+    {
+      "id": "tutor-p02",
+      "job": "tutor",
+      "entry": "/teach",
+      "status": "ok",
+      "duration_ms": 15435,
+      "num_turns": 9,
+      "tokens": {
+        "input": 8,
+        "output": 1579,
+        "cache_read": 101754,
+        "cache_write": 23674
+      },
+      "cost_usd_list": 0.120677,
+      "web_searches": 0,
+      "web_fetches": 0,
+      "subagents": {
+        "spawned": 0,
+        "max_depth": 0,
+        "by_type": {}
+      },
+      "permission_denials": [],
+      "outputs": [
+        "NOTES.md"
+      ],
+      "changed": [
+        "NOTES.md"
+      ],
+      "deleted": [],
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "search_queries": [],
+      "fetch_urls": [],
+      "exit_code": 0,
+      "probe": "p02",
+      "claude_version": "2.1.332"
+    },
+    {
+      "id": "tutor-p03",
+      "job": "tutor",
+      "entry": "/teach",
+      "status": "ok",
+      "duration_ms": 16773,
+      "num_turns": 9,
+      "tokens": {
+        "input": 8,
+        "output": 1670,
+        "cache_read": 101773,
+        "cache_write": 23827
+      },
+      "cost_usd_list": 0.122201,
+      "web_searches": 0,
+      "web_fetches": 0,
+      "subagents": {
+        "spawned": 0,
+        "max_depth": 0,
+        "by_type": {}
+      },
+      "permission_denials": [],
+      "outputs": [
+        "NOTES.md"
+      ],
+      "changed": [
+        "NOTES.md"
+      ],
+      "deleted": [],
+      "models": [
+        "claude-sonnet-5-5"
+      ],
+      "search_queries": [],
+      "fetch_urls": [],
+      "exit_code": 0,
+      "probe": "p03",
+      "claude_version": "2.1.332"
+    },
+    {
+      "id": "tutor-p04",
+      "job": "tutor",
+      "entry": "/teach",
+      "status": "ok",
+      "duration_ms": 146943,
+      "num_turns": 23,
+      "tokens": {
+        "input": 43827,
+        "output": 25200,
+        "cache_read": 341259,
+        "cache_write": 75330
+      },
+      "cost_usd_list": 0.503922,
+      "web_searches": 3,
+      "web_fetches": 2,
+      "subagents": {
+        "spawned": 1,
+        "max_depth": 1,
+        "by_type": {
+          "web-fetch": 1
+        }
+      },
+      "permission_denials": [],
+      "outputs": [
+        "NOTES.md",
+        "RESOURCES.md",
+        "keys/0002.json",
+        "lessons/0001-distributed-rate-limiter-redis-lua.html",
+        "quizzes/0002.json"
+      ],
+      "changed": [
+        "NOTES.md"
+      ],
+      "deleted": [],
+      "models": [
+        "claude-haiku-5-5",
+        "claude-sonnet-5-5"
+      ],
+      "search_queries": [
+        "Redis rate limiting token bucket Lua script atomic EVAL",
+        "Redis EVAL scripts atomic execution documentation redis.io",
+        "RFC 6585 429 Too Many Requests Retry-After"
+      ],
+      "fetch_urls": [
+        "https://redis.io/docs/latest/develop/use-cases/rate-limiter/redis-py/",
+        "https://redis.io/docs/latest/develop/use-cases/rate-limiter/"
+      ],
+      "exit_code": 0,
+      "probe": "p04",
+      "claude_version": "2.1.332"
+    }
+  ],
+  "claude_versions": [
+    "2.1.332"
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "duration_api_ms": 22977,
+  "stop_reason": "end_turn",
+  "session_id": "bb4ec3e8-ffa6-4bf8-94a0-0b5ce4c0ec16",
+  "total_cost_usd": 0.1467875,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 26727,
+    "cache_read_input_tokens": 103435,
+    "output_tokens": 2952,
+    "output_tokens_details": {
+      "thinking_tokens": 259
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 26727,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 387,
+        "cache_read_input_tokens": 35851,
+        "cache_creation_input_tokens": 1882,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1882
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 2952,
+      "cacheReadInputTokens": 103435,
+      "cacheCreationInputTokens": 26727,
+      "webSearchRequests": 0,
+      "costUSD": 0.1467875,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 259,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 26727,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 14,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "I graded Alex's submission for quiz 0001 and wrote the grades to `grades/0001-s1.json`. One correct, one partial and one wrong.\n\n- **q1: wrong (M1).** You chose `/post-or-put-book/42`, which puts HTTP methods in the URI. The URI should only name the resource, and the method says the action. The answer is `/books/42`.\n- **q2: correct.** `/users/15/orders/72` has four segments.\n- **q3: partial.** `/orders` is the right style, a plural noun, but it covers all orders. User 15's orders need nesting: `/users/15/orders`. I chose partial over wrong because the style and reasoning were right and only the nesting was missing.\n\n**What you have down:** counting segments, and using nouns rather than actions for collection names.\n\n**What to work on:** keep methods out of URIs, and nest URIs to show ownership.\n\n**Next step:** write URIs for one book, all reviews of book 42, and one review of book 42. Then say which HTTP method you'd use to create each.\n\nI also added a learning record (`learning-records/0002-quiz-0001-uri-design.md`) and updated `NOTES.md`.",
+  "ttft_ms": 1846,
+  "type": "result",
+  "duration_ms": 23117,
+  "uuid": "b2b07a7a-a585-4db9-a06d-acbd31e224cd",
+  "ttft_stream_ms": 1184,
+  "time_to_request_ms": 83,
+  "first_content_frame_ms": 1185,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 2952,
+      "cacheReadInputTokens": 103435,
+      "cacheCreationInputTokens": 26727,
+      "webSearchRequests": 0,
+      "costUSD": 0.1467875,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 259,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 26727,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-12-15T20:43:24.128Z"
+}

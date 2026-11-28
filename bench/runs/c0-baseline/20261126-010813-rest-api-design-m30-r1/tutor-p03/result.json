@@ -1,0 +1,120 @@
+{
+  "duration_api_ms": 16020,
+  "stop_reason": "end_turn",
+  "session_id": "d7d5dad5-2d57-4257-b1a3-cfeed60e4c97",
+  "total_cost_usd": 0.1222013,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 23827,
+    "cache_read_input_tokens": 101773,
+    "output_tokens": 1670,
+    "output_tokens_details": {
+      "thinking_tokens": 246
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 23827,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 486,
+        "cache_read_input_tokens": 34305,
+        "cache_creation_input_tokens": 528,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 528
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "modelUsage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 1670,
+      "cacheReadInputTokens": 101773,
+      "cacheCreationInputTokens": 23827,
+      "webSearchRequests": 0,
+      "costUSD": 0.1222013,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 246,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 23827,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+    "spawned": 0,
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "started_in_background": 0,
+    "max_depth": 0,
+    "spawned_by_subagents": 0,
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "user": 0,
+      "system": 0
+    },
+    "refused": {
+      "depth_limit": 0,
+      "concurrency_limit": 0,
+      "budget": 0
+    },
+    "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 9,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "Neither one. The best answer is a third code, **201 Created**.\n\nSuppose a client sends `POST /users` with `{\"name\": \"Ana\"}`. A good response looks like this:\n\n```\nHTTP/1.1 201 Created\nLocation: /users/123\n\n{\"id\": 123, \"name\": \"Ana\"}\n```\n\n- **201 Created** means the request worked and a new resource now exists. The HTTP spec (RFC 9110, section 15.3.2) says to send a `Location` header with the new resource's URL. That is where your `/users/123` URI design from earlier pays off.\n- **200 OK** only says \"this worked\". It is correct for a GET or an update. It doesn't tell the client that something new was created, so it is valid but vague for a create.\n- **204 No Content** means \"this worked and there is no body\". It suits a DELETE, or a PUT or PATCH where you have nothing to return. A client creating a user usually needs the new `id`, and a 204 gives it nothing to read.\n\nYou may be tempted to use 200 for any success, as in your earlier \"200 whenever the request reaches the server\" habit. It's worth dropping, because the status code is the part of the response that clients branch on. A frontend can check for 201 and redirect to the new user without parsing the body.\n\nTo check this landed: a client sends `DELETE /users/123` and it works. Which code would you return, and why that one instead of 201 or 200?\n\nIf you'd like a full lesson on choosing methods and status codes together, ask and I'll write one.",
+  "ttft_ms": 1778,
+  "type": "result",
+  "duration_ms": 16231,
+  "uuid": "7b221bcc-1f45-4899-ae94-c99f73052914",
+  "ttft_stream_ms": 1207,
+  "time_to_request_ms": 146,
+  "first_content_frame_ms": 1207,
+  "queued_turn_count": 0,
+  "result_index": 0,
+  "model_usage_since_last_result": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 8,
+      "outputTokens": 1670,
+      "cacheReadInputTokens": 101773,
+      "cacheCreationInputTokens": 23827,
+      "webSearchRequests": 0,
+      "costUSD": 0.1222013,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 246,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 23827,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "credential_expires_at": "2026-12-15T20:43:24.128Z"
+}

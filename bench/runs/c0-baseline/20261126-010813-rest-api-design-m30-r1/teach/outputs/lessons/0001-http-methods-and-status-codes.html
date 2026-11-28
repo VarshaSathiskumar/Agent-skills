@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="p3-minutes" content="30">
+  <meta name="p3-objective" content="O2">
+  <title>Choosing HTTP methods and status codes for REST operations</title>
+  <style>
+    :root {
+      --bg: #fffdf8; --text: #1f1d1a; --muted: #6b665e; --rule: #e4dfd4;
+      --accent: #9a4517; --accent-soft: #f7ede4; --warn: #8c2f39; --warn-soft: #f9eaec;
+      --ok: #2f6b3a; --ok-soft: #e7f2e9; --code-bg: #f3efe6;
+      --serif: Charter, "Bitstream Charter", "Iowan Old Style", "Sitka Text", Cambria, Georgia, serif;
+      --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --mono: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #171614; --text: #e9e5dc; --muted: #a49e93; --rule: #36332e;
+        --accent: #eaa77a; --accent-soft: #2c231d; --warn: #f0a3ac; --warn-soft: #2f1f22;
+        --ok: #9fd3a8; --ok-soft: #1c2a1f; --code-bg: #23211e;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { font-size: 19px; -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--serif); line-height: 1.6; }
+    main { max-width: 40rem; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+    p, li { hyphens: auto; }
+    a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+    h1, h2, h3 { line-height: 1.25; font-weight: 600; }
+    h1 { font-size: 2.1rem; margin: 0.25rem 0 1rem; }
+    h2 { font-size: 1.45rem; margin: 3rem 0 0.75rem; }
+    h3 { font-size: 1.1rem; margin: 2rem 0 0.5rem; }
+    .kicker, .label, .meta, .section-time, figcaption, summary, th, nav.toc, footer.closing { font-family: var(--sans); }
+    .kicker { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .lead { font-size: 1.15rem; }
+    .meta { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; font-size: 0.85rem; color: var(--muted);
+            border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 0.5rem 0; margin: 1.5rem 0; }
+    nav.toc { font-size: 0.9rem; margin: 1.5rem 0 2rem; }
+    nav.toc ol { padding-left: 1.2rem; margin: 0.4rem 0 0; }
+    .section-time { font-size: 0.8rem; font-weight: 400; color: var(--muted); margin-left: 0.4rem; white-space: nowrap; }
+    dfn { font-style: normal; font-weight: 600; }
+    aside.note { font-size: 0.9rem; color: var(--muted); border-left: 2px solid var(--rule); padding-left: 1rem; margin: 1.25rem 0; }
+    .box { border-radius: 6px; padding: 1rem 1.25rem; margin: 1.75rem 0; }
+    .box > :first-child { margin-top: 0; }
+    .box > :last-child { margin-bottom: 0; }
+    .label { display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.4rem; }
+    .mission { background: var(--accent-soft); }
+    .mission .label { color: var(--accent); }
+    .misconception { background: var(--warn-soft); border-left: 4px solid var(--warn); }
+    .misconception .label { color: var(--warn); }
+    .worked { border: 1px solid var(--rule); }
+    .worked ol { padding-left: 1.3rem; }
+    .summary { border: 1px solid var(--rule); }
+    figure { margin: 2rem 0; }
+    figure svg { display: block; width: 100%; height: auto; }
+    figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 0.5rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.92rem; margin: 1.5rem 0; }
+    th, td { text-align: left; vertical-align: top; padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--rule); }
+    th { font-size: 0.78rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+    code, pre { font-family: var(--mono); font-size: 0.85em; background: var(--code-bg); border-radius: 4px; }
+    code { padding: 0.1em 0.3em; }
+    pre { padding: 1rem; overflow-x: auto; line-height: 1.45; }
+    pre code { padding: 0; background: none; font-size: 1em; }
+    .check { border: 1px solid var(--rule); border-radius: 6px; padding: 1rem 1.25rem; margin: 1.75rem 0; }
+    .check .label { color: var(--accent); }
+    .check p { margin: 0.25rem 0; }
+    .choices { list-style: none; padding: 0; margin: 0.75rem 0 0; display: grid; gap: 0.5rem; }
+    .choices button { width: 100%; text-align: left; font: inherit; font-size: 0.95rem; color: inherit; background: transparent;
+                      border: 1px solid var(--rule); border-radius: 6px; padding: 0.55rem 0.8rem; cursor: pointer; }
+    .choices button:hover { border-color: var(--accent); }
+    .choices button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .choices button.right { border-color: var(--ok); background: var(--ok-soft); }
+    .choices button.wrong { border-color: var(--warn); background: var(--warn-soft); }
+    .feedback { font-size: 0.95rem; margin: 0.6rem 0 0; }
+    .feedback:empty { margin: 0; }
+    details { margin-top: 0.75rem; }
+    summary { font-size: 0.85rem; color: var(--accent); cursor: pointer; }
+    details > :not(summary) { margin: 0.5rem 0 0; }
+    .go-further li { margin-bottom: 0.6rem; }
+    footer.closing { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--rule); font-size: 0.9rem; color: var(--muted); }
+    @media (max-width: 32rem) { html { font-size: 17px; } h1 { font-size: 1.75rem; } main { padding-top: 2rem; } }
+    @media print {
+      :root { --bg: #fff; --text: #000; --muted: #444; --rule: #ccc; --accent: #000; --accent-soft: #f2f2f2;
+              --warn: #000; --warn-soft: #f2f2f2; --ok: #000; --ok-soft: #fff; --code-bg: #f2f2f2; }
+      html { font-size: 11.5pt; }
+      main { max-width: none; padding: 0; }
+      nav.toc { display: none; }
+      a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.8em; word-break: break-all; }
+      .box, .check, figure, table, pre { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+<main>
+
+  <header>
+    <div class="kicker">Lesson 1 &middot; 30 minutes</div>
+    <h1>Choosing HTTP methods and status codes for REST operations</h1>
+    <p class="lead">By the end of this lesson you can take a plain-English API operation, such as "replace a user's profile" or "the email is already taken", pick the right HTTP method and status code, and explain your choice in a sentence.</p>
+    <div class="meta">
+      <span>Objective O2: choose HTTP methods and status codes, and explain how each method behaves</span>
+      <span>About 30 minutes</span>
+      <span>Builds on your earlier work on resources and URIs (O1)</span>
+    </div>
+    <div class="box mission">
+      <span class="label">Why this matters for you</span>
+      <p>You want to design APIs that a frontend can rely on, and justify your choices. The URL says <em>what</em> you are talking about. The method and the status code say <em>what you want done</em> and <em>what happened</em>. If those are wrong, every client has to guess.</p>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="In this lesson">
+    <strong>In this lesson</strong>
+    <ol>
+      <li><a href="#warm-up">Warm-up</a></li>
+      <li><a href="#s1">Methods are verbs; two properties sort them</a></li>
+      <li><a href="#s2">GET and POST</a></li>
+      <li><a href="#s3">PUT versus POST, and idempotency</a></li>
+      <li><a href="#s4">PATCH and DELETE</a></li>
+      <li><a href="#s5">Success codes: 200, 201, 204</a></li>
+      <li><a href="#s6">Error codes: who made the mistake?</a></li>
+      <li><a href="#practice">Worked example and practice</a></li>
+      <li><a href="#summary">Summary</a></li>
+      <li><a href="#further">Go further</a></li>
+    </ol>
+  </nav>
+
+  <section id="warm-up">
+    <h2>Warm-up <span class="section-time">2 min</span></h2>
+    <div class="check">
+      <span class="label">Recall</span>
+      <p>From your work on resources and URIs: in a bookstore API, what is the difference between <code>/books</code> and <code>/books/42</code>, and why does neither path contain a verb like <code>/getBook</code>?</p>
+      <details>
+        <summary>Check your answer</summary>
+        <p><code>/books</code> is the collection; <code>/books/42</code> is one book inside it. The path names a thing (a noun). Today's lesson supplies the verb: the HTTP method. So <code>GET /books/42</code> reads that book and <code>DELETE /books/42</code> removes it, with the same path both times.</p>
+      </details>
+    </div>
+  </section>
+
+  <section id="s1">
+    <h2>Methods are verbs; two properties sort them <span class="section-time">4 min</span></h2>
+    <p>Start with an everyday case. You are at a library desk. You can <em>look up</em> a book's record, <em>hand in a new</em> book for the shelf, <em>replace</em> a damaged record with a fresh one, or <em>remove</em> a record. Each is a different request, and the clerk handles each differently. HTTP works the same way: the <dfn>method</dfn> (also called the verb) tells the server what kind of action you want on the resource named in the URL.</p>
+    <p>Two properties help you choose, and you will use both all lesson.</p>
+    <p>A method is <dfn>safe</dfn> if it is meant only to read and not to change anything on the server. Looking up a record is safe. A method is <dfn>idempotent</dfn> if sending the same request once or ten times leaves the server in the same state. A light switch labelled "turn on" is idempotent: pressing it five times leaves the light on. A "toggle" switch is not: press it twice and you are back where you started. (Definitions follow <a href="https://developer.mozilla.org/en-US/docs/Glossary/Idempotent">MDN's glossary entry for idempotent</a>.)</p>
+    <p>Idempotency matters because networks fail. If you send a request and the connection drops before the reply arrives, you do not know whether the server received it. With an idempotent method, the client can simply send it again. MDN puts it this way: a client can safely retry an idempotent request when there is doubt about whether it reached the server (<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods">MDN: HTTP request methods</a>).</p>
+
+    <table>
+      <thead><tr><th>Method</th><th>Plain meaning</th><th>Safe?</th><th>Idempotent?</th></tr></thead>
+      <tbody>
+        <tr><td><code>GET</code></td><td>Read a resource</td><td>Yes</td><td>Yes</td></tr>
+        <tr><td><code>POST</code></td><td>Submit data for the server to process, often creating a new resource</td><td>No</td><td>No</td></tr>
+        <tr><td><code>PUT</code></td><td>Replace the resource with exactly this</td><td>No</td><td>Yes</td></tr>
+        <tr><td><code>PATCH</code></td><td>Apply a partial change</td><td>No</td><td>Not guaranteed</td></tr>
+        <tr><td><code>DELETE</code></td><td>Remove the resource</td><td>No</td><td>Yes</td></tr>
+      </tbody>
+    </table>
+    <p>This table matches MDN's categorization of methods by safety and idempotency (<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods">MDN</a>).</p>
+
+    <aside class="note">The HTTP specification only <em>describes</em> these promises. Your server is not forced to obey them, so you must build them in. A <code>GET</code> handler that deletes rows is legal code and a terrible API: browsers, caches and crawlers assume <code>GET</code> is safe and will call it freely.</aside>
+
+    <div class="check" data-check>
+      <span class="label">Check yourself</span>
+      <p>A mobile app loses signal right after sending a request, and does not know if it arrived. For which method can the app resend it automatically with no risk of a duplicate effect?</p>
+      <ul class="choices">
+        <li><button type="button" data-correct="false" data-why="POST is not idempotent. If the first request did arrive, resending could create a second record.">POST, because it carries a full body</button></li>
+        <li><button type="button" data-correct="false" data-why="PATCH is not guaranteed idempotent. A patch such as 'add 1 to the counter' changes the state again every time.">PATCH, because it changes one field</button></li>
+        <li><button type="button" data-correct="true" data-why="PUT sets the resource to a given state, and setting the same state twice changes nothing more. It is idempotent.">PUT, because repeating it changes nothing</button></li>
+      </ul>
+      <p class="feedback" aria-live="polite"></p>
+      <details>
+        <summary>Show the answer</summary>
+        <p>PUT. It is idempotent: the second copy leaves the server in the same state as the first. POST and PATCH offer no such guarantee.</p>
+      </details>
+    </div>
+  </section>
+
+  <section id="s2">
+    <h2>GET and POST <span class="section-time">4 min</span></h2>
+    <h3>GET: read, and change nothing</h3>
+    <p>Use <code>GET</code> to retrieve a resource or a collection. It carries no body, it must not change data, and it is safe to repeat. Because it is safe, caches and browsers may store its responses.</p>
+<pre><code>GET /books/42        -> one book
+GET /books?author=Le+Guin   -> a filtered collection</code></pre>
+    <p>Filtering, sorting and searching still use <code>GET</code>, with query parameters, because they only read.</p>
+
+    <h3>POST: create, or run a process</h3>
+    <p>Use <code>POST</code> when the client sends data and the <em>server</em> decides what to do with it. The classic case is creating a resource in a collection: the client does not choose the new book's ID, the server does. So you <code>POST</code> to the collection, not to the item.</p>
+<pre><code>POST /books
+{"title": "The Dispossessed", "author": "Ursula K. Le Guin"}
+
+-> 201 Created
+   Location: /books/43</code></pre>
+    <p>Here the server picked ID 43 and told the client where the new book lives in a <code>Location</code> header. Every <code>POST</code> like this creates a <em>new</em> book. Send it twice and you get two books, 43 and 44. That is exactly why <code>POST</code> is not idempotent.</p>
+    <p>Notice the path <code>/books</code> is the collection you already know from O1. The path stays a noun; the method carries the action.</p>
+
+    <div class="check" data-check>
+      <span class="label">Check yourself</span>
+      <p>A customer places an order. The server assigns the order number. Which request fits best?</p>
+      <ul class="choices">
+        <li><button type="button" data-correct="false" data-why="The client would be choosing the ID, but here the server assigns it. PUT to a client-chosen address does not fit.">PUT /orders/1001 with the order data</button></li>
+        <li><button type="button" data-correct="false" data-why="GET must never change data. Creating an order with a GET is unsafe: a cache or crawler could place orders.">GET /orders/new?item=7&amp;quantity=2</button></li>
+        <li><button type="button" data-correct="true" data-why="POST to the collection lets the server create the order and assign its ID.">POST /orders with the order data</button></li>
+      </ul>
+      <p class="feedback" aria-live="polite"></p>
+      <details>
+        <summary>Show the answer</summary>
+        <p>POST to <code>/orders</code>. The server assigns the ID, so the client addresses the collection.</p>
+      </details>
+    </div>
+  </section>
+
+  <section id="s3">
+    <h2>PUT versus POST, and idempotency <span class="section-time">6 min</span></h2>
+    <p>This is the pair people mix up, because both send a body. The difference is in what the request <em>means</em>.</p>
+    <p><code>PUT</code> means: "make the resource at this exact URL look like this body." It replaces the whole current representation of the target resource (<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods">MDN</a>). The client already knows the address. <code>POST</code> means: "here is some data, server, handle it", and the server decides the outcome.</p>
+
+    <h3>A worked contrast</h3>
+    <p>Suppose user 7 has this profile: name "Ana", city "Lyon". The client sends:</p>
+<pre><code>PUT /users/7
+{"name": "Ana", "city": "Paris"}</code></pre>
+    <p>After the first request, user 7 is Ana in Paris. After a second identical request, user 7 is still Ana in Paris. Ten requests: the same. That is idempotency. Now compare:</p>
+<pre><code>POST /users
+{"name": "Ana", "city": "Paris"}</code></pre>
+    <p>The first request creates user 8. The second creates user 9, a duplicate Ana. Same body, different result each time.</p>
+
+    <figure>
+      <svg viewBox="0 0 640 300" role="img" aria-labelledby="fig1-title">
+        <title id="fig1-title">Sending the same request three times: PUT leaves one resource, POST creates three.</title>
+        <g font-family="system-ui, sans-serif" font-size="18" fill="currentColor">
+          <text x="20" y="30" font-weight="700">PUT /users/7 (sent 3 times)</text>
+          <text x="20" y="175" font-weight="700">POST /users (sent 3 times)</text>
+        </g>
+        <g fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="20" y="45" width="170" height="70" rx="8"/>
+          <rect x="235" y="45" width="170" height="70" rx="8"/>
+          <rect x="450" y="45" width="170" height="70" rx="8"/>
+          <rect x="20" y="190" width="170" height="70" rx="8" style="stroke: var(--warn)"/>
+          <rect x="235" y="190" width="170" height="70" rx="8" style="stroke: var(--warn)"/>
+          <rect x="450" y="190" width="170" height="70" rx="8" style="stroke: var(--warn)"/>
+        </g>
+        <g font-family="system-ui, sans-serif" font-size="18" fill="currentColor" text-anchor="middle">
+          <text x="105" y="78">users/7</text><text x="105" y="102">Ana, Paris</text>
+          <text x="320" y="78">users/7</text><text x="320" y="102">Ana, Paris</text>
+          <text x="535" y="78">users/7</text><text x="535" y="102">Ana, Paris</text>
+          <text x="105" y="223" style="fill: var(--warn)">users/8</text><text x="105" y="247" style="fill: var(--warn)">Ana</text>
+          <text x="320" y="223" style="fill: var(--warn)">users/8, 9</text><text x="320" y="247" style="fill: var(--warn)">two Anas</text>
+          <text x="535" y="223" style="fill: var(--warn)">users/8, 9, 10</text><text x="535" y="247" style="fill: var(--warn)">three Anas</text>
+          <text x="105" y="140" font-size="16">after 1st</text>
+          <text x="320" y="140" font-size="16">after 2nd</text>
+          <text x="535" y="140" font-size="16">after 3rd</text>
+        </g>
+      </svg>
+      <figcaption>Figure 1. After the first PUT, repeats change nothing. Each POST adds something new, so repeating it multiplies the effect.</figcaption>
+    </figure>
+
+    <div class="box misconception">
+      <span class="label">A common mix-up (M1)</span>
+      <p><strong>"POST and PUT are interchangeable, since both send data."</strong> This is tempting because from the client's code the two calls look alike: a URL and a JSON body. But they promise different things. <code>PUT</code> targets a known URL and is idempotent. <code>POST</code> targets a collection or a processing endpoint and is not. Pick wrongly and a network retry can silently create duplicate orders or charge a card twice.</p>
+    </div>
+
+    <p>One more point. Because <code>PUT</code> <em>replaces</em>, fields you leave out are gone. If you <code>PUT /users/7</code> with only <code>{"city": "Rome"}</code>, a strict server treats the new profile as having a city and no name. That is why partial updates need a different method.</p>
+
+    <div class="check" data-check>
+      <span class="label">Check yourself</span>
+      <p>The client sends <code>PUT /users/7</code> with the same body twice. What is the state of user 7 after the second request compared with after the first?</p>
+      <ul class="choices">
+        <li><button type="button" data-correct="false" data-why="That describes POST. PUT targets the same URL and sets the same state, so no second resource appears.">A second duplicate user was created</button></li>
+        <li><button type="button" data-correct="false" data-why="Nothing accumulates or is consumed. Replacing with identical content leaves identical content.">The profile changed a second time</button></li>
+        <li><button type="button" data-correct="true" data-why="Idempotent: replacing a resource with the same representation again leaves the state exactly as it was.">Exactly the same as after the first</button></li>
+      </ul>
+      <p class="feedback" aria-live="polite"></p>
+      <details>
+        <summary>Show the answer</summary>
+        <p>The state is identical. That is what idempotent means for PUT.</p>
+      </details>
+    </div>
+  </section>
+
+  <section id="s4">
+    <h2>PATCH and DELETE <span class="section-time">4 min</span></h2>
+    <h3>PATCH: change part of a resource</h3>
+    <p><code>PATCH</code> applies a partial modification (<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods">MDN</a>). To move user 7 to Rome without resending everything:</p>
+<pre><code>PATCH /users/7
+{"city": "Rome"}</code></pre>
+    <p>The name stays. Whether a <code>PATCH</code> is idempotent depends on what the patch says. "Set city to Rome" gives the same result every time. "Add 1 to the login count" does not. Because you cannot know in general, the specification does not guarantee it, so treat <code>PATCH</code> as not idempotent unless you design it to be.</p>
+    <p>Rule of thumb: sending the whole resource, use <code>PUT</code>. Sending only the fields that change, use <code>PATCH</code>.</p>
+
+    <h3>DELETE: remove it</h3>
+    <p><code>DELETE /books/42</code> removes the book. It is idempotent, and here is the subtle part. The first call removes the book. The second call finds nothing and may answer <code>404</code>. The <em>response</em> differs, but the <em>server state</em> is the same: book 42 is gone. Idempotency is about state, not about getting identical replies.</p>
+
+    <figure>
+      <svg viewBox="0 0 640 170" role="img" aria-labelledby="fig2-title">
+        <title id="fig2-title">A decision guide: whole resource at a known URL uses PUT; part of a resource uses PATCH; server picks the ID uses POST.</title>
+        <defs>
+          <marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+          </marker>
+        </defs>
+        <g fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="20" y="60" width="170" height="50" rx="8" style="stroke: var(--accent)"/>
+          <rect x="300" y="10" width="160" height="40" rx="8"/>
+          <rect x="300" y="65" width="160" height="40" rx="8"/>
+          <rect x="300" y="120" width="160" height="40" rx="8"/>
+          <line x1="190" y1="75" x2="296" y2="30" marker-end="url(#arrow2)"/>
+          <line x1="190" y1="85" x2="296" y2="85" marker-end="url(#arrow2)"/>
+          <line x1="190" y1="95" x2="296" y2="140" marker-end="url(#arrow2)"/>
+        </g>
+        <g fill="currentColor" font-family="system-ui, sans-serif" font-size="18">
+          <text x="105" y="90" text-anchor="middle" style="fill: var(--accent)">I want to write</text>
+          <text x="310" y="36">PUT: whole, known URL</text>
+          <text x="310" y="91">PATCH: some fields</text>
+          <text x="310" y="146">POST: server picks ID</text>
+        </g>
+      </svg>
+      <figcaption>Figure 2. Three ways to write data, chosen by who decides the address and how much you send.</figcaption>
+    </figure>
+
+    <div class="check" data-check>
+      <span class="label">Check yourself</span>
+      <p>A client wants to change only a book's price and leave every other field alone. Which request fits?</p>
+      <ul class="choices">
+        <li><button type="button" data-correct="false" data-why="PUT replaces the whole resource, so omitted fields could be lost. It suits full replacement, not a one-field change.">PUT /books/42 with only the price</button></li>
+        <li><button type="button" data-correct="true" data-why="PATCH is for partial changes: only the price is sent, the rest stays.">PATCH /books/42 with only the price</button></li>
+        <li><button type="button" data-correct="false" data-why="POST to /books would create another book, not edit book 42.">POST /books with only the price</button></li>
+      </ul>
+      <p class="feedback" aria-live="polite"></p>
+      <details>
+        <summary>Show the answer</summary>
+        <p>PATCH to the book's URL with just the price.</p>
+      </details>
+    </div>
+  </section>
+
+  <section id="s5">
+    <h2>Success codes: 200, 201, 204 <span class="section-time">4 min</span></h2>
+    <p>The method is the request. The <dfn>status code</dfn> is the server's three-digit answer about what happened. The first digit gives the class: <code>2xx</code> success, <code>3xx</code> redirection, <code>4xx</code> the client made a mistake, <code>5xx</code> the server failed. The full list lives in the <a href="https://www.iana.org/assignments/http-status-codes?obref=obinsite">IANA registry</a>, and <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">MDN explains each one</a>.</p>
+    <p>Within success, choose the code that says <em>which</em> success.</p>
+    <ul>
+      <li><code>200 OK</code>: it worked, and here is the result in the body. The usual answer to <code>GET</code>, and to an update that returns the updated resource.</li>
+      <li><code>201 Created</code>: a new resource was created. MDN notes this is typically the response to <code>POST</code>, or to some <code>PUT</code> requests (<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">MDN</a>). Pair it with a <code>Location</code> header.</li>
+      <li><code>204 No Content</code>: it worked, and there is deliberately no body. A natural fit for <code>DELETE</code>, or an update where you return nothing.</li>
+    </ul>
+
+    <table>
+      <thead><tr><th>Operation</th><th>Method and path</th><th>Success code</th></tr></thead>
+      <tbody>
+        <tr><td>List books</td><td><code>GET /books</code></td><td>200</td></tr>
+        <tr><td>Add a book</td><td><code>POST /books</code></td><td>201 + Location</td></tr>
+        <tr><td>Replace a book</td><td><code>PUT /books/42</code></td><td>200 or 204</td></tr>
+        <tr><td>Change the price</td><td><code>PATCH /books/42</code></td><td>200 or 204</td></tr>
+        <tr><td>Remove a book</td><td><code>DELETE /books/42</code></td><td>204 (or 200)</td></tr>
+      </tbody>
+    </table>
+
+    <div class="box misconception">
+      <span class="label">A common mix-up (M2)</span>
+      <p><strong>"If the request reached the server and I handled it, return 200."</strong> It is tempting because the HTTP exchange itself worked. But the status code describes the <em>outcome of the operation</em>, not whether the network delivered it. A request that reached your server and found no such book is a <code>404</code>. One that created a book is <code>201</code>. If you answer <code>200</code> with <code>{"error": "not found"}</code> in the body, every client must open the body to learn it failed, and tools like retry logic, monitoring and caches cannot tell success from failure.</p>
+    </div>
+
+    <div class="check" data-check>
+      <span class="label">Check yourself</span>
+      <p>A client deletes a draft post and your server removes it. You have nothing useful to send back. Which response fits best?</p>
+      <ul class="choices">
+        <li><button type="button" data-correct="false" data-why="201 means something was created. A deletion creates nothing.">201 Created with an empty body</button></li>
+        <li><button type="button" data-correct="false" data-why="Technically 200 is permitted, but it suggests a body with a result. When you have nothing to say, 204 is the clearer signal. It is also not 'any success is 200'.">200 OK with an empty body</button></li>
+        <li><button type="button" data-correct="true" data-why="204 says: it worked, and there is deliberately nothing to return.">204 No Content with no body</button></li>
+      </ul>
+      <p class="feedback" aria-live="polite"></p>
+      <details>
+        <summary>Show the answer</summary>
+        <p>204 No Content: success, no body.</p>
+      </details>
+    </div>
+  </section>
+
+  <section id="s6">
+    <h2>Error codes: who made the mistake? <span class="section-time">4 min</span></h2>
+    <p>For errors, ask one question first: <strong>whose fault is it?</strong> If the client sent something wrong, use <code>4xx</code>. If your server broke on a good request, use <code>5xx</code>. That alone tells a frontend whether retrying the same request could ever help.</p>
+    <table>
+      <thead><tr><th>Situation</th><th>Code</th></tr></thead>
+      <tbody>
+        <tr><td>Malformed request: broken JSON, missing required header</td><td><code>400 Bad Request</code></td></tr>
+        <tr><td>Not logged in, or bad credentials</td><td><code>401 Unauthorized</code></td></tr>
+        <tr><td>Logged in, but not allowed to do this</td><td><code>403 Forbidden</code></td></tr>
+        <tr><td>No resource at that URL</td><td><code>404 Not Found</code></td></tr>
+        <tr><td>Clashes with current state: email already registered</td><td><code>409 Conflict</code></td></tr>
+        <tr><td>Well-formed, but fails validation rules: age is -3</td><td><code>422 Unprocessable Content</code></td></tr>
+        <tr><td>Your server crashed or a dependency failed</td><td><code>500 Internal Server Error</code></td></tr>
+      </tbody>
+    </table>
+    <p>MDN describes <code>409</code> as a request that conflicts with the current state of the server, and <code>422</code> as a well-formed request that cannot be followed because of semantic errors (<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">MDN</a>). The IANA registry lists 422 as defined in RFC 9110 (<a href="https://www.iana.org/assignments/http-status-codes?obref=obinsite">IANA</a>).</p>
+    <aside class="note">Teams disagree on <code>400</code> versus <code>422</code> for validation failures. Both are defensible. What matters is that your API picks one and uses it consistently. Consistent error <em>bodies</em> are the next objective (O3).</aside>
+
+    <figure>
+      <svg viewBox="0 0 640 230" role="img" aria-labelledby="fig3-title">
+        <title id="fig3-title">Decision flow for choosing an error code: server broke gives 5xx; otherwise ask about login, permission, existence, state clash, and validity.</title>
+        <defs>
+          <marker id="arrow3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+          </marker>
+        </defs>
+        <g fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="10" y="15" width="200" height="45" rx="8" style="stroke: var(--accent)"/>
+          <rect x="430" y="15" width="200" height="45" rx="8" style="stroke: var(--warn)"/>
+          <rect x="10" y="95" width="200" height="45" rx="8"/>
+          <rect x="430" y="95" width="200" height="45" rx="8"/>
+          <rect x="10" y="175" width="200" height="45" rx="8"/>
+          <rect x="430" y="175" width="200" height="45" rx="8"/>
+          <line x1="210" y1="37" x2="426" y2="37" marker-end="url(#arrow3)"/>
+          <line x1="110" y1="60" x2="110" y2="91" marker-end="url(#arrow3)"/>
+          <line x1="210" y1="117" x2="426" y2="117" marker-end="url(#arrow3)"/>
+          <line x1="110" y1="140" x2="110" y2="171" marker-end="url(#arrow3)"/>
+          <line x1="210" y1="197" x2="426" y2="197" marker-end="url(#arrow3)"/>
+        </g>
+        <g fill="currentColor" font-family="system-ui, sans-serif" font-size="18">
+          <text x="110" y="43" text-anchor="middle" style="fill: var(--accent)">Did my code fail?</text>
+          <text x="530" y="43" text-anchor="middle" style="fill: var(--warn)">5xx (500)</text>
+          <text x="110" y="123" text-anchor="middle">Is the client known?</text>
+          <text x="530" y="123" text-anchor="middle">no: 401 / not allowed: 403</text>
+          <text x="110" y="203" text-anchor="middle">Does it exist?</text>
+          <text x="530" y="203" text-anchor="middle">no: 404; clash: 409; bad: 400/422</text>
+          <text x="318" y="31" text-anchor="middle" font-size="15">yes</text>
+          <text x="318" y="111" text-anchor="middle" font-size="15">no</text>
+          <text x="318" y="191" text-anchor="middle" font-size="15">no</text>
+          <text x="125" y="80" font-size="15">no</text>
+          <text x="125" y="160" font-size="15">yes</text>
+        </g>
+      </svg>
+      <figcaption>Figure 3. Work down the left column. The first question that fires gives your code. Treat it as a rough guide, not a law.</figcaption>
+    </figure>
+
+    <div class="check" data-check>
+      <span class="label">Check yourself</span>
+      <p>A signed-in user tries to delete another user's private photo. The photo exists. Which code fits?</p>
+      <ul class="choices">
+        <li><button type="button" data-correct="false" data-why="401 means the client is not authenticated. This user is signed in, so the problem is permission, not identity.">401 Unauthorized, since access was refused</button></li>
+        <li><button type="button" data-correct="false" data-why="The photo exists, so 404 would be inaccurate here. (Some APIs hide existence on purpose, but that is a deliberate extra choice.)">404 Not Found, since they cannot see it</button></li>
+        <li><button type="button" data-correct="true" data-why="403: the server knows who they are and refuses the action.">403 Forbidden, since they lack permission</button></li>
+      </ul>
+      <p class="feedback" aria-live="polite"></p>
+      <details>
+        <summary>Show the answer</summary>
+        <p>403 Forbidden: authenticated but not authorized.</p>
+      </details>
+    </div>
+  </section>
+
+  <section id="practice">
+    <h2>Worked example and practice <span class="section-time">6 min</span></h2>
+    <div class="box worked">
+      <span class="label">Worked example</span>
+      <p>A library API. Operation: "A member returns a loan. The loan record 305 should be marked <code>returned: true</code>. Other fields stay." Choose the method and the success code, then name one error case.</p>
+      <ol>
+        <li><strong>Which resource?</strong> One specific loan, so the path is <code>/loans/305</code>. (From O1: a noun, an item inside a collection.)</li>
+        <li><strong>Is it a read?</strong> No, it changes data, so not <code>GET</code>.</li>
+        <li><strong>Does the server pick an address?</strong> No, the loan already exists, so not <code>POST</code>.</li>
+        <li><strong>Whole resource or part?</strong> Only one field changes, so <code>PATCH</code>, not <code>PUT</code>. Since it sets <code>returned</code> to <code>true</code>, repeating it gives the same state.</li>
+        <li><strong>Success code?</strong> Nothing was created. Return <code>200 OK</code> with the updated loan, or <code>204</code> if the client does not need it.</li>
+        <li><strong>An error case:</strong> loan 999 does not exist, so <code>404 Not Found</code>. The client named something absent, which is the client's mistake: <code>4xx</code>.</li>
+      </ol>
+      <p>Final answer: <code>PATCH /loans/305</code> with <code>{"returned": true}</code> returns <code>200</code>; a missing loan returns <code>404</code>.</p>
+    </div>
+
+    <div class="check">
+      <span class="label">Your turn</span>
+      <p>A shop API. Operation: "A customer replaces their saved delivery address with a completely new one. The address already exists as address 12 for that customer." Step 1 is given: the path is <code>/addresses/12</code>. Now decide:</p>
+      <ol>
+        <li>Which method, and why not the two nearest alternatives?</li>
+        <li>Which success code?</li>
+        <li>What code if address 12 does not exist? What if the signed-in customer does not own address 12 and the system refuses?</li>
+      </ol>
+      <details>
+        <summary>Show a solution</summary>
+        <p><strong>1.</strong> <code>PUT /addresses/12</code>. The whole address is being replaced and the client knows the URL, so PUT. Not <code>POST</code>: the server is not creating anything or choosing an address. Not <code>PATCH</code>: the whole resource is sent, not selected fields.</p>
+        <p><strong>2.</strong> <code>200 OK</code> with the new address, or <code>204 No Content</code>. Not <code>201</code>, because nothing new was created.</p>
+        <p><strong>3.</strong> Missing address: <code>404 Not Found</code>. Signed in but not the owner and the system refuses: <code>403 Forbidden</code>.</p>
+      </details>
+    </div>
+  </section>
+
+  <section id="summary">
+    <h2>Summary <span class="section-time">2 min</span></h2>
+    <div class="box summary">
+      <ul>
+        <li>The path names the thing; the method names the action. <code>GET</code> reads, <code>POST</code> creates or processes, <code>PUT</code> replaces whole, <code>PATCH</code> changes part, <code>DELETE</code> removes.</li>
+        <li><code>GET</code> is safe. <code>GET</code>, <code>PUT</code> and <code>DELETE</code> are idempotent: repeating them leaves the same state. <code>POST</code> is not, which is the real difference from <code>PUT</code>.</li>
+        <li>Status codes report the outcome, not delivery: <code>201</code> for created, <code>204</code> for success with no body, <code>404</code> for missing, <code>409</code> for a state clash.</li>
+        <li>For errors ask whose fault it is: <code>4xx</code> is the client's, <code>5xx</code> is yours.</li>
+      </ul>
+      <p><strong>Say it in your own words:</strong> without looking back, explain to a teammate why a retried <code>POST /orders</code> is risky but a retried <code>PUT /orders/17</code> is not, and what status code you would return for a successful create.</p>
+    </div>
+  </section>
+
+  <section id="further" class="go-further">
+    <h2>Go further</h2>
+    <p><strong>Read next:</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods">MDN: HTTP request methods</a>, the clearest reference for each method's safety, idempotency and caching, kept current with the specification.</p>
+    <ul>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">MDN: HTTP response status codes</a>: every code with a short definition.</li>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Glossary/Idempotent">MDN glossary: idempotent</a>: the precise definition used here.</li>
+      <li><a href="https://www.iana.org/assignments/http-status-codes?obref=obinsite">IANA HTTP Status Code Registry</a>: the official list, with the specification section for each code.</li>
+      <li><a href="https://learn.microsoft.com/azure/architecture/best-practices/api-design">Microsoft Azure Architecture Center: web API design</a>: a practitioner guide to designing whole APIs, useful once you have these basics.</li>
+    </ul>
+    <p><strong>Test it with others:</strong> the <code>rest</code> and <code>api-design</code> tags on Stack Overflow are full of real "PUT or PATCH?" and "which status code?" debates. Try answering one, or read how experienced developers justify their choices.</p>
+  </section>
+
+  <footer class="closing">
+    <p>Anything unclear? Ask me in the chat; I can explain any part again, another way, or go deeper.</p>
+    <p>A short quiz on this lesson is ready (quiz 0002): ask me for it when you want to check what stuck. A one-page reference is in <a href="../cheatsheets/http-methods-status-codes.html">the cheat sheet</a>.</p>
+  </footer>
+
+</main>
+<script>
+  document.querySelectorAll("[data-check]").forEach(function (box) {
+    var buttons = box.querySelectorAll("button[data-correct]");
+    var out = box.querySelector(".feedback");
+    buttons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        buttons.forEach(function (b) { b.classList.remove("right", "wrong"); });
+        var right = button.getAttribute("data-correct") === "true";
+        button.classList.add(right ? "right" : "wrong");
+        if (out) { out.textContent = (right ? "Yes. " : "Not quite. ") + (button.getAttribute("data-why") || ""); }
+      });
+    });
+  });
+</script>
+</body>
+</html>

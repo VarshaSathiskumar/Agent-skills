@@ -1,0 +1,35 @@
+{
+  "id": "0002",
+  "items": [
+    {
+      "id": "q1",
+      "answer": "a",
+      "rationale": "Per-server state is not shared, so each of the 4 servers enforces the full limit separately and a client can get about 4x through. State must live in shared storage such as Redis.",
+      "distractors": {"c": "M4"}
+    },
+    {
+      "id": "q2",
+      "answer": "b",
+      "rationale": "Each command is atomic but the read-decide-write sequence is not: another server can run commands between this server's GET and SET, so two requests can both spend the last token. A single Lua script makes the whole sequence atomic.",
+      "distractors": {"c": "M3", "d": "M3"}
+    },
+    {
+      "id": "q3",
+      "answer": 7,
+      "tolerance": 0.01,
+      "rationale": "Refill: 2 s x 4 = 8 tokens, so 3 + 8 = 11, capped at the capacity of 8. Spending 1 leaves 7. An answer of 10 forgets the cap."
+    },
+    {
+      "id": "q4",
+      "answer": "From Redis (redis.call('TIME') inside the script), so all servers share one clock and clock skew between servers cannot hand out extra tokens",
+      "accepted": ["from redis", "redis", "redis time", "use redis TIME so all servers share one clock", "from redis itself because API server clocks can differ"],
+      "rationale": "API servers' clocks differ by small unpredictable amounts; reading time inside the script gives one shared clock. Choosing the API server shows M5."
+    },
+    {
+      "id": "q5",
+      "answer": "c",
+      "rationale": "429 Too Many Requests (RFC 6585) signals the rate limit, Retry-After tells the client when to retry, and the standard error body keeps errors consistent. A 200 for a refused request is M2.",
+      "distractors": {"a": "M2"}
+    }
+  ]
+}

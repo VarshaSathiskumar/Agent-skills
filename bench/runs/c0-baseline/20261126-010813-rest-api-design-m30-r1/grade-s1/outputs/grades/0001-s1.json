@@ -1,0 +1,25 @@
+{
+  "quiz": "0001",
+  "submission": "s1",
+  "items": [
+    {
+      "id": "q1",
+      "verdict": "wrong",
+      "misconception": "M1",
+      "feedback": "You picked /post-or-put-book/42, which puts an HTTP method in the URI. That is tempting because POST and PUT both send data, so it feels like the path should say which one you mean. But the URI should only name the thing (the resource); the method on the request says what to do with it. The right answer is /books/42: collection name plus the book's ID."
+    },
+    {
+      "id": "q2",
+      "verdict": "correct",
+      "misconception": null,
+      "feedback": "Correct: users, 15, orders, 72 make four segments. Note that IDs count as segments too, and they alternate with collection names here, which is the pattern you will use in nested URIs."
+    },
+    {
+      "id": "q3",
+      "verdict": "partial",
+      "misconception": null,
+      "feedback": "Using a plural noun like /orders is the right resource-oriented style, and your explanation of it is correct. But /orders is every order in the store, not just user 15's. The question asks for the orders that belong to user 15, so the path has to show that relationship by nesting: /users/15/orders. Before you answer, ask which resource owns the collection and put it first in the path."
+    }
+  ],
+  "summary": "You count path segments correctly and you use noun-based, plural collection names instead of actions, which is the core of O1. Two things to work on. First, keep HTTP methods out of URIs: the URI names the resource and the method says the action (this is also why POST and PUT are different things, M1). Second, nest URIs to show ownership, as in /users/15/orders. Next step: write URIs for three cases: one book, all reviews of book 42, and one review of book 42. Then say which HTTP method you would use to create each."
+}

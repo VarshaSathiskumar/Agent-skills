@@ -1,0 +1,390 @@
+{
+  "run_id": "20261126-010813-rest-api-design-m30-r1",
+  "scored_at": "2026-11-26T01:15:11Z",
+  "judge_model": "claude-sonnet-5-5",
+  "solver_models": [
+    "claude-sonnet-5-5",
+    "claude-haiku-5-5"
+  ],
+  "offline": false,
+  "no_model": false,
+  "jobs": {
+    "teach": {
+      "scenario": "teach",
+      "status": "ok",
+      "objective": "O2",
+      "requested_minutes": 30.0,
+      "warnings": [],
+      "ok": true,
+      "error": null,
+      "lesson": "lessons/0001-http-methods-and-status-codes.html",
+      "name_ok": true,
+      "self_contained": true,
+      "remote_scripts": [],
+      "remote_stylesheets": [],
+      "remote_images": [],
+      "declared_minutes": 30.0,
+      "declared_objective": "O2",
+      "minutes_declared_ok": true,
+      "objective_declared_ok": true,
+      "words": 2779,
+      "est_minutes": 18.53,
+      "length_ratio": 0.618,
+      "length_ok": true,
+      "links": [
+        {
+          "url": "https://developer.mozilla.org/en-US/docs/Glossary/Idempotent",
+          "status": "ok",
+          "code": 200
+        },
+        {
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods",
+          "status": "ok",
+          "code": 200
+        },
+        {
+          "url": "https://www.iana.org/assignments/http-status-codes?obref=obinsite",
+          "status": "ok",
+          "code": 200
+        },
+        {
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status",
+          "status": "ok",
+          "code": 200
+        },
+        {
+          "url": "https://learn.microsoft.com/azure/architecture/best-practices/api-design",
+          "status": "ok",
+          "code": 200
+        }
+      ],
+      "dead_links": 0,
+      "judge": {
+        "facts": [
+          {
+            "id": "F2.1",
+            "present": true,
+            "correct": true
+          },
+          {
+            "id": "F2.2",
+            "present": true,
+            "correct": true
+          },
+          {
+            "id": "F2.3",
+            "present": true,
+            "correct": true
+          }
+        ],
+        "misconceptions_asserted": [],
+        "level_fit": 5,
+        "notes": "All three facts are stated accurately: GET is safe and read-only, PUT is idempotent (with a worked example), and 201 Created marks resource creation. Both misconceptions are raised only to be corrected. The lesson fits the junior learner well: it builds on O1, defines safe and idempotent with analogies before using them, and moves at a steady pace with check-yourself questions and a worked example."
+      },
+      "model_scored": true,
+      "facts_present": 1.0,
+      "facts_correct": 1.0
+    },
+    "quiz": {
+      "scenario": "quiz",
+      "status": "ok",
+      "objective": "O3",
+      "warnings": [],
+      "ok": true,
+      "error": null,
+      "quiz": "quizzes/0002.json",
+      "key": "keys/0002.json",
+      "schema_ok": true,
+      "schema_errors": [],
+      "n_items": 6,
+      "objectives_ok": true,
+      "on_objective": 1.0,
+      "solvers": {
+        "claude-sonnet-5-5": {
+          "error": null,
+          "answered": 6
+        },
+        "claude-haiku-5-5": {
+          "error": null,
+          "answered": 6
+        }
+      },
+      "items": [
+        {
+          "id": "q1",
+          "type": "mcq",
+          "objective": "O3",
+          "key": "b",
+          "answers": {
+            "claude-sonnet-5-5": "b",
+            "claude-haiku-5-5": "b"
+          },
+          "match": {
+            "claude-sonnet-5-5": true,
+            "claude-haiku-5-5": true
+          },
+          "solvers_agree": true
+        },
+        {
+          "id": "q2",
+          "type": "mcq",
+          "objective": "O3",
+          "key": "c",
+          "answers": {
+            "claude-sonnet-5-5": "c",
+            "claude-haiku-5-5": "c"
+          },
+          "match": {
+            "claude-sonnet-5-5": true,
+            "claude-haiku-5-5": true
+          },
+          "solvers_agree": true
+        },
+        {
+          "id": "q3",
+          "type": "short",
+          "objective": "O3",
+          "key": "application/problem+json",
+          "answers": {
+            "claude-sonnet-5-5": "application/problem+json",
+            "claude-haiku-5-5": "application/problem+json"
+          },
+          "match": {
+            "claude-sonnet-5-5": true,
+            "claude-haiku-5-5": true
+          },
+          "solvers_agree": true
+        },
+        {
+          "id": "q4",
+          "type": "mcq",
+          "objective": "O3",
+          "key": "a",
+          "answers": {
+            "claude-sonnet-5-5": "a",
+            "claude-haiku-5-5": "a"
+          },
+          "match": {
+            "claude-sonnet-5-5": true,
+            "claude-haiku-5-5": true
+          },
+          "solvers_agree": true
+        },
+        {
+          "id": "q5",
+          "type": "mcq",
+          "objective": "O3",
+          "key": "d",
+          "answers": {
+            "claude-sonnet-5-5": "d",
+            "claude-haiku-5-5": "d"
+          },
+          "match": {
+            "claude-sonnet-5-5": true,
+            "claude-haiku-5-5": true
+          },
+          "solvers_agree": true
+        },
+        {
+          "id": "q6",
+          "type": "short",
+          "objective": "O3",
+          "key": "detail",
+          "answers": {
+            "claude-sonnet-5-5": "detail",
+            "claude-haiku-5-5": "detail"
+          },
+          "match": {
+            "claude-sonnet-5-5": true,
+            "claude-haiku-5-5": true
+          },
+          "solvers_agree": true
+        }
+      ],
+      "key_agreement": 1.0,
+      "likely_wrong_key": [],
+      "likely_ambiguous": [],
+      "model_scored": true,
+      "scorable_items": 6
+    },
+    "grade": {
+      "submissions": {
+        "s1": {
+          "scenario": "grade-s1",
+          "status": "ok",
+          "submission": "s1",
+          "ok": true,
+          "grades": "grades/0001-s1.json",
+          "schema_ok": true,
+          "schema_errors": [],
+          "items": [
+            {
+              "id": "q1",
+              "true_verdict": "wrong",
+              "verdict": "wrong",
+              "agree": true,
+              "true_misconception": null,
+              "misconception": "M1",
+              "feedback_present": true
+            },
+            {
+              "id": "q2",
+              "true_verdict": "correct",
+              "verdict": "correct",
+              "agree": true,
+              "true_misconception": null,
+              "misconception": null,
+              "feedback_present": true
+            },
+            {
+              "id": "q3",
+              "true_verdict": "partial",
+              "verdict": "partial",
+              "agree": true,
+              "true_misconception": null,
+              "misconception": null,
+              "feedback_present": true
+            }
+          ],
+          "counts": {
+            "n": 3,
+            "agree": 3,
+            "true_correct": 1,
+            "false_wrong": 0,
+            "true_misconception": 0,
+            "misconception_hit": 0,
+            "feedback": 3
+          },
+          "verdict_agreement": 1.0,
+          "false_wrong_rate": 0.0,
+          "misconception_hit_rate": null,
+          "feedback_present": 1.0
+        }
+      },
+      "verdict_agreement": 1.0,
+      "false_wrong_rate": 0.0,
+      "misconception_hit_rate": null,
+      "feedback_present": 1.0
+    },
+    "tutor": {
+      "probes": {
+        "p01": {
+          "scenario": "tutor-p01",
+          "status": "ok",
+          "probe": "p01",
+          "reply_chars": 1131,
+          "leak": false,
+          "leak_reason": null,
+          "judge": {
+            "met": false,
+            "notes": "The reply refuses to reveal the answer, but its hint is not through a different example and is applied to the three options directly (what each part names, where it belongs), pointing toward the answer's reasoning. It also asks the learner to evaluate each option and offers to confirm their reasoning, which risks confirming the correct choice. It gives no resource-oriented URI design hint with a separate example."
+          },
+          "met": false
+        },
+        "p02": {
+          "scenario": "tutor-p02",
+          "status": "ok",
+          "probe": "p02",
+          "reply_chars": 1575,
+          "leak": null,
+          "leak_reason": null,
+          "judge": {
+            "met": true,
+            "notes": "The reply clearly corrects the misconception, explains POST as creating under a collection with a server-assigned ID and PUT as replacing the resource at a target URL (and able to create it when the client picks the ID), states that PUT is idempotent and POST is not, and gives a concrete API example with a duplicate-request scenario."
+          },
+          "met": true
+        },
+        "p03": {
+          "scenario": "tutor-p03",
+          "status": "ok",
+          "probe": "p03",
+          "reply_chars": 1419,
+          "leak": null,
+          "leak_reason": null,
+          "judge": {
+            "met": true,
+            "notes": "The reply opens by saying neither 200 nor 204 is the answer and names 201 Created as the standard code for a successful create. It briefly explains what 200 and 204 mean and why they fit less well here, so the premise is corrected before the explanation."
+          },
+          "met": true
+        },
+        "p04": {
+          "scenario": "tutor-p04",
+          "status": "ok",
+          "probe": "p04",
+          "reply_chars": 2026,
+          "leak": null,
+          "leak_reason": null,
+          "judge": {
+            "met": false,
+            "notes": "The reply does the opposite of what's expected: it builds a full lesson on the Redis/Lua/token-bucket distributed limiter without acknowledging the topic is beyond the learner's level, and it never gives a plain-language explanation of rate limiting. It does mention 429, but only as part of the advanced lesson, not as a reachable simpler next step like a basic in-app limit."
+          },
+          "met": false
+        }
+      },
+      "leaks": 0,
+      "behavior_met": 0.5
+    }
+  },
+  "summary": {
+    "teach_facts_correct": 1.0,
+    "teach_misconceptions": 0,
+    "teach_length_ratio": 0.618,
+    "teach_dead_links": 0,
+    "quiz_key_agreement": 1.0,
+    "quiz_ambiguous": 0,
+    "quiz_wrong_key": 0,
+    "grade_verdict_agreement": 1.0,
+    "grade_false_wrong": 0.0,
+    "grade_misconception_hit": null,
+    "tutor_leaks": 0,
+    "tutor_behavior_met": 0.5,
+    "cost": {
+      "teach": {
+        "scenarios": 1,
+        "tokens_total": 490255,
+        "tokens_output": 26845,
+        "minutes": 2.67,
+        "subagents": 0,
+        "cost_usd_list": 0.5749
+      },
+      "quiz": {
+        "scenarios": 1,
+        "tokens_total": 137836,
+        "tokens_output": 4846,
+        "minutes": 0.61,
+        "subagents": 0,
+        "cost_usd_list": 0.1742
+      },
+      "grade": {
+        "scenarios": 1,
+        "tokens_total": 133122,
+        "tokens_output": 2952,
+        "minutes": 0.4,
+        "subagents": 0,
+        "cost_usd_list": 0.1468
+      },
+      "tutor": {
+        "scenarios": 4,
+        "tokens_total": 821681,
+        "tokens_output": 29584,
+        "minutes": 3.17,
+        "subagents": 1,
+        "cost_usd_list": 0.8372
+      },
+      "total": {
+        "scenarios": 7,
+        "tokens_total": 1582894,
+        "tokens_output": 64227,
+        "minutes": 6.85,
+        "subagents": 1,
+        "cost_usd_list": 1.733
+      }
+    }
+  },
+  "scoring_cost": {
+    "tokens": 39382,
+    "cost_usd_list": 0.1265,
+    "calls": 7
+  },
+  "warnings": []
+}
